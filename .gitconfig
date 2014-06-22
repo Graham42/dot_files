@@ -1,0 +1,35 @@
+[user]
+	name = Graham McGregor
+	email = dev@grahammcgregor.ca
+
+[color]
+	ui = true
+	interactive = true
+
+# make untracked and changes visibly different
+[color "status"]
+	added = green bold
+	changed = red bold
+	untracked = cyan
+
+[color "branch"]
+	current = green bold
+	local = bold
+	remote = red bold
+
+[color "grep"]
+	match = cyan
+
+[pager]
+	color = true
+
+[core]
+	editor = vim
+	pager = less -FXRS -x4
+
+[alias]
+	# pretty print condensed log
+	short = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+[push]
+	default = matching
