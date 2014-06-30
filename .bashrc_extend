@@ -8,17 +8,24 @@ alias ll='ls $ListLongArgs'
 alias lla='la $ListLongArgs'
 alias ll.='l. $ListLongArgs'
 
+# make completion work with aliases
+. ~/git-completion.bash
 alias gil='git log --graph --abbrev-commit --stat --find-copies --date=local --decorate '
+__git_complete gil _git_log
 alias gib='git branch'
+__git_complete gib _git_branch
 alias gis='git status'
+# _git_status doesn't exist yet #  __git_complete gis _git_status
 alias gid='git diff -C --date=local'
+__git_complete gid _git_diff
 alias gic='git checkout'
+__git_complete gic _git_checkout
 
 # bash prompt inspired by https://gist.github.com/jameh/9039278
 
 # bash git script can be found at
 # https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
-. ~/.bash_git_prompt
+. ~/git-prompt.sh
 
 #  Predefined colors.  Makes reading code easier than escape sequences.
 
