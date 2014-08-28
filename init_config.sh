@@ -2,7 +2,7 @@
 # This script is to speed up setting up a new VM with my personal config
 
 # config variables
-BASHRC_EXTEND=".bashrc_extend"
+BASHRC_EXTEND=".bashrc_extend.sh"
 CONFIG_FILES=( \
 	"$BASHRC_EXTEND" \
 	".git-completion.bash" \
@@ -41,8 +41,8 @@ done
 
 # add import to ~/.bashrc
 bashrc_import="
-if [ -f ~/.bashrc_extend ]; then
-	. ~/.bashrc_extend
+if [ -f ~/$BASHRC_EXTEND]; then
+	. ~/$BASHRC_EXTEND
 fi
 "
 echo "$bashrc_import" >> ~/.bashrc
