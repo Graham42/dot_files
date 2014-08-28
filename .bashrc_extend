@@ -21,6 +21,12 @@ alias gic='git checkout'
 __git_complete gic _git_checkout
 alias g6='git short -6'
 
+# shell routine to do something in between a stash and a pop
+git_stash_and_pop() {
+	git stash && "$@" && git stash pop
+}
+alias gsp='git_stash_and_pop'
+
 # bash prompt inspired by https://gist.github.com/jameh/9039278
 
 # bash git script can be found at
