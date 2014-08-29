@@ -1,0 +1,38 @@
+[Bindings]
+# the hotkey combination that will bring up the window
+# examples: <Alt>space <Control>space
+launch=<Super>space
+
+[Matching]
+# use the executable name for matching
+executable=true
+
+[Icons]
+# disabled icons increase responsiveness on slow systems
+show=true
+# disabled icon scaling improves responsiveness on slow system, esp with svg icons
+scale = false
+
+[Border]
+# color of fehlstart's border. hex codes and color names are accepted, default color depends on gtk theme
+color=black
+# width of fehlstart's border
+width=2
+
+[Window]
+color = black
+width = 200
+height = 100
+# round window corners, disable this for window managers without compositing
+round = false
+# draw arch in window background
+arch = true
+
+[Labels]
+color = default
+# application name font size
+size1=14
+# typed input font size
+size2=12
+# show what is typed
+showinput=true
