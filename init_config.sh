@@ -41,7 +41,7 @@ done
 
 # add import to ~/.bashrc
 bashrc_import="
-if [ -f ~/$BASHRC_EXTEND]; then
+if [ -f ~/$BASHRC_EXTEND ]; then
 	. ~/$BASHRC_EXTEND
 fi
 "
