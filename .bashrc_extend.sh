@@ -27,6 +27,15 @@ git_stash_and_pop() {
 }
 alias gsp='git_stash_and_pop'
 
+git_stash_apply_X() {
+	stash=""
+	if [ $# -eq 1 ]; then
+		stash="stash@{$1}"
+	fi
+	git stash apply $stash
+}
+alias gsa='git_stash_apply_X'
+
 # bash prompt inspired by https://gist.github.com/jameh/9039278
 
 # bash git script can be found at
