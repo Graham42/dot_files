@@ -10,6 +10,7 @@ CONFIG_FILES=( \
 	".colors.sh" \
 	".gitconfig" \
 	".vimrc" \
+	".tmux.conf" \
 )
 
 dir=$(pwd)
