@@ -91,3 +91,10 @@ else \
   # @2 - Prompt when not in GIT repo
   echo "'$IBlue$PathShort$Color_Off' $ "; \
 fi)'
+
+# syntax highlighting in less: requires source-highlight to be installed
+if [ -f "/usr/bin/src-hilite-lesspipe.sh" ]; then
+	export LESS="-R"
+    export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+fi
+
