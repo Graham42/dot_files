@@ -19,7 +19,7 @@ alias gid='git diff -C --date=local'
 __git_complete gid _git_diff
 alias gic='git checkout'
 __git_complete gic _git_checkout
-alias g6='git short -6'
+alias g6='git --no-pager short -6 && echo'
 
 # shell routine to do something in between a stash and a pop
 git_stash_and_pop() {
