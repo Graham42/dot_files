@@ -28,8 +28,16 @@
 	pager = less -FXRS -x4
 
 [alias]
-	# pretty print condensed log
-	short = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+# pretty print condensed log
+short = log --date=short --pretty=format:'\
+%C(bold blue)%cd %Creset\
+%C(red)%h%Creset\
+%C(auto)%d %Creset\
+%C(normal)%s %Creset\
+%C(bold blue)(%Creset\
+%C(green)%an %Creset\
+%C(bold blue)%cr)%Creset\
+' --color --graph --decorate
 
 [push]
 	default = matching
