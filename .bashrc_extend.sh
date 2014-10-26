@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export EDITOR=vim
+
 alias ls='ls --color=auto -hv --group-directories-first'
 alias la='ls -A'
 alias l.='la -I"*"'
