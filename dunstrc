@@ -207,49 +207,11 @@
 # to "".
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
-
-[libpurple_signed]
-    appname = libpurple
-    summary = *igned*
-    urgency = low
-    timeout = 3
-    background = "#ccff33"
-
-[libpurple_came_back]
-    appname = libpurple
-    summary = "*came*"
-    format = ""
-
-[libpurple_went_away]
-    appname = libpurple
-    summary = "*went*"
-    format = ""
-
-[libpurple_says]
-    appname = libpurple
-    summary = *ays*
-    urgency = critical
-    background = "#ccff33"
-
-[libpurple]
-    appname = libpurple
-    urgency = critical
-    background = "#ccff33"
-
-[mcabber]
-    appname = notify-send
-    summary = "*jabber*"
-    urgency = critical
-
 [XChat]
     appname = XChat
     timeout = 0
     background = "#99FF33"
     foreground = "#000000"
-
-[test]
-    summary = "*test*"
-    background="#22dd22"
 
 # vim: ft=cfg
 
