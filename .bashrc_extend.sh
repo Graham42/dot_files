@@ -16,7 +16,7 @@ alias ll.='l. $ListLongArgs'
 
 # make completion work with aliases
 . ~/.git-completion.bash
-alias gil='git log --graph --abbrev-commit --stat --find-copies --date=local --decorate '
+alias gil='git log --graph --abbrev-commit --stat --find-copies --date=local --decorate'
 __git_complete gil _git_log
 alias gib='git branch'
 __git_complete gib _git_branch
