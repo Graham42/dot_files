@@ -2,6 +2,10 @@
 
 export EDITOR=vim
 
+# =============================================================================
+# Aliases
+# =============================================================================
+
 alias ls='ls --color=auto -hv --group-directories-first'
 alias la='ls -A'
 alias l.='la -I"*"'
@@ -37,6 +41,10 @@ git_stash_apply_X() {
 	git stash apply $stash
 }
 alias gsa='git_stash_apply_X'
+
+# =============================================================================
+# Bash Prompt (PS1)
+# =============================================================================
 
 # bash prompt inspired by https://gist.github.com/jameh/9039278
 
@@ -93,6 +101,8 @@ else \
   # @2 - Prompt when not in GIT repo
   echo "'$IBlue$PathShort$Color_Off' $ "; \
 fi)'
+
+# =============================================================================
 
 # syntax highlighting in less: requires source-highlight to be installed
 if [ -f "/usr/bin/src-hilite-lesspipe.sh" ]; then
