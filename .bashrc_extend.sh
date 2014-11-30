@@ -42,6 +42,10 @@ git_stash_apply_X() {
 }
 alias gsa='git_stash_apply_X'
 
+# datetimestamp of now. ISO format except no timezone. Good for log file names
+# example usage: process_x > degug_`nowf`.log
+alias now='date +%Y-%m-%dT%H:%M:%S'
+
 # =============================================================================
 # Bash Prompt (PS1)
 # =============================================================================
