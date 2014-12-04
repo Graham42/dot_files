@@ -22,7 +22,9 @@ alias gib='git branch'
 __git_complete gib _git_branch
 alias gis='git status'
 alias gid='git diff -C --date=local'
+alias gidc='git diff -C --date=local --cached'
 __git_complete gid _git_diff
+__git_complete gidc _git_diff
 alias gic='git checkout'
 __git_complete gic _git_checkout
 alias g6='git --no-pager short -6 && echo'
