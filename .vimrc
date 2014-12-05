@@ -63,7 +63,7 @@ nnoremap <F6> :NERDTreeToggle<CR>
 
 " Ctrl-P - https://github.com/kien/ctrlp.vim
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_by_filename = 1
+nmap <leader>p :CtrlP<cr>
 
 " Graphical undo - https://github.com/sjl/gundo.vim
 nnoremap <F7> :GundoToggle<CR>
