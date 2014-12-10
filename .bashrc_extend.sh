@@ -61,11 +61,6 @@ alias now='date +%Y-%m-%dT%H:%M:%S'
 # import a bunch of predefined colors
 . ~/.colors.sh
 
-# Fix directory color on dark background
-LS_COLORS="di=$BIBlue"
-export LS_COLORS
-eval "`dircolors`"
-
 # Various variables you might want for your PS1 prompt instead
 # For a complete list see https://www.gnu.org/software/bash/manual/bashref.html#Printing-a-Prompt
 Time12h="\T"
@@ -115,4 +110,13 @@ if [ -f "/usr/bin/src-hilite-lesspipe.sh" ]; then
 	export LESS="-R"
     export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 fi
+
+# =============================================================================
+# Older linux's may need extra things
+# =============================================================================
+
+# Fix directory color on dark background
+#LS_COLORS="di=$BIBlue"
+#export LS_COLORS
+#eval "`dircolors`"
 
