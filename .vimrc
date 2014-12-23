@@ -64,6 +64,7 @@ nnoremap <F6> :NERDTreeToggle<CR>
 " Ctrl-P - https://github.com/kien/ctrlp.vim
 let g:ctrlp_working_path_mode = 'ra'
 nmap <leader>p :CtrlP<cr>
+set wildignore+=*/node_modules/*
 
 " Graphical undo - https://github.com/sjl/gundo.vim
 nnoremap <F7> :GundoToggle<CR>
