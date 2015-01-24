@@ -47,9 +47,9 @@ command Sudow w !sudo tee >/dev/null '%'
 
 " Filetype customizations
 autocmd filetype python setlocal shiftwidth=4 tabstop=4 softtabstop=4
-autocmd filetype css setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd filetype css,less setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd filetype html setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd filetype js setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd filetype javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd filetype make setlocal noexpandtab
 
 " trailing whitespace is bad
@@ -73,3 +73,10 @@ set wildignore+=*/node_modules/*
 nnoremap <F7> :GundoToggle<CR>
 let g:gundo_preview_bottom=1
 let g:gundo_close_on_revert=1
+
+" Airline - https://github.com/bling/vim-airline
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+"let g:airline#extensions#tmuxline#enabled = 0
+"let g:airline#extensions#virtualenv#enabled = 0
