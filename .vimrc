@@ -39,6 +39,9 @@ vnoremap <silent> * :<C-U>
   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
+" Shortcut to replace highlighted text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
 " Force saving files that require root permission
 command Sudow w !sudo tee >/dev/null '%'
 
