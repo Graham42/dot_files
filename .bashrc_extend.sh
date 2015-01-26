@@ -29,6 +29,15 @@ alias gic='git checkout'
 __git_complete gic _git_checkout
 alias g6='git --no-pager short -6 && echo'
 
+# datetimestamp of now. ISO format except no timezone. Good for log file names
+# example usage: process_x > degug_`nowf`.log
+alias now='date +%Y-%m-%dT%H:%M:%S'
+
+
+# =============================================================================
+# Custom bash functions
+# =============================================================================
+
 # shell routine to do something in between a stash and a pop
 git_stash_and_pop() {
 	git stash && "$@" && git stash pop
@@ -44,9 +53,29 @@ git_stash_apply_X() {
 }
 alias gsa='git_stash_apply_X'
 
-# datetimestamp of now. ISO format except no timezone. Good for log file names
-# example usage: process_x > degug_`nowf`.log
-alias now='date +%Y-%m-%dT%H:%M:%S'
+function foreach_dir(){
+    for arg in $(ls); do
+        if [ -d "$arg" ] ; then
+            cd $arg
+            eval $@
+            cd ..
+        fi
+    done
+}
+
+function foreach_dir-threaded(){
+    for arg in $(ls); do
+        if [ -d "$arg" ] ; then
+            cd $arg
+            $@ >/dev/null 2>&1 &
+            cd ..
+        fi
+    done
+    echo "Started..."
+    wait
+    echo "Done!"
+}
+
 
 # =============================================================================
 # Bash Prompt (PS1)
