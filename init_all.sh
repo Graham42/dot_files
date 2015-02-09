@@ -33,7 +33,7 @@ for os_file in $( ls_files os_specific ); do
         bashrc_body="$bashrc_body\n$( tail -n+3 "os_specific/$os_file" )"
     fi
 done
-
+# auto update the include block in ~/.bashrc
 if $(grep "$bashrc_header" ~/.bashrc -q); then
     echo "Already initialized. Updating..."
     escaped_body=$(echo "$bashrc_body" | sed -e':a' -e'N' -e'$!ba' -e's/\n/\\n/g')
@@ -45,6 +45,7 @@ else
     echo -e "\n" >> ~/.bashrc
 fi
 
+# create symbolic links from home to this folder
 MY_HOME=$( echo ~ )
 CWD=$(pwd)
 dirs_todo=( "home" )
@@ -68,7 +69,7 @@ while [ "$i" -lt "${#dirs_todo[*]}" ]; do
         ln -s $CWD/$base_dir/$_file $dest_file
     done
 
-    # push any sub dirs on the main array
+    # push any sub dirs onto the todo array
     for _dir in $( ls_dirs $base_dir ); do
         dirs_todo+=( "$base_dir/$_dir" )
     done
