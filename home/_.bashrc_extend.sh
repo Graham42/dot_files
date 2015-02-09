@@ -140,12 +140,3 @@ if [ -f "/usr/bin/src-hilite-lesspipe.sh" ]; then
     export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 fi
 
-# =============================================================================
-# Older linux's may need extra things
-# =============================================================================
-
-# Fix directory color on dark background
-#LS_COLORS="di=$BIBlue"
-#export LS_COLORS
-#eval "`dircolors`"
-
