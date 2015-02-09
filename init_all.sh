@@ -20,12 +20,10 @@ function error {
     exit 1
 }
 
-BASHRC_EXTEND=".bashrc_extend.sh"
 
 # if header/footer are changed, will mess up auto-update
 bashrc_header="####################_BEGIN_DOT_FILES_AUTOBLOCK_######################"
 bashrc_footer="#####################_END_DOT_FILES_AUTOBLOCK_#######################"
-# this part is ok to change
 bashrc_body=$( cat include_common.sh )
 
 if $(grep "$bashrc_header" ~/.bashrc -q); then
