@@ -64,7 +64,11 @@ while [ "$i" -lt "${#dirs_todo[*]}" ]; do
             mv $dest_file ${dest_file}.bak
         fi
         # create new link
-        ln -s $CWD/$base_dir/$_file $dest_file
+        if [ -d $(dirname $dest_file) ]; then
+            ln -s $CWD/$base_dir/$_file $dest_file
+        else
+            echo "$(basename $dest_file) not linked because folder does not exist. Maybe this program is not installed?"
+        fi
     done
 
     # push any sub dirs onto the todo array
