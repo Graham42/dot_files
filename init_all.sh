@@ -40,9 +40,7 @@ if $(grep "$bashrc_header" ~/.bashrc -q); then
     sed -i'' -e"/^$bashrc_header$/,/^$bashrc_footer$/c $bashrc_header\n$escaped_body\n$bashrc_footer" ~/.bashrc
 else
     echo "Initializing..."
-    echo -e "\n" >> ~/.bashrc
-    echo "$bashrc_header$bashrc_body$bashrc_footer" >> ~/.bashrc
-    echo -e "\n" >> ~/.bashrc
+    echo -e "\n$bashrc_header\n$bashrc_body\n$bashrc_footer\n" >> ~/.bashrc
 fi
 
 # create symbolic links from home to this folder
