@@ -54,7 +54,7 @@ git_stash_apply_X() {
 alias gsa='git_stash_apply_X'
 
 function foreach_dir(){
-    for arg in $(ls); do
+    for arg in $(ls --color=none); do
         if [ -d "$arg" ] ; then
             cd $arg
             eval $@
@@ -64,7 +64,7 @@ function foreach_dir(){
 }
 
 function foreach_dir-threaded(){
-    for arg in $(ls); do
+    for arg in $(ls --color=none); do
         if [ -d "$arg" ] ; then
             cd $arg
             $@ >/dev/null 2>&1 &
