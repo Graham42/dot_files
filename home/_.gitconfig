@@ -43,4 +43,4 @@ short = log --date=short --pretty=format:'\
 [push]
 	default = matching
 [merge]
-	tool = meld
+	tool = vimdiff
