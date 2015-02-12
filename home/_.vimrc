@@ -42,6 +42,10 @@ vnoremap <silent> * :<C-U>
 " Shortcut to replace highlighted text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
+" Highlight only the bracket we're at, underline the matching one
+highlight clear MatchParen
+highlight MatchParen gui=underline cterm=underline
+
 " Force saving files that require root permission
 command Sudow w !sudo tee >/dev/null '%'
 
