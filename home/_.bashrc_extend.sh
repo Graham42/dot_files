@@ -27,7 +27,7 @@ __git_complete gid _git_diff
 __git_complete gidc _git_diff
 alias gic='git checkout'
 __git_complete gic _git_checkout
-alias g6='git --no-pager short -6 && echo'
+g6() { git --no-pager short -10  $@; echo ""; }
 
 # datetimestamp of now. ISO format except no timezone. Good for log file names
 # example usage: process_x > degug_`nowf`.log
