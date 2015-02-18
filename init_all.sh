@@ -24,15 +24,20 @@ function error {
 # if header/footer are changed, will mess up auto-update
 bashrc_header="####################_BEGIN_DOT_FILES_AUTOBLOCK_######################"
 bashrc_footer="#####################_END_DOT_FILES_AUTOBLOCK_#######################"
+if [ ! -e include_common.sh ]; then
+    error "Missing file 'include_common.sh'"
+fi
 bashrc_body=$( cat include_common.sh )
-# os specific things
-for os_file in $( ls_files os_specific ); do
-    os_file_path="os_specific/$os_file"
-    # header of each file determines if it this is the OS it's looking for
-    if eval $( head -n2 $os_file_path | tail -n1  | sed "s/^#\+//g" ) ; then
-        bashrc_body="$bashrc_body\n$( tail -n+3 "os_specific/$os_file" )"
-    fi
-done
+if [ -d os_specific ]; then
+    # os specific things
+    for os_file in $( ls_files os_specific ); do
+        os_file_path="os_specific/$os_file"
+        # header of each file determines if it this is the OS it's looking for
+        if eval $( head -n2 $os_file_path | tail -n1  | sed "s/^#\+//g" ) ; then
+            bashrc_body="$bashrc_body\n$( tail -n+3 "os_specific/$os_file" )"
+        fi
+    done
+fi
 # auto update the include block in ~/.bashrc
 if $(grep "$bashrc_header" ~/.bashrc -q); then
     echo "Already initialized. Updating..."
