@@ -56,6 +56,9 @@ autocmd filetype html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd filetype javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd filetype make setlocal noexpandtab
 
+" associate filetypes
+au BufRead,BufNewFile *.jshintrc setfiletype javascript
+
 " trailing whitespace is bad
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
