@@ -1,6 +1,12 @@
 #!/bin/bash
 # This script is to speed up setting up a new VM with my personal config
 
+function ls_dirs {
+    ls_type d $1
+}
+function ls_files {
+    ls_type f $1
+}
 function ls_type {
     if [ "${2}x" == "x" ]; then
         DIR=\.
@@ -8,12 +14,6 @@ function ls_type {
         DIR="$2"
     fi
     find $DIR -mindepth 1 -maxdepth 1 -type "$1" \( ! -iname ".*" \) | sed "s#^${DIR}/##g"
-}
-function ls_dirs {
-    ls_type d $1
-}
-function ls_files {
-    ls_type f $1
 }
 function error {
     echo "Error occured: "$1
@@ -48,8 +48,8 @@ else
     echo -e "\n$bashrc_header\n$bashrc_body\n$bashrc_footer\n" >> ~/.bashrc
 fi
 
-# create symbolic links from home to this folder
-MY_HOME=$( echo ~ )
+# create symbolic links to users home directory
+USER_HOME=$( echo ~ )
 CWD=$(pwd)
 dirs_todo=( "home" )
 i=0
@@ -60,7 +60,7 @@ while [ "$i" -lt "${#dirs_todo[*]}" ]; do
     for _file in $( ls_files $base_dir ); do
         # remove leading '_'s
         file=$( echo $_file | sed 's#^_##g' )
-        dest_file=$( echo $base_dir/$_file | sed "s#^home#${MY_HOME}#g" | sed "s#/_\.#/.#g")
+        dest_file=$( echo $base_dir/$_file | sed "s#^home#${USER_HOME}#g" | sed "s#/_\.#/.#g")
         # remove symbolic links & back up existing files so we don't overwrite
         if [ -L $dest_file ]; then
             rm $dest_file
