@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export EDITOR=vim
+export HISTFILESIZE=20000
 
 # =============================================================================
 # Aliases
