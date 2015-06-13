@@ -1,8 +1,7 @@
 # My Automated Config Setup
 
 I wanted an automated way to quickly setup a shell with my own customizations.  Setup is at ~4
-commands right now, except for my vim config which I just need to automate the plugin downloading
-and pathogen setup. (Planning on that soon!)
+commands right now.
 
 Setup steps:
 
@@ -15,8 +14,9 @@ source ~/.bashrc
 
 # Structure
 
-- All dot files are escaped in this repo with a leading `_`. Symbolic links are created with the
-  leading `_`'s removed. Example: `_.vimrc` becomes `.vimrc`
+- All dot files are escaped in this repo with a leading `_` so it's not as easy to forget about
+  files that are hidden. Symbolic links are created with the leading `_`'s removed. Example:
+  `_.vimrc` becomes `.vimrc`
 - Anything in `home/` is linked to `~` and then the directory structure inside is followed
 - Running `init_all.sh` will create and update a marked section in `~/.bashrc`.
   - `include_common.sh` is the main block content.
@@ -30,4 +30,4 @@ source ~/.bashrc
     # OS check:
     # cat /etc/*-release | grep '^NAME=\"Arch Linux\"' -q
     ```
-
+- Any scripts in `setup_scripts` will be run, but they must be executable or the init will fail.

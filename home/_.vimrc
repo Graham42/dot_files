@@ -1,10 +1,10 @@
-execute pathogen#infect()
+" be iMproved
+set nocompatible
 
 " Misc
 set encoding=utf-8
 set termencoding=utf-8
 set laststatus=2
-set nocompatible
 set nowrap
 set scrolloff=10
 set backspace=2
@@ -13,15 +13,16 @@ syntax on
 set splitright
 
 " Store swap and undo files in the .vim/tmp directory
-set dir=~/.vim/tmp//
+set dir=~/.vim/tmp/
 set undofile
-set undodir=~/.vim/undo//
+set undodir=~/.vim/undo/
 
 " Indentation
 set smartindent
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
+" spaces instead of tabs
 set expandtab
 set autoindent
 
@@ -30,6 +31,7 @@ set incsearch
 set ignorecase
 set smartcase
 set hlsearch
+" Clear search highlighting
 nnoremap <C-L> :nohlsearch<CR><C-L>
 
 " Search for selected text ('*' in visual mode) instead of just single word
@@ -64,25 +66,56 @@ au BufRead,BufNewFile *.jshintrc setfiletype javascript
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
-" Fugitive - https://github.com/tpope/vim-fugitive
 
-" Syntastic - https://github.com/scrooloose/syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Plugins
+
+" require for Vundle
+filetype off
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+" Fugitive - A Git wrapper
+Plugin 'tpope/vim-fugitive'
+" Syntastic - Syntax checking
+Plugin 'scrooloose/syntastic'
+" NerdTree - Sidebar directory browser
+Plugin 'scrooloose/nerdtree'
+" Ctrl-P - Fuzzy filename search
+Plugin 'kien/ctrlp.vim'
+" Gundo - Graphical undo
+Plugin 'sjl/gundo.vim'
+" Airline - Status bar
+Plugin 'bling/vim-airline'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Plugin Config
+
+" Syntastic - Syntax checking
 let g:syntastic_python_python_exec = '/usr/bin/python3'
 
-" NERDTree - https://github.com/scrooloose/nerdtree
+" NerdTree - Sidebar directory browser
 nnoremap <F6> :NERDTreeToggle<CR>
 
-" Ctrl-P - https://github.com/kien/ctrlp.vim
+" Ctrl-P - Fuzzy filename search
 let g:ctrlp_working_path_mode = 'ra'
 nmap <leader>p :CtrlP<cr>
 set wildignore+=*/node_modules/*
 
-" Graphical undo - https://github.com/sjl/gundo.vim
+" Gundo - Graphical undo
 nnoremap <F7> :GundoToggle<CR>
 let g:gundo_preview_bottom=1
 let g:gundo_close_on_revert=1
 
-" Airline - https://github.com/bling/vim-airline
+" Airline - Status bar
+" TODO fix up this copy pasta config
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1

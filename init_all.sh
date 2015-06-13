@@ -84,5 +84,13 @@ while [ "$i" -lt "${#dirs_todo[*]}" ]; do
     ((i=i+1))
 done
 
+if [ -d setup_scripts ]; then
+    echo "Running extra setup scripts..."
+    for initscript in $( ls_files setup_scripts ); do
+        initscript_path="setup_scripts/$initscript"
+        ./$initscript_path || error "Failed to run setup script: $initscript"
+    done
+fi
+
 echo "Config updated! Run 'source ~/.bashrc' to update your current terminal."
 
