@@ -141,3 +141,8 @@ if [ -f "/usr/bin/src-hilite-lesspipe.sh" ]; then
     export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 fi
 
+# environment vars needed for virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/dev
+source `which virtualenvwrapper.sh` || echo "python-virtualenvwrapper does not seem to be installed."
+
