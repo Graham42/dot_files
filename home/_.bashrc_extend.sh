@@ -1,7 +1,10 @@
 #!/bin/bash
 
 export EDITOR=vim
+# save more history
+export HISTSIZE=10000
 export HISTFILESIZE=20000
+shopt -s histappendexport
 
 # =============================================================================
 # Aliases
