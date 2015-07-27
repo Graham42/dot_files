@@ -4,7 +4,7 @@ export EDITOR=vim
 # save more history
 export HISTSIZE=10000
 export HISTFILESIZE=20000
-shopt -s histappendexport
+shopt -s histappend
 
 type vimx >/dev/null 2>&1 && alias vim='vimx'
 
