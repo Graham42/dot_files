@@ -6,6 +6,8 @@ export HISTSIZE=10000
 export HISTFILESIZE=20000
 shopt -s histappendexport
 
+type vimx >/dev/null 2>&1 && alias vim='vimx'
+
 # =============================================================================
 # Aliases
 # =============================================================================
