@@ -103,6 +103,7 @@ let g:syntastic_python_python_exec = '/usr/bin/python3'
 
 " NerdTree - Sidebar directory browser
 nnoremap <F6> :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
 
 " Ctrl-P - Fuzzy filename search
 let g:ctrlp_working_path_mode = 'ra'
