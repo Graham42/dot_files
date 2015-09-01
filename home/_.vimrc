@@ -8,9 +8,12 @@ set laststatus=2
 set nowrap
 set scrolloff=10
 set backspace=2
-color delek
-syntax on
 set splitright
+
+" Color settings
+color delek
+set t_Co=256
+syntax on
 
 " Store swap and undo files in the .vim/tmp directory
 set dir=~/.vim/tmp/
