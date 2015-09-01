@@ -149,5 +149,5 @@ fi
 # environment vars needed for virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/dev
-source `which virtualenvwrapper.sh` || echo "python-virtualenvwrapper does not seem to be installed."
+source virtualenvwrapper.sh > /dev/null 2>&1
 
