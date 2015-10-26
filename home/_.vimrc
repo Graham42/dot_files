@@ -57,7 +57,7 @@ command Sudow w !sudo tee >/dev/null '%'
 " Filetype customizations
 autocmd filetype python setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd filetype css,less setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd filetype html,htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd filetype html,htmldjango,php setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd filetype javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd filetype make setlocal noexpandtab
 autocmd filetype markdown setlocal tw=99
