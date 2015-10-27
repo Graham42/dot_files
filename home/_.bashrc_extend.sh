@@ -20,20 +20,8 @@ alias ll='ls $ListLongArgs'
 alias lla='la $ListLongArgs'
 alias ll.='l. $ListLongArgs'
 
-# make completion work with aliases
+# enable git completion
 . ~/.git-completion.bash
-alias gil='git log --graph --abbrev-commit --stat --find-copies --date=local --decorate --date-order'
-__git_complete gil _git_log
-alias gib='git branch'
-__git_complete gib _git_branch
-alias gis='git status'
-alias gid='git diff -C --date=local'
-alias gidc='git diff -C --date=local --cached'
-__git_complete gid _git_diff
-__git_complete gidc _git_diff
-alias gic='git checkout'
-__git_complete gic _git_checkout
-g6() { git --no-pager short -10  $@; echo ""; }
 
 # datetimestamp of now. ISO format except no timezone. Good for log file names
 # example usage: process_x > degug_`nowf`.log

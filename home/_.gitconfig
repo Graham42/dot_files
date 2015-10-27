@@ -29,8 +29,14 @@
 	excludesfile = ~/.gitignore_global
 
 [alias]
-# pretty print condensed log
-short = log --date=short --pretty=format:'\
+    l = log --graph --abbrev-commit --stat --find-copies --date=local --decorate --date-order
+    d = diff
+    dc = diff --cached
+    s = status -s
+    co = checkout
+    b = branch
+    # pretty print short log
+    sl = log --date=short --pretty=format:'\
 %C(bold blue)%cd %Creset\
 %C(red)%h%Creset\
 %C(auto)%d %Creset\
@@ -44,3 +50,5 @@ short = log --date=short --pretty=format:'\
 	default = matching
 [merge]
 	tool = vimdiff
+
+# vim: set ft=gitconfig:

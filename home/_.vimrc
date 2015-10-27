@@ -69,6 +69,9 @@ au BufRead,BufNewFile *.jshintrc setfiletype javascript
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
+" allow files to use modelines
+set modeline
+set modelines=5
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Plugins
