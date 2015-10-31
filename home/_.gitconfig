@@ -50,6 +50,7 @@
 
 [push]
 	default = matching
+    atomic = true
 [merge]
 	tool = vimdiff
 
