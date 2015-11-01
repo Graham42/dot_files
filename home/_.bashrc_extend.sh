@@ -88,16 +88,28 @@ function foreach_dir-threaded(){
 # For a complete list see https://www.gnu.org/software/bash/manual/bashref.html#Printing-a-Prompt
 Time12h="\T"
 Time12a="\@"
+Date="\d"
 PathShort="\w"
 PathFull="\W"
 NewLine="\n"
 Jobs="\j"
 Hostname="\h"
+User="\u"
 
-export PS1=$Hostname':$(git branch &>/dev/null;\
+c="\[\033["
+n="${c}m\]"
+# Color green/red depending on last command sucess
+PS1="$n${c}1;3\$(if [ \$? -eq 0 ]; then echo '2'; else echo '1'; fi);40m\]*$n"
+# Dynamically pick color for hostname
+hostname_crc=$(echo $HOSTNAME | sha1sum | cut -c1-6)
+hostcolor_a=$(( (0x${hostname_crc} + 1) % 2 ))
+hostcolor_b=$(( (0x${hostname_crc} + 1) % 8 + 30 ))
+hostcolor_c=$( if [ $hostcolor_b -le 31 ]; then echo 47 ; else echo 40; fi )
+PS1="$PS1 ${c}37;40m\]$User${c}${hostcolor_a};${hostcolor_b};${hostcolor_c}m\]@$Hostname$n"
+PS1="$PS1 ${c}1;34;40m\]$PathShort$n"
+GIT_PART='$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
-  echo "'$IBlue$PathShort$Color_Off'$(
-    echo -n " "; \
+  echo " $(
     # Check the stash
     n_lines=$(git stash list 2> /dev/null | wc --lines); \
     for (( c=0; c<n_lines; c++ ))
@@ -120,11 +132,10 @@ if [ $? -eq 0 ]; then \
         echo "'$Red'"$(__git_ps1 "{%s}"'$Color_Off'); \
       fi;
     fi;
-  ) $ "; \
-else \
-  # @2 - Prompt when not in GIT repo
-  echo "'$IBlue$PathShort$Color_Off' $ "; \
+  )"; \
 fi)'
+# Show red carot if root user
+export PS1="${PS1}${GIT_PART}${c}\$(if [ ${EUID} -eq 0 ]; then echo '1;31'; else echo '0;37'; fi)m\] \$$n "
 
 # =============================================================================
 
