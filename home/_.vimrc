@@ -97,6 +97,11 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'sjl/gundo.vim'
 " Airline - Status bar
 Plugin 'bling/vim-airline'
+" Colorscheme like Sublime
+Plugin 'tomasr/molokai'
+
+" NuSMV highlighting (CISC 422)
+Plugin 'wannesm/wmnusmv.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -129,3 +134,7 @@ let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 "let g:airline#extensions#tmuxline#enabled = 0
 "let g:airline#extensions#virtualenv#enabled = 0
+
+if has('gui_running')
+    color molokai
+endif
