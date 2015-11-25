@@ -136,7 +136,7 @@ if [ $? -eq 0 ]; then \
   )"; \
 fi)'
 # Show red carot if root user
-export PS1="${PS1}${GIT_PART}${c}\$(if [ ${EUID} -eq 0 ]; then echo '1;31'; else echo '0;37'; fi)m\] \$$n "
+export PS1="${PS1}${GIT_PART}${c}\$(if [ ${EUID} -eq 0 ]; then echo '1;31'; else echo '0;37'; fi)m\]\n\$$n "
 
 # =============================================================================
 
