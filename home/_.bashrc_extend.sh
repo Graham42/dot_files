@@ -27,6 +27,7 @@ alias ll.='l. $ListLongArgs'
 # example usage: process_x > degug_`nowf`.log
 alias now='date +%Y-%m-%dT%H:%M:%S'
 
+alias cl='clear'
 
 # =============================================================================
 # Custom bash functions
