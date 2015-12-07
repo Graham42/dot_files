@@ -99,6 +99,8 @@ Plugin 'sjl/gundo.vim'
 Plugin 'bling/vim-airline'
 " Colorscheme like Sublime
 Plugin 'tomasr/molokai'
+" Interact with tmux from vim
+Plugin 'benmills/vimux'
 
 " NuSMV highlighting (CISC 422)
 Plugin 'wannesm/wmnusmv.vim'
