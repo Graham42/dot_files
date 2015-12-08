@@ -36,8 +36,6 @@ set incsearch
 set ignorecase
 set smartcase
 set hlsearch
-" Clear search highlighting
-nnoremap <C-L> :nohlsearch<CR><C-L>
 
 " Search for selected text ('*' in visual mode) instead of just single word
 vnoremap <silent> * :<C-U>
@@ -46,17 +44,38 @@ vnoremap <silent> * :<C-U>
   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
-" Shortcut to replace highlighted text
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-
 " Highlight only the bracket we're at, underline the matching one
 highlight clear MatchParen
 highlight MatchParen gui=underline cterm=underline
 
+" Highlight trailing whitespace in red
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+" allow files to use modelines
+set modeline
+set modelines=5
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Macros / Custom commands
+
 " Force saving files that require root permission
 command! Sudow w !sudo tee >/dev/null '%'
 
-" Filetype customizations
+" Insert line below
+let @o='mmo0d$`m'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Keybindings
+
+" Clear search highlighting
+nnoremap <C-L> :nohlsearch<CR><C-L>
+" Shortcut to replace highlighted text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Filetype customizations
+
 autocmd filetype python setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd filetype css,less setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd filetype html,htmldjango,php setlocal shiftwidth=2 tabstop=2 softtabstop=2
@@ -68,16 +87,9 @@ autocmd filetype markdown setlocal tw=99
 " associate filetypes
 au BufRead,BufNewFile *.jshintrc setfiletype javascript
 
-" Highlight trailing whitespace in red
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-
-" allow files to use modelines
-set modeline
-set modelines=5
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Line Wrapping / Scrolling
+
 set nowrap
 " Make scrolling horizontally not so jumpy
 set sidescroll=2
