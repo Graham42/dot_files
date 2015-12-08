@@ -1,11 +1,13 @@
 #!/bin/bash
 
 export EDITOR=vim
+
 # save more history
 export HISTSIZE=10000
 export HISTFILESIZE=20000
 shopt -s histappend
 
+# if vimx is installed use it instead of vim so can copy to system clipboard
 type vimx >/dev/null 2>&1 && alias vim='vimx'
 
 # =============================================================================
@@ -39,6 +41,7 @@ git_stash_and_pop() {
 }
 alias gsp='git_stash_and_pop'
 
+# apply stash at index X
 git_stash_apply_X() {
 	stash=""
 	if [ $# -eq 1 ]; then
@@ -48,6 +51,7 @@ git_stash_apply_X() {
 }
 alias gsa='git_stash_apply_X'
 
+# do something in each subfolder, excludes hidden folders
 function foreach_dir(){
     for arg in $(ls --color=none); do
         if [ -d "$arg" ] ; then
@@ -58,6 +62,7 @@ function foreach_dir(){
     done
 }
 
+# do something in each subfolder in parralell, excludes hidden folders
 function foreach_dir-threaded(){
     for arg in $(ls --color=none); do
         if [ -d "$arg" ] ; then
