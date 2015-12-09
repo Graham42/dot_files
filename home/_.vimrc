@@ -70,8 +70,10 @@ let @o='mmo0d$`m'
 
 " Clear search highlighting
 nnoremap <C-L> :nohlsearch<CR><C-L>
-" Shortcut to replace highlighted text
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+" Shortcut to replace highlighted text, starting at the cursor to the end of
+" the file, then from the start of the file to the cursors original place
+vnoremap <C-r> "hy:,$s/<C-r>h//gc\|1,''-&&<left><left><left><left><left><left>
+  \<left><left><left><left><left>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Filetype customizations
