@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export EDITOR=vim
+export SUDO_EDITOR=vim
 
 # save more history
 export HISTSIZE=10000
