@@ -24,12 +24,14 @@ endif
 
 " Indentation
 set smartindent
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 " spaces instead of tabs
 set expandtab
 set autoindent
+" line width
+set tw=100
 
 " Searching
 set incsearch
@@ -79,12 +81,8 @@ vnoremap <C-r> "hy:,$s/<C-r>h//gc\|1,''-&&<left><left><left><left><left><left>
 "" Filetype customizations
 
 autocmd filetype python setlocal shiftwidth=4 tabstop=4 softtabstop=4
-autocmd filetype css,less setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd filetype html,htmldjango,php setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd filetype javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd filetype yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd filetype html,htmldjango,php setlocal tw=120
 autocmd filetype make setlocal noexpandtab
-autocmd filetype markdown setlocal tw=99
 
 " associate filetypes
 au BufRead,BufNewFile *.jshintrc setfiletype javascript
