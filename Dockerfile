@@ -29,4 +29,6 @@ ENV HOME /home/dev
 ADD . /home/dev/dot_files
 
 USER dev
+RUN /home/dev/dot_files/init_all.sh
+
 CMD ["/bin/bash"]

@@ -49,7 +49,9 @@ For access the next times:
 ```sh
 # make sure container is started
 docker start dev
-docker exec -it dev /bin/bash
+# Get a shell where tmux works
+# See this open bug: https://github.com/docker/docker/issues/8755
+docker exec -it dev script /dev/null -c /bin/bash
 ```
 
 

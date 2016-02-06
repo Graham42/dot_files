@@ -8,9 +8,6 @@ export HISTSIZE=10000
 export HISTFILESIZE=20000
 shopt -s histappend
 
-# if vimx is installed use it instead of vim so can copy to system clipboard
-type vimx >/dev/null 2>&1 && alias vim='vimx'
-
 # =============================================================================
 # Aliases
 # =============================================================================
@@ -22,6 +19,11 @@ ListLongArgs=' -l --time-style=long-iso'
 alias ll='ls $ListLongArgs'
 alias lla='la $ListLongArgs'
 alias ll.='l. $ListLongArgs'
+
+alias tmux='tmux -2'
+
+# if vimx is installed use it instead of vim so can copy to system clipboard
+type vimx >/dev/null 2>&1 && alias vim='vimx'
 
 # enable git completion
 . ~/.git-completion.bash
