@@ -29,3 +29,4 @@ ENV HOME /home/dev
 ADD . /home/dev/dot_files
 
 USER dev
+CMD ["/bin/bash"]

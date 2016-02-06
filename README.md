@@ -33,6 +33,26 @@ source ~/.bashrc
 - Any scripts in `setup_scripts` will be run, but they must be executable or the setup will fail.
 
 
+# Docker Image
+
+The Docker image of the repo is intended for use as a lightweight development environment in Windows
+when combined with boot2docker.
+
+This docker image can be created with:
+
+```sh
+docker run --name=dev -it graham42/dev-env /bin/bash
+```
+
+For access the next times:
+
+```sh
+# make sure container is started
+docker start dev
+docker exec -it dev /bin/bash
+```
+
+
 # License
 
 MIT License
