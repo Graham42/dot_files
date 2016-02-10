@@ -83,6 +83,8 @@ vnoremap <C-r> "hy:,$s/<C-r>h//gc\|1,''-&&<left><left><left><left><left><left>
 autocmd filetype python setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd filetype html,htmldjango,php setlocal tw=120
 autocmd filetype make setlocal noexpandtab
+autocmd filetype gitconfig setlocal noexpandtab
+autocmd filetype gitcommit setlocal tw=72
 
 " associate filetypes
 au BufRead,BufNewFile *.jshintrc setfiletype javascript
