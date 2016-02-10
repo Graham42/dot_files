@@ -16,19 +16,16 @@ RUN groupadd admin
 RUN useradd -m -G admin -s /bin/bash dev
 RUN passwd -d dev
 
-# Create a shared data volume
-# We need to create an empty file, otherwise the volume will belong to root.
-# This is probably a Docker bug.
 RUN mkdir /var/shared/
-RUN touch /var/shared/placeholder
 RUN chown -R dev:dev /var/shared
+
+USER dev
 VOLUME /var/shared
 
 WORKDIR /home/dev
 ENV HOME /home/dev
 ADD . /home/dev/dot_files
 
-USER dev
 RUN /home/dev/dot_files/init_all.sh
 
 CMD ["/bin/bash"]
