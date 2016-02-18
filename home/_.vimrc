@@ -129,6 +129,7 @@ Plugin 'tomasr/molokai'
 Plugin 'benmills/vimux'
 " Autocompletion without hotkeys + more awesomeness
 " Note that installing this takes a while and also requires compiling manually
+" see http://vimawesome.com/plugin/youcompleteme#installation
 " Plugin 'Valloric/YouCompleteMe'
 
 " NuSMV highlighting (CISC 422)
