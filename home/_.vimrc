@@ -88,6 +88,7 @@ autocmd filetype gitcommit setlocal tw=72
 
 " associate filetypes
 au BufRead,BufNewFile *.jshintrc setfiletype javascript
+au BufRead,BufNewFile *.{frag,vert} setfiletype cpp
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Line Wrapping / Scrolling
