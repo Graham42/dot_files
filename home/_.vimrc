@@ -114,16 +114,12 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-" Fugitive - A Git wrapper
-Plugin 'tpope/vim-fugitive'
 " Syntastic - Syntax checking
 Plugin 'scrooloose/syntastic'
 " NerdTree - Sidebar directory browser
 Plugin 'scrooloose/nerdtree'
 " Ctrl-P - Fuzzy filename search
 Plugin 'kien/ctrlp.vim'
-" Gundo - Graphical undo
-Plugin 'sjl/gundo.vim'
 " Airline - Status bar
 Plugin 'bling/vim-airline'
 " Colorscheme like Sublime
@@ -134,9 +130,6 @@ Plugin 'benmills/vimux'
 " Note that installing this takes a while and also requires compiling manually
 " see http://vimawesome.com/plugin/youcompleteme#installation
 " Plugin 'Valloric/YouCompleteMe'
-
-" NuSMV highlighting (CISC 422)
-Plugin 'wannesm/wmnusmv.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -157,15 +150,9 @@ let g:ctrlp_working_path_mode = 'ra'
 nnoremap <leader>p :CtrlP<cr>
 set wildignore+=*/node_modules/*
 
-" Gundo - Graphical undo
-nnoremap <F7> :GundoToggle<CR>
-let g:gundo_preview_bottom=1
-let g:gundo_close_on_revert=1
-
 " Airline - Status bar
 " Better than Powerline in the sense that it's all vimscript so doesn't
 " have any system dependencies other than vim itself
-let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 " Use powerline fonts if they're installed
 let g:airline_powerline_fonts = 1
