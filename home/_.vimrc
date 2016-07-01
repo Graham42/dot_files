@@ -104,6 +104,30 @@ set scrolloff=10
 set sidescrolloff=4
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Plugin Config
+
+" Syntastic - Syntax checking
+let g:syntastic_python_python_exec = '/usr/bin/python3'
+
+" NerdTree - Sidebar directory browser
+noremap <C-n> :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
+
+" Ctrl-P - Fuzzy filename search
+let g:ctrlp_working_path_mode = 'ra'
+nnoremap <leader>p :CtrlP<cr>
+set wildignore+=*/node_modules/*
+
+" Airline - Status bar
+" Better than Powerline in the sense that it's all vimscript so doesn't
+" have any system dependencies other than vim itself
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline_left_sep=' '
+let g:airline_right_sep=' '
+" Always show the status line
+set laststatus=2
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Plugins
 
 " require for Vundle
@@ -134,27 +158,3 @@ Plugin 'benmills/vimux'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Plugin Config
-
-" Syntastic - Syntax checking
-let g:syntastic_python_python_exec = '/usr/bin/python3'
-
-" NerdTree - Sidebar directory browser
-noremap <C-n> :NERDTreeToggle<CR>
-let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
-
-" Ctrl-P - Fuzzy filename search
-let g:ctrlp_working_path_mode = 'ra'
-nnoremap <leader>p :CtrlP<cr>
-set wildignore+=*/node_modules/*
-
-" Airline - Status bar
-" Better than Powerline in the sense that it's all vimscript so doesn't
-" have any system dependencies other than vim itself
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline_left_sep=' '
-let g:airline_right_sep=' '
-" Always show the status line
-set laststatus=2
