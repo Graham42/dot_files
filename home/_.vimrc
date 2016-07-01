@@ -154,7 +154,7 @@ set wildignore+=*/node_modules/*
 " Better than Powerline in the sense that it's all vimscript so doesn't
 " have any system dependencies other than vim itself
 let g:airline#extensions#syntastic#enabled = 1
-" Use powerline fonts if they're installed
-let g:airline_powerline_fonts = 1
+let g:airline_left_sep=' '
+let g:airline_right_sep=' '
 " Always show the status line
 set laststatus=2
