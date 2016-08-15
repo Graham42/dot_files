@@ -46,6 +46,22 @@
 %C(green)%an %Creset\
 %C(bold blue)%cr)%Creset\
 ' --color --graph --decorate --date-order
+  whitespace-eol-commit = "!f2(){ \
+    git add -A; \
+    git diff --cached --ignore-space-at-eol  | git apply --cached --cached --reverse; \
+    git commit -m \"Format code\"; \
+  }; f2"
+# Requires the environment variable JIRA_URL to be set
+  jira-commit = "!f(){ \
+      if [ \"x$1\" == \"x\" ]; then \
+        id=`git rev-parse --abbrev-ref HEAD | cut -f2 -d/ | cut -f1 -d_`; \
+        args=1; \
+      else \
+        id=$1; \
+        args=2; \
+      fi; \
+      git commit -em \"$id \n\n[$id]($JIRA_URL/browse/$id)\" ${@:${args}}; \
+  }; f"
 
 [push]
 	default = matching
