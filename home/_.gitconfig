@@ -65,9 +65,19 @@
 	standup = log --all --since=yesterday --author='Graham McGregor'
 
 [push]
-	default = matching
+	default = upstream
 	atomic = true
+
 [merge]
 	tool = vimdiff
+
+[fetch]
+	prune = true
+
+[rebase]
+	autoSquash = true
+
+[pull]
+	rebase = preserve
 
 # vim: set ft=gitconfig:
