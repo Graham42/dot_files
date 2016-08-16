@@ -132,32 +132,38 @@ set laststatus=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Plugins
 
-" require for Vundle
-filetype off
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
 " Syntastic - Syntax checking
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " NerdTree - Sidebar directory browser
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Ctrl-P - Fuzzy filename search
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim', { 'on':  'CtrlP' }
 " Airline - Status bar
-Plugin 'bling/vim-airline'
+Plug 'bling/vim-airline'
 " Colorscheme like Sublime
-Plugin 'tomasr/molokai'
+Plug 'tomasr/molokai'
 " Interact with tmux from vim
-Plugin 'benmills/vimux'
+Plug 'benmills/vimux'
 
-" Autocompletion without hotkeys + more awesomeness
-" Note that installing this takes a while and also requires compiling manually
+
+"""""""""""""""""""""""
+"" Autocomplete Plugin
+"
+" Note that this requires compiling so need some things installed
 " see http://vimawesome.com/plugin/youcompleteme#installation
-" Plugin 'Valloric/YouCompleteMe'
+"
+"function! BuildYCM(info)
+"  " info is a dictionary with 3 fields
+"  " - name:   name of the plugin
+"  " - status: 'installed', 'updated', or 'unchanged'
+"  " - force:  set on PlugInstall! or PlugUpdate!
+"  if a:info.status == 'installed' || a:info.force
+"    !./install.py --tern-completer
+"  endif
+"endfunction
+"
+"Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()

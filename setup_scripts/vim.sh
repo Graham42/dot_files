@@ -2,8 +2,8 @@
 
 mkdir -p ~/.vim/tmp
 mkdir -p ~/.vim/undo
-if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if [ ! -f ~/.vim/autoload/plug.vim ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-vim +PluginInstall +qall
+vim +PlugUpdate +qall
 
