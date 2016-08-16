@@ -3,7 +3,6 @@
 	email = dev@grahammcgregor.ca
 
 [color]
-	ui = true
 	interactive = true
 
 # make untracked and changes visibly different
@@ -68,9 +67,6 @@
 	default = upstream
 	atomic = true
 
-[merge]
-	tool = vimdiff
-
 [fetch]
 	prune = true
 
@@ -79,5 +75,22 @@
 
 [pull]
 	rebase = preserve
+
+[diff]
+	tool = p4Diff
+
+[merge]
+	tool = p4Merge
+
+[mergetool]
+	keepBackup = false
+
+[mergetool "p4Merge"]
+	cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+	trustExitCode = true
+	keepBackup = false
+
+[difftool "p4Diff"]
+	cmd = p4merge "$LOCAL" "$REMOTE"
 
 # vim: set ft=gitconfig:
