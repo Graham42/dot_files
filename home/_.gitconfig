@@ -62,6 +62,18 @@
       git commit -em \"$id \n\n[$id]($JIRA_URL/browse/$id)\" ${@:${args}}; \
   }; f"
 	standup = log --all --since=yesterday --author='Graham McGregor'
+	separation = "!f(){ \
+		$(git rev-parse --verify -q $1 > /dev/null); \
+		if [ $? != 0 ]; then \
+			echo 'error: git-separation requires a valid branch name'; \
+			echo 'usage: git-separation <branch>'; \
+			exit 1; \
+		fi; \
+		this_branch=$(git rev-parse --abbrev-ref HEAD); \
+		ahead=$(git rev-list $this_branch --not $1 | wc -l); \
+		behind=$(git rev-list $1 --not $this_branch | wc -l); \
+		echo 'This branch is '$ahead' commits ahead, '$behind' commits behind '$1; \
+	}; f"
 
 [push]
 	default = upstream
