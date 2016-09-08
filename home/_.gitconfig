@@ -45,6 +45,7 @@
 %C(green)%an %Creset\
 %C(bold blue)%cr)%Creset\
 ' --color --graph --decorate --date-order
+	oops = commit --amend --no-edit
   whitespace-eol-commit = "!f2(){ \
     git add -A; \
     git diff --cached --ignore-space-at-eol  | git apply --cached --cached --reverse; \
@@ -84,6 +85,7 @@
 
 [rebase]
 	autoSquash = true
+	missingCommitsCheck = error
 
 [pull]
 	rebase = preserve
