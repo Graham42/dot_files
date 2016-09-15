@@ -27,11 +27,10 @@
 	excludesfile = ~/.gitignore_global
 
 [alias]
-	l = log --graph --abbrev-commit --stat --find-copies --date=local --decorate --date-order
+	l = log --graph --stat --find-copies --date=local --decorate --date-order
 	d = diff
 	dc = diff --cached
 	dw = diff --word-diff
-	dwc = diff --word-diff --cached
 	s = status -s
 	co = checkout
 	b = branch
@@ -75,13 +74,25 @@
 		behind=$(git rev-list $1 --not $this_branch | wc -l); \
 		echo 'This branch is '$ahead' commits ahead, '$behind' commits behind '$1; \
 	}; f"
+	# credit to http://stackoverflow.com/a/4991675 for oldest-ancestor
+	oldest-ancestor = !bash -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-origin/integration}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
+	pretty-log-branch = log HEAD ^origin/integration --graph --stat --find-copies --date=local --date-order
+	separation = "!f(){ \
+			$(git rev-parse --verify -q $1 > /dev/null); \
+			if [ $? != 0 ]; then \
+				echo 'error: git-separation requires a valid branch name'; \
+				echo 'usage: git-separation <branch>'; \
+				exit 1; \
+			fi; \
+			this_branch=$(git rev-parse --abbrev-ref HEAD); \
+			ahead=$(git rev-list $this_branch --not $1 | wc -l); \
+			behind=$(git rev-list $1 --not $this_branch | wc -l); \
+			echo 'This branch is '$ahead' commits ahead, '$behind' commits behind '$1; \
+		}; f"
 
 [push]
 	default = upstream
 	atomic = true
-
-[fetch]
-	prune = true
 
 [rebase]
 	autoSquash = true
