@@ -27,7 +27,7 @@
 	excludesfile = ~/.gitignore_global
 
 [alias]
-	l = log --graph --stat --find-copies --date=local --decorate --date-order
+	l = log --graph --stat --find-copies --decorate --date-order
 	d = diff
 	dc = diff --cached
 	dw = diff --word-diff
@@ -76,7 +76,7 @@
 	}; f"
 	# credit to http://stackoverflow.com/a/4991675 for oldest-ancestor
 	oldest-ancestor = !bash -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-origin/integration}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
-	pretty-log-branch = log HEAD ^origin/integration --graph --stat --find-copies --date=local --date-order
+	pretty-log-branch = log HEAD ^origin/integration --graph --stat --find-copies --date-order
 	separation = "!f(){ \
 			$(git rev-parse --verify -q $1 > /dev/null); \
 			if [ $? != 0 ]; then \
@@ -118,4 +118,9 @@
 [difftool "p4Diff"]
 	cmd = p4merge "$LOCAL" "$REMOTE"
 
+[log]
+	date = iso8601
+
+# -*- mode: gitconfig -*-
 # vim: set ft=gitconfig:
+
