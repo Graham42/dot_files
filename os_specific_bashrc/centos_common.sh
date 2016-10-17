@@ -1,5 +1,5 @@
 # OS check:
-# cat /etc/*-release | grep '^CentOS' -q
+# cat /etc/*-release 2>/dev/null | grep '^CentOS' -q
 #####
 # Centos specific things
 # Fix directory color on dark background

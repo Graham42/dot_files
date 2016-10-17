@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This script is to speed up setting up a new machine with my personal config
 
 THIS_SCRIPT="init_all.sh"

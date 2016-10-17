@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export EDITOR=vim
 export SUDO_EDITOR=vim
@@ -120,7 +120,7 @@ GIT_PART='$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
   echo " $(
     # Check the stash
-    n_lines=$(git stash list 2> /dev/null | wc --lines); \
+    n_lines=$(git stash list 2> /dev/null | wc -l); \
     for (( c=0; c<n_lines; c++ ))
     do
       echo -n "'$Red'"$(__git_ps1 "*"'$Color_Off'); \
