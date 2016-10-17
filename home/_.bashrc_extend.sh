@@ -114,8 +114,10 @@ hostname_crc=$(echo $HOSTNAME | sha1sum | cut -c1-6)
 hostcolor_a=$(( (0x${hostname_crc} + 1) % 2 ))
 hostcolor_b=$(( (0x${hostname_crc} + 1) % 8 + 30 ))
 hostcolor_c=$( if [ $hostcolor_b -le 31 ]; then echo 47 ; else echo 40; fi )
-PS1="$PS1 ${c}37;40m\]$User${c}${hostcolor_a};${hostcolor_b};${hostcolor_c}m\]@$Hostname$n"
-PS1="$PS1 ${c}1;34;40m\]$PathShort$n"
+hostcolor="${c}${hostcolor_a};${hostcolor_b};${hostcolor_c}m\]"
+
+PS1="$PS1 $White$User$hostcolor@$Hostname$n"
+PS1="$PS1 $Blue$PathShort$n"
 GIT_PART='$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
   echo " $(
