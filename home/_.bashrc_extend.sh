@@ -6,7 +6,11 @@ export SUDO_EDITOR=vim
 # save more history
 export HISTSIZE=10000
 export HISTFILESIZE=20000
+# Append to bash history on shell exit instead of overwrite
 shopt -s histappend
+
+# enable git completion
+. ~/.git-completion.bash
 
 # =============================================================================
 # Aliases
@@ -20,23 +24,17 @@ alias ll='ls $ListLongArgs'
 alias lla='la $ListLongArgs'
 alias ll.='l. $ListLongArgs'
 
+# Force tmux to assume terminal supports 256 colours
 alias tmux='tmux -2'
 
 # if vimx is installed use it instead of vim so can copy to system clipboard
 type vimx >/dev/null 2>&1 && alias vim='vimx'
-
-# enable git completion
-. ~/.git-completion.bash
 
 # datetimestamp of now. ISO format except no timezone. Good for log file names
 # example usage: process_x > degug_`nowf`.log
 alias now='date +%Y-%m-%dT%H:%M:%S'
 
 alias cl='clear'
-
-# =============================================================================
-# Custom bash functions
-# =============================================================================
 
 # shell routine to do something in between a stash and a pop
 git_stash_and_pop() {
