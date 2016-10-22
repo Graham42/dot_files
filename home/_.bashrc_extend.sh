@@ -54,32 +54,6 @@ git_stash_apply_X() {
 }
 alias gsa='git_stash_apply_X'
 
-# do something in each subfolder, excludes hidden folders
-function foreach_dir(){
-    for arg in $(ls --color=none); do
-        if [ -d "$arg" ] ; then
-            cd $arg
-            eval $@
-            cd ..
-        fi
-    done
-}
-
-# do something in each subfolder in parralell, excludes hidden folders
-function foreach_dir-threaded(){
-    for arg in $(ls --color=none); do
-        if [ -d "$arg" ] ; then
-            cd $arg
-            $@ >/dev/null 2>&1 &
-            cd ..
-        fi
-    done
-    echo "Started..."
-    wait
-    echo "Done!"
-}
-
-
 # =============================================================================
 # Bash Prompt (PS1)
 # =============================================================================
