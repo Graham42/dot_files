@@ -83,7 +83,7 @@ autocmd filetype html,htmldjango,php,js setlocal shiftwidth=2 tabstop=2 softtabs
 autocmd filetype make setlocal noexpandtab
 autocmd filetype gitconfig setlocal noexpandtab
 autocmd filetype gitcommit setlocal tw=72
-autocmd filetype markdown,text setlocal tw=100
+autocmd filetype markdown,text setlocal tw=80
 
 " associate filetypes
 au BufRead,BufNewFile *.jshintrc setfiletype javascript
