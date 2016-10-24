@@ -79,7 +79,7 @@ vnoremap <C-r> "hy:,$s/<C-r>h//gc\|1,''-&&<left><left><left><left><left><left>
 "" Filetype customizations
 
 autocmd filetype html,htmldjango,php setlocal tw=120
-autocmd filetype html,htmldjango,php,js setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd filetype html,htmldjango,php,javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd filetype make setlocal noexpandtab
 autocmd filetype gitconfig setlocal noexpandtab
 autocmd filetype gitcommit setlocal tw=72
