@@ -14,7 +14,7 @@ override_git_prompt_colors() {
   # PathFull="\W"
   # NewLine="\n"
   # Jobs="\j"
-  # Hostname="\h"
+  Hostname="\h"
   User="\u"
 
   ## These are the color definitions used by gitprompt.sh
@@ -38,8 +38,8 @@ override_git_prompt_colors() {
   GIT_PROMPT_COMMAND_FAIL="${Red}*"    # indicator if the last command returned with an exit code of other than 0
 
   ## _LAST_COMMAND_INDICATOR_ will be replaced by the appropriate GIT_PROMPT_COMMAND_OK OR GIT_PROMPT_COMMAND_FAIL
-  GIT_PROMPT_START_USER="_LAST_COMMAND_INDICATOR_ ${White}${User} ${Green}${PathShort}${ResetColor}"
-  GIT_PROMPT_START_ROOT="_LAST_COMMAND_INDICATOR_ ${Red}${User} ${Green}${PathShort}${ResetColor}"
+  GIT_PROMPT_START_USER="_LAST_COMMAND_INDICATOR_ ${White}${User}${Blue}@${Hostname} ${Green}${PathShort}${ResetColor}"
+  GIT_PROMPT_START_ROOT="_LAST_COMMAND_INDICATOR_ ${Red}${User}${Blue}@${Hostname} ${Green}${PathShort}${ResetColor}"
   GIT_PROMPT_END_USER=" \n$ "
   GIT_PROMPT_END_ROOT=" \n${Red}#${ResetColor} "
 
