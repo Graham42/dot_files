@@ -117,7 +117,7 @@ let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
 let g:ctrlp_working_path_mode = 'ra'
 " ignore files in .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-nnoremap <leader>p :CtrlP<cr>
+nnoremap <C-p> :CtrlP<cr>
 
 " Airline - Status bar
 " Better than Powerline in the sense that it's all vimscript so doesn't
