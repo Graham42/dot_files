@@ -131,6 +131,7 @@ done
 if [ -d setup_scripts ]; then
     echo "Running extra setup scripts"
     for initscript in $( ls_files setup_scripts ); do
+        echo -e "###\n${initscript} ..."
         initscript_path="setup_scripts/$initscript"
         ./$initscript_path || logfatal "Failed to run setup script: $initscript"
     done
