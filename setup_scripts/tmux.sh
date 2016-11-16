@@ -3,7 +3,8 @@ TMUX_PLUGIN_HOME=~/.tmux/plugins/tpm
 git clone https://github.com/tmux-plugins/tpm ${TMUX_PLUGIN_HOME} --depth=1 2>/dev/null || \
     (cd ${TMUX_PLUGIN_HOME} && git pull)
 
-${TMUX_PLUGIN_HOME}/bin/clean_plugins
+tmux source-file ~/.tmux.conf
+
 ${TMUX_PLUGIN_HOME}/bin/install_plugins
 ${TMUX_PLUGIN_HOME}/bin/update_plugins all
 
