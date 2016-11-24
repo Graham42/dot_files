@@ -4,13 +4,6 @@ set nocompatible
 set encoding=utf-8
 set termencoding=utf-8
 
-" Color settings
-syntax on
-set t_Co=256
-color delek
-if has('gui_running')
-    color molokai
-endif
 
 " Store swap and undo files in the .vim/tmp directory
 set dir=~/.vim/tmp/
@@ -143,6 +136,8 @@ Plug 'kien/ctrlp.vim', { 'on':  'CtrlP' }
 Plug 'bling/vim-airline'
 " Colorscheme like Sublime
 Plug 'tomasr/molokai'
+" Colorscheme that works for vimdiff
+Plug 'romainl/apprentice'
 " Interact with tmux from vim
 Plug 'benmills/vimux'
 
@@ -166,3 +161,15 @@ Plug 'benmills/vimux'
 "Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 call plug#end()
+
+
+" Color settings
+syntax on
+set t_Co=256
+color delek
+if &diff
+    color apprentice
+endif
+if has('gui_running')
+    color molokai
+endif
