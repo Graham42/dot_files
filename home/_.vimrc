@@ -172,4 +172,6 @@ if &diff
 endif
 if has('gui_running')
     color molokai
+    set lines=60 columns=181
+    winpos 560 200
 endif
