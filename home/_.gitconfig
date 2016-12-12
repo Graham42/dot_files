@@ -27,7 +27,7 @@
 	excludesfile = ~/.gitignore_global
 
 [alias]
-	l = log --graph --stat --find-copies --decorate --date-order
+	l = log --graph --stat --find-copies --decorate
 	d = diff
 	dc = diff --cached
 	dw = diff --word-diff
@@ -41,7 +41,7 @@
 %C(bold blue)(%Creset\
 %C(green)%an %Creset\
 %C(bold blue)%cr)%Creset\
-' --color --graph --date-order
+' --color --graph
 	oops = commit --amend --no-edit
 	# create a Formating commit that only adds trailing whitespace changes
 	whitespace-eol-commit = !bash ~/.git-alias-scripts/whitespace-eol-commit.sh
