@@ -35,15 +35,13 @@
 	co = checkout
 	b = branch
 	# pretty print short log
-	sl = log --date=short --pretty=format:'\
-%C(bold blue)%cd %Creset\
-%C(red)%h%Creset\
-%C(auto)%d %Creset\
-%C(normal)%s %Creset\
+	sl = log --pretty=format:'\
+%C(red)%h %Creset\
+%<(60,trunc)%C(normal)%s %Creset\
 %C(bold blue)(%Creset\
 %C(green)%an %Creset\
 %C(bold blue)%cr)%Creset\
-' --color --graph --decorate --date-order
+' --color --graph --date-order
 	oops = commit --amend --no-edit
 	# create a Formating commit that only adds trailing whitespace changes
 	whitespace-eol-commit = !bash ~/.git-alias-scripts/whitespace-eol-commit.sh
