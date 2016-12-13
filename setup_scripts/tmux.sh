@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 TMUX_PLUGIN_HOME=~/.tmux/plugins/tpm
-git clone https://github.com/Graham42/tpm ${TMUX_PLUGIN_HOME} --depth=1 2>/dev/null || \
+git clone https://github.com/Graham42/tpm.git ${TMUX_PLUGIN_HOME} 2>/dev/null || \
     (cd ${TMUX_PLUGIN_HOME} && git pull)
 
 tmux source-file ~/.tmux.conf
