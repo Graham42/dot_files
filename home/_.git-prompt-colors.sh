@@ -4,6 +4,9 @@
 override_git_prompt_colors() {
   GIT_PROMPT_THEME_NAME="Custom"
 
+  # Don't auto fetch
+  GIT_PROMPT_FETCH_REMOTE_STATUS=0
+
   ## Various variables you might want for your PS1 prompt instead
   ## For a complete list see
   ## https://www.gnu.org/software/bash/manual/bashref.html#Printing-a-Prompt
