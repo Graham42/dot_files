@@ -34,6 +34,7 @@
 	s = status -s
 	co = checkout
 	b = branch
+	ri = rebase --interactive --autostash
 	# pretty print short log
 	sl = log --pretty=format:'\
 %C(red)%h %Creset\
