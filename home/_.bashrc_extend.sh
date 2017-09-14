@@ -4,8 +4,8 @@ export EDITOR=vim
 export SUDO_EDITOR=vim
 
 # save more history
-export HISTSIZE=10000
-export HISTFILESIZE=20000
+export HISTSIZE=-1
+export HISTFILESIZE=-1
 # Append to bash history on shell exit instead of overwrite
 shopt -s histappend
 
