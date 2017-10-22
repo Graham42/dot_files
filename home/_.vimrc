@@ -73,12 +73,14 @@ vnoremap <C-r> "hy:,$s/<C-r>h//gc\|1,''-&&<left><left><left><left><left><left>
 
 autocmd filetype html,htmldjango,php setlocal tw=120
 autocmd filetype html,htmldjango,php,javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd filetype yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd filetype make setlocal noexpandtab
 autocmd filetype gitconfig setlocal noexpandtab
 autocmd filetype gitcommit setlocal tw=72
 autocmd filetype markdown,text setlocal tw=80
 
 " associate filetypes
+au BufRead,BufNewFile Dockerfile.* setfiletype dockerfile
 au BufRead,BufNewFile *.jshintrc setfiletype javascript
 au BufRead,BufNewFile *.{frag,vert} setfiletype cpp
 
