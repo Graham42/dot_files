@@ -142,6 +142,8 @@ Plug 'tomasr/molokai'
 Plug 'romainl/apprentice'
 " Interact with tmux from vim
 Plug 'benmills/vimux'
+" Easy to add quotes/brackets around text
+Plug 'tpope/vim-surround'
 
 
 """""""""""""""""""""""
