@@ -28,3 +28,6 @@ export MANPATH="\$__GNUMANPATH:\${MANPATH-/usr/share/man}"
 
 if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 EOF
+
+# Allow repeating keys (ie holding j repeats), want this for vi mode in vscode
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
