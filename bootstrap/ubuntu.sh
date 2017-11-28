@@ -46,6 +46,8 @@ install_if_needed \
     neovim \
     peek \
     google-chrome-stable \
+    xclip \
+    guake \
     code
 
 sudo apt-get upgrade -y
