@@ -74,6 +74,7 @@ vnoremap <C-r> "hy:,$s/<C-r>h//gc\|1,''-&&<left><left><left><left><left><left>
 autocmd filetype html,htmldjango,php setlocal tw=120
 autocmd filetype html,htmldjango,php,javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd filetype yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd filetype nginx setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd filetype make setlocal noexpandtab
 autocmd filetype gitconfig setlocal noexpandtab
 autocmd filetype gitcommit setlocal tw=72
@@ -144,7 +145,8 @@ Plug 'romainl/apprentice'
 Plug 'benmills/vimux'
 " Easy to add quotes/brackets around text
 Plug 'tpope/vim-surround'
-
+" nginx highlighting and more
+Plug 'chr4/nginx.vim'
 
 """""""""""""""""""""""
 "" Autocomplete Plugin
