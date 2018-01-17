@@ -22,7 +22,6 @@ apt_source_exists() {
 install_if_needed wget
 
 # other ppas ...
-apt_source_exists neovim-* || sudo add-apt-repository ppa:neovim-ppa/stable
 apt_source_exists git-core* || sudo add-apt-repository ppa:git-core/ppa
 # Peek is an animated GIF recorder
 apt_source_exists peek-* || sudo add-apt-repository ppa:peek-developers/stable
