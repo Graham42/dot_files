@@ -71,6 +71,7 @@
 
 [merge]
 	tool = p4Merge
+	conflictstyle = diff3
 
 [mergetool]
 	keepBackup = false
