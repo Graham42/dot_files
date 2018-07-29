@@ -39,6 +39,19 @@ source ~/.bashrc
 Want to remap caps lock to F13 to use for global terminal:
 http://www.fascinatingcaptain.com/blog/remap-keyboard-keys-for-ubuntu/
 
+```sh
+sudo -e /usr/share/X11/xkb/symbols/pc
+```
+
+Update the key definition for caps lock
+```diff
+- key <CAPS> { [ Caps_Lock ] };
++ key <CAPS> { [ F13       ] };
+```
+
+Then clear any cached stuff in `/var/lib/xkb/` and reboot
+
+
 # License
 
 MIT License
