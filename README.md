@@ -32,6 +32,12 @@ source ~/.bashrc
     ```
 - Any scripts in `setup_scripts` will be run, but they must be executable or the setup will fail.
 
+# How To
+
+# Remap keys
+
+Want to remap caps lock to F13 to use for global terminal:
+http://www.fascinatingcaptain.com/blog/remap-keyboard-keys-for-ubuntu/
 
 # License
 
