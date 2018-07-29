@@ -81,7 +81,7 @@ install_if_needed \
 `# terminal multiplexer, easy management of multiple terminal panes in single window` \
     tmux \
 `# drop down terminal, easy access to terminal with global system hotkey` \
-    guake \
+    tilda \
 `# animated GIF recorder` \
     peek \
     google-chrome-stable \
