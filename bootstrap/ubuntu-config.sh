@@ -28,7 +28,17 @@ mkdir -p ~/.config/autostart/
 TILDA_CONFIG="$HOME/dot_files/home/_.config/tilda/config_0"
 sudo sed -i -E "s,(Exec=.*),\1 -g '$TILDA_CONFIG',g" "$TILDA_DESKTOP"
 
+# Fix color on boot screen
+sudo sed -i -E 's!^Window.SetBackgroundTopColor.*$!Window.SetBackgroundTopColor (0, 0, 0);!g' \
+    /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.script
+sudo sed -i -E 's!^Window.SetBackgroundBottomColor.*$!Window.SetBackgroundBottomColor (0, 0, 0);!g' \
+    /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.script
+sudo update-initramfs -u
+
+# Fix color on lock screen
+sudo perl -i -p0 -e 's/(#lockDialogGroup[^}]*\bbackground:\s*)\S+(.*?;)/\1#2c2c2c\2/smg' /usr/share/gnome-shell/theme/ubuntu.css
+
+
 # TODO
-# - change purple color for boot up screen
 # - change purple background for terminal
-# - set background for desktop & login screen
+# - vscode plugins / config
