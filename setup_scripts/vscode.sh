@@ -1,3 +1,10 @@
+#!/usr/bin/env bash
+
+set -exo pipefail
+
+MY_PLUGINS=$(mktemp)
+
+cat >"$MY_PLUGINS" <<EOF
 castwide.solargraph
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
@@ -9,12 +16,16 @@ fabiospampinato.vscode-todo-plus
 formulahendry.auto-close-tag
 formulahendry.auto-rename-tag
 ms-python.python
-ms-vscode.autorest
 ms-vsliveshare.vsliveshare
 naco-siren.gradle-language
-paulmolluzzo.convert-css-in-js
 PeterJausovec.vscode-docker
 rebornix.Ruby
 robinbentley.sass-indented
 streetsidesoftware.code-spell-checker
 vscodevim.vim
+EOF
+
+comm -23 <(code --list-extensions | sort) <(sort "$MY_PLUGINS")
+
+xargs -L1 code --install-extension <"$MY_PLUGINS"
+
