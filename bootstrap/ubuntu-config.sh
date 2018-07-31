@@ -38,7 +38,6 @@ sudo update-initramfs -u
 # Fix color on lock screen
 sudo perl -i -p0 -e 's/(#lockDialogGroup[^}]*\bbackground:\s*)\S+(.*?;)/\1#2c2c2c\2/smg' /usr/share/gnome-shell/theme/ubuntu.css
 
-
-# TODO
-# - change purple background for terminal
-# - vscode plugins / config
+# Fix color of grub boot background
+sudo sed -E -i 's!(^if background_color).*(; then$)!\1 0,0,0\2!g' /usr/share/plymouth/themes/default.grub
+sudo update-grub
