@@ -25,7 +25,7 @@ streetsidesoftware.code-spell-checker
 vscodevim.vim
 EOF
 
-comm -23 <(code --list-extensions | sort) <(sort "$MY_PLUGINS")
+comm -23 <(code --list-extensions | sort) <(sort "$MY_PLUGINS") | xargs -L1 code --uninstall-extension
 
 xargs -L1 code --install-extension <"$MY_PLUGINS"
 
