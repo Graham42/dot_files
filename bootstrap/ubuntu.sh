@@ -99,6 +99,14 @@ remove_if_installed \
 
 sudo apt-get upgrade -y
 
+# Install nvm
+LATEST_NVM_VERSION=$(curl --silent "https://api.github.com/repos/creationix/nvm/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+curl -f -o- "https://raw.githubusercontent.com/creationix/nvm/$LATEST_NVM_VERSION/install.sh" | bash
+
+export NVM_DIR="$HOME/.nvm"
+# shellcheck disable=SC1090
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+nvm install stable
 
 ################################################################################
 # Config
