@@ -2,42 +2,22 @@
   "editor.formatOnSave": true,
   "editor.renderIndentGuides": true,
   "editor.renderWhitespace": "boundary",
-  "editor.rulers": [
-    80,
-    100,
-    120,
-    200
-  ],
+  "editor.rulers": [80, 100, 120, 200],
   "editor.tabSize": 2,
   "eslint.options": {
-    "extensions": [
-      ".js",
-      ".jsx"
-    ]
+    "extensions": [".js", ".jsx"]
   },
   "files.trimTrailingWhitespace": true,
   "workbench.editor.labelFormat": "medium",
   "vim.useSystemClipboard": true,
   "vim.normalModeKeyBindings": [
     {
-      "before": [
-        "<C-u>"
-      ],
-      "after": [
-        "2",
-        "0",
-        "k"
-      ]
+      "before": ["<C-u>"],
+      "after": ["2", "0", "k"]
     },
     {
-      "before": [
-        "<C-d>"
-      ],
-      "after": [
-        "2",
-        "0",
-        "j"
-      ]
+      "before": ["<C-d>"],
+      "after": ["2", "0", "j"]
     }
   ],
   "vim.handleKeys": {
