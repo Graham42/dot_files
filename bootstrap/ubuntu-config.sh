@@ -41,3 +41,6 @@ sudo perl -i -p0 -e 's/(#lockDialogGroup[^}]*\bbackground:\s*)\S+(.*?;)/\1#2c2c2
 # Fix color of grub boot background
 sudo sed -E -i 's!(^if background_color).*(; then$)!\1 0,0,0\2!g' /usr/share/plymouth/themes/default.grub
 sudo update-grub
+
+# config to run docker without root
+sudo gpasswd -a graham docker
