@@ -91,6 +91,9 @@ install_if_needed \
     docker-ce \
 `# shell script linting tool` \
     shellcheck \
+`# make, gcc, etc` \
+    build-essential \
+    python \
 `# GUI for browsing dconf/gnome settings` \
     dconf-editor
 
