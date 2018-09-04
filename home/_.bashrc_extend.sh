@@ -9,9 +9,6 @@ export HISTFILESIZE=-1
 # Append to bash history on shell exit instead of overwrite
 shopt -s histappend
 
-# enable git completion
-. ~/.git-completion.bash
-
 # =============================================================================
 # Aliases
 # =============================================================================
