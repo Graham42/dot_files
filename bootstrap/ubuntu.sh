@@ -107,6 +107,8 @@ install_if_needed \
 `# make, gcc, etc` \
     build-essential \
     python \
+`# simple image editor` \
+    pinta \
 `# GUI for browsing dconf/gnome settings` \
     dconf-editor
 
