@@ -61,9 +61,12 @@ apt_source_exists vscode || ( \
 )
 # Docker
 apt_source_exists docker || ( \
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
+    curl -fsSL -o /tmp/docker.pub https://download.docker.com/linux/ubuntu/gpg && \
     `# verify the fingerprint` \
-    apt-key adv --list-public-keys --with-fingerprint --with-colons Docker | cut -d ':' -f 5 | grep -q '0EBFCD88$' && \
+    cat /tmp/docker.pub | \
+        gpg --with-colons --import-options import-show --dry-run --import | \
+        grep -q '^fpr.*0EBFCD88' && \
+    sudo apt-key add /tmp/docker.pub && \
     sudo sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list' \
 )
  
