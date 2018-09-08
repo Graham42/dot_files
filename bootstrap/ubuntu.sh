@@ -69,6 +69,16 @@ apt_source_exists docker || ( \
     sudo apt-key add /tmp/docker.pub && \
     sudo sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list' \
 )
+# Perfoce
+#apt_source_exists perforce || ( \
+#    curl -fsSL -o /tmp/perforce.pubkey https://package.perforce.com/perforce.pubkey && \
+#    `# verify the fingerprint` \
+#    cat /tmp/perforce.pubkey | \
+#        gpg --with-colons --import-options import-show --dry-run --import | \
+#        grep -q '^fpr:*E58131C0AEA7B082C6DC4C937123CB760FF18869' && \
+#    sudo apt-key add /tmp/perforce.pubkey && \
+#    sudo sh -c 'echo "deb http://package.perforce.com/apt/ubuntu $(lsb_release -cs) release" > /etc/apt/sources.list.d/perforce.list' \
+#)
  
 
 # load new ppas
