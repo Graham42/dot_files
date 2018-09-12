@@ -79,7 +79,6 @@ apt_source_exists docker || ( \
 #    sudo apt-key add /tmp/perforce.pubkey && \
 #    sudo sh -c 'echo "deb http://package.perforce.com/apt/ubuntu $(lsb_release -cs) release" > /etc/apt/sources.list.d/perforce.list' \
 #)
- 
 
 # load new ppas
 sudo apt-get update
@@ -119,15 +118,26 @@ remove_if_installed \
     gnome-shell-extension-ubuntu-dock
 
 sudo apt-get upgrade -y
-
 # Install nvm
 LATEST_NVM_VERSION=$(curl --silent "https://api.github.com/repos/creationix/nvm/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
-curl -f -o- "https://raw.githubusercontent.com/creationix/nvm/$LATEST_NVM_VERSION/install.sh" | bash
+# Try an load nvm if it's already installed
+# shellcheck source=/dev/null
+source "$HOME/.nvm/nvm.sh" > /dev/null 2>&1 || true
+CURRENT_NVM_V=$(nvm --version || echo NOPE)
+if [ "$LATEST_NVM_VERSION" != "v$CURRENT_NVM_V" ]; then
+    curl -f -o- "https://raw.githubusercontent.com/creationix/nvm/$LATEST_NVM_VERSION/install.sh" | bash
 
-export NVM_DIR="$HOME/.nvm"
-# shellcheck disable=SC1090
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm install stable
+    export NVM_DIR="$HOME/.nvm"
+    # shellcheck disable=SC1090
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+fi
+# this is super noisy with -x
+set +x
+echo installing nvm lts/*
+nvm install lts/*
+set -x
+nvm alias default lts/*
+npm install -g npm
 
 ################################################################################
 # Config
