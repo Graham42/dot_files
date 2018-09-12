@@ -109,6 +109,9 @@ install_if_needed \
     python \
 `# simple image editor` \
     pinta \
+`# needed for android / react native dev` \
+    openjdk-8-jdk \
+    adb \
 `# GUI for browsing dconf/gnome settings` \
     dconf-editor
 
