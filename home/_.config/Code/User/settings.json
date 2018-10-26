@@ -80,5 +80,8 @@
   "window.zoomLevel": 0,
   "workbench.colorTheme": "Default Light+",
   "explorer.confirmDragAndDrop": false,
-  "prettier.proseWrap": "always"
+  "prettier.proseWrap": "always",
+  "[xml]": {
+    "editor.formatOnSave": false
+  }
 }
