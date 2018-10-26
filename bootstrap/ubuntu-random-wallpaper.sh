@@ -3,9 +3,9 @@
 # Download random background / lockscreen wallpapers
 # For GNOME desktop. Tested on Ubuntu 18.04
 
-set -eo pipefail
+set -exo pipefail
 
-WALLPAPER_FOLDER="$HOME/Pictures/Wallpapers/"
+WALLPAPER_FOLDER="$HOME/Pictures/Wallpapers"
 mkdir -p "$WALLPAPER_FOLDER"
 
 # Change these to match your screen resolution
@@ -18,7 +18,7 @@ downloadRandomImage() {
     # Download the chosen image
     curl -JL -o "$WALLPAPER_FOLDER/image-$IMAGE_ID.jpeg" "https://picsum.photos/g/$WIDTH/$HEIGHT?image=$IMAGE_ID"
     # Return the path of the downloaded file
-    echo "$WALLPAPER_FOLDER/image-$DESKTOP_ID.jpeg"
+    echo "$WALLPAPER_FOLDER/image-$IMAGE_ID.jpeg"
 }
 
 DESKTOP_IMAGE=$(downloadRandomImage)
