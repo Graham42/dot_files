@@ -111,6 +111,7 @@ install_if_needed \
 `# needed for android / react native dev` \
     openjdk-8-jdk \
     adb \
+    imagemagick \
 `# GUI for browsing dconf/gnome settings` \
     dconf-editor
 
