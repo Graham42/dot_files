@@ -49,6 +49,15 @@ git_stash_apply_X() {
 }
 alias gsa='git_stash_apply_X'
 
+backup_guake () {
+  dconf dump /apps/guake/ > ${HOME}/dot_files/guake_settings_backup
+}
+
+restore_guake () {
+    dconf reset -f /apps/guake/
+    dconf load /apps/guake/ < ${HOME}/dot_files/guake_settings_backup
+}
+
 # =============================================================================
 # Bash Prompt (PS1)
 # =============================================================================

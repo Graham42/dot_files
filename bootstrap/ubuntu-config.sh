@@ -19,15 +19,6 @@ gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward  "['<Alt>
 # Hide desktop icons
 gsettings set org.gnome.desktop.background show-desktop-icons false
 
-# Autostart tilda
-TILDA_DESKTOP=$(locate tilda.desktop | grep /usr/share/applications)
-mkdir -p ~/.config/autostart/
-(cd ~/.config/autostart/ && ln -sf "$TILDA_DESKTOP")
-
-# Configure tilda to use our config
-TILDA_CONFIG="$HOME/dot_files/home/_.config/tilda/config_0"
-sudo sed -i -E "s,(Exec=\S*).*,\1 -g '$TILDA_CONFIG',g" "$TILDA_DESKTOP"
-
 # Fix color on boot screen
 sudo sed -i -E 's!^Window.SetBackgroundTopColor.*$!Window.SetBackgroundTopColor (0, 0, 0);!g' \
     /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.script
