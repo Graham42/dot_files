@@ -17,7 +17,7 @@ display-n=0
 scroll-keystroke=true
 use-default-font=true
 use-trayicon=true
-use-scrollbar=true
+use-scrollbar=false
 window-refocus=false
 use-popup=true
 
