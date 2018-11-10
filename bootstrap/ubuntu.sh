@@ -112,6 +112,8 @@ install_if_needed \
     pinta \
 `# music player` \
     spotify-client\
+`# media player` \
+    vlc \
 `# needed for android / react native dev` \
     openjdk-8-jdk \
     adb \
