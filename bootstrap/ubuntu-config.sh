@@ -35,3 +35,9 @@ sudo update-grub
 
 # config to run docker without root
 sudo gpasswd -a graham docker
+
+# disable Nautilus (file explorer) fancy but useless search. This almost makes
+# it feel like typeahead exists.
+gsettings set org.gnome.nautilus.preferences fts-default false
+gsettings set org.gnome.nautilus.preferences recursive-search 'never'
+
