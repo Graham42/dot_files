@@ -3,7 +3,7 @@
 
 SETTINGS_BACKUP="${HOME}/dot_files/guake_settings_backup"
 
-if [ -e "$SETTINGS_BACKUP"]; then
+if [ -e "$SETTINGS_BACKUP" ]; then
   dconf reset -f /apps/guake/
   dconf load /apps/guake/ < "$SETTINGS_BACKUP"
 else
@@ -11,6 +11,7 @@ else
 fi
 
 if [ -e "/usr/share/applications/guake.desktop" ]; then
+  mkdir -p $HOME/.config/autostart/
   ln -sf /usr/share/applications/guake.desktop $HOME/.config/autostart/guake.desktop
 else
   echo "guake desktop file not found. Maybe guake isn't installed yet?"

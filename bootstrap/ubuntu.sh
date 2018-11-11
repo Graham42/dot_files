@@ -94,6 +94,8 @@ install_if_needed \
     vim-gtk \
 `# text editor, AKA Visual Studio Code` \
     code \
+`# drop down terminal` \
+    guake \
 `# terminal multiplexer, easy management of multiple terminal panes in single window` \
     tmux \
 `# animated GIF recorder` \
