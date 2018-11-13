@@ -73,6 +73,9 @@ apt_source_exists spotify || (
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90 && \
     echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 )
+apt_source_exists lubomir-brindza-ubuntu-nautilus-typeahead-bionic || (
+    echo deb http://ppa.launchpad.net/lubomir-brindza/nautilus-typeahead/ubuntu bionic main | sudo tee /etc/apt/sources.list.d/lubomir-brindza-ubuntu-nautilus-typeahead-bionic.list
+)
 # Perfoce
 #apt_source_exists perforce || ( \
 #    curl -fsSL -o /tmp/perforce.pubkey https://package.perforce.com/perforce.pubkey && \
