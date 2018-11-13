@@ -9,6 +9,9 @@ sudo updatedb
 CHROME_DESKTOP=$(locate -r google.*chrome.*\.desktop | head -n1 | xargs basename)
 xdg-settings set default-web-browser "$CHROME_DESKTOP"
 
+# To find how to set more settings run `dconf watch /` and then change the
+# setting in the GUI.
+
 # make Alt + Tab switch windows instead of applications
 # Source: https://people.gnome.org/~federico/blog/alt-tab.html
 gsettings set org.gnome.desktop.wm.keybindings switch-applications "[]"
@@ -18,6 +21,13 @@ gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward  "['<Alt>
 
 # Hide desktop icons
 gsettings set org.gnome.desktop.background show-desktop-icons false
+
+# Customize top bar appearance
+gsettings set org.gnome.desktop.interface show-battery-percentage true
+gsettings set org.gnome.desktop.interface clock-show-date true
+
+# Alway launch a new window instead of switching to the open one
+gsettings set org.gnome.shell enabled-extensions "['launch-new-instance@gnome-shell-extensions.gcampax.github.com']"
 
 # Fix color on boot screen
 sudo sed -i -E 's!^Window.SetBackgroundTopColor.*$!Window.SetBackgroundTopColor (0, 0, 0);!g' \

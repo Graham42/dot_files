@@ -123,6 +123,9 @@ install_if_needed \
     openjdk-8-jdk \
     adb \
     imagemagick \
+`# tweak gnome settings` \
+    gnome-tweak-tool \
+    gnome-shell-extensions \
 `# GUI for browsing dconf/gnome settings` \
     dconf-editor
 
