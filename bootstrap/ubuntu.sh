@@ -74,6 +74,7 @@ apt_source_exists spotify || (
     echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 )
 apt_source_exists lubomir-brindza-ubuntu-nautilus-typeahead-bionic || (
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F2171AE78ECBC8C6F059FD98301F60F1D6A30942 && \
     echo deb http://ppa.launchpad.net/lubomir-brindza/nautilus-typeahead/ubuntu bionic main | sudo tee /etc/apt/sources.list.d/lubomir-brindza-ubuntu-nautilus-typeahead-bionic.list
 )
 # Perfoce
