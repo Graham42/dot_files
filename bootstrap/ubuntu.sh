@@ -129,6 +129,8 @@ install_if_needed \
     gnome-shell-extensions \
 `# tool for visualizing folder structures` \
     tree \
+`# json manipulation tool` \
+    jq \
 `# GUI for browsing dconf/gnome settings` \
     dconf-editor
 
