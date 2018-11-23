@@ -27,6 +27,7 @@
   "workbench.startupEditor": "newUntitledFile",
   "cSpell.language": "en-GB",
   "cSpell.userWords": [
+    "Dismissible",
     "admin",
     "analytics",
     "cancelable",
@@ -52,6 +53,7 @@
     "pageable",
     "placeholder",
     "polyfill",
+    "precached",
     "precommit",
     "prerequest",
     "promisify",
@@ -83,5 +85,7 @@
   "prettier.proseWrap": "always",
   "[xml]": {
     "editor.formatOnSave": false
-  }
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always"
 }

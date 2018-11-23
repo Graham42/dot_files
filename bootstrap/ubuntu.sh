@@ -127,6 +127,8 @@ install_if_needed \
 `# tweak gnome settings` \
     gnome-tweak-tool \
     gnome-shell-extensions \
+`# tool for visualizing folder structures` \
+    tree \
 `# GUI for browsing dconf/gnome settings` \
     dconf-editor
 

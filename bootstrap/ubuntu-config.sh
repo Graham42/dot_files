@@ -26,6 +26,9 @@ gsettings set org.gnome.desktop.background show-desktop-icons false
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.interface clock-show-date true
 
+# Use blue light filter
+gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+
 # Alway launch a new window instead of switching to the open one
 gsettings set org.gnome.shell enabled-extensions "['launch-new-instance@gnome-shell-extensions.gcampax.github.com']"
 
