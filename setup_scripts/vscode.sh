@@ -13,6 +13,7 @@ esbenp.prettier-vscode
 fabianlauer.vs-code-xml-format
 fabiospampinato.vscode-todo-plus
 formulahendry.auto-rename-tag
+github.vscode-pull-request-github
 ms-python.python
 ms-vsliveshare.vsliveshare
 naco-siren.gradle-language
