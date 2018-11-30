@@ -28,4 +28,19 @@ Open in Firefox: https://extensions.gnome.org/extension/964/do-not-disturb-butto
 Install.
 Open gnome-tweak settings, disable notification count.
 
+# Bash
+
+If on ubuntu, there's a bunch of default cruft in `~/.bashrc` make sure to
+comment out `HISTSIZE` so it doesn't mess with settings.
+
+
+# Sleep
+
+some older hardware doesn't sleep well
+
+```sh
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type "nothing"
+```
+
+go into gnome tweak > power > disable sleep on lid close
 
