@@ -16,10 +16,7 @@ shopt -s histappend
 alias ls='ls --color=auto -hv --group-directories-first'
 alias la='ls -A'
 alias l.='la -I"*"'
-ListLongArgs=' -l --time-style=long-iso'
-alias ll='ls $ListLongArgs'
-alias lla='la $ListLongArgs'
-alias ll.='l. $ListLongArgs'
+alias ll='ls -l --time-style=long-iso'
 
 # Force tmux to assume terminal supports 256 colours
 alias tmux='tmux -2'
@@ -30,24 +27,6 @@ type vimx >/dev/null 2>&1 && alias vim='vimx'
 # datetimestamp of now. ISO format except no timezone. Good for log file names
 # example usage: process_x > degug_`nowf`.log
 alias now='date +%Y-%m-%dT%H:%M:%S'
-
-alias cl='clear'
-
-# shell routine to do something in between a stash and a pop
-git_stash_and_pop() {
-	git stash && "$@" && git stash pop
-}
-alias gsp='git_stash_and_pop'
-
-# apply stash at index X
-git_stash_apply_X() {
-	stash=""
-	if [ $# -eq 1 ]; then
-		stash="stash@{$1}"
-	fi
-	git stash apply $stash
-}
-alias gsa='git_stash_apply_X'
 
 backup_guake () {
   dconf dump /apps/guake/ > ${HOME}/dot_files/guake_settings_backup
@@ -69,12 +48,6 @@ GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
 source ~/.bash-git-prompt/gitprompt.sh
 
 # =============================================================================
-
-# syntax highlighting in less: requires source-highlight to be installed
-if [ -f "/usr/bin/src-hilite-lesspipe.sh" ]; then
-	export LESS="-R"
-    export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
-fi
 
 # environment vars needed for virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
