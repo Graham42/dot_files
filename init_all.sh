@@ -25,7 +25,7 @@ function ls_type {
     else
         DIR="$2"
     fi
-    find $DIR -mindepth 1 -maxdepth 1 -type "$1" \( ! -iname ".*" \) | sed "s#^${DIR}/##g"
+    find "$DIR" -mindepth 1 -maxdepth 1 -type "$1" | sed "s#^${DIR}/##g"
 }
 function logok {
     echo -e "${Green}$@$Color_Off"
@@ -101,10 +101,8 @@ i=0
 while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
     base_dir=${dirs_to_link[$i]}
 
-    for _file in $( ls_files $base_dir ); do
-        # remove leading '_'s
-        file=$( echo $_file | sed 's#^_##g' )
-        dest_file=$( echo $base_dir/$_file | sed "s#^home#${USER_HOME}#g" | sed "s#/_\.#/.#g")
+    for file in $( ls_files "$base_dir" ); do
+        dest_file=$( echo "$base_dir/$file" | sed "s#^home#${USER_HOME}#g")
         # remove symbolic links & back up existing files so we don't overwrite
         if [ -L $dest_file ]; then
             rm $dest_file
@@ -113,8 +111,9 @@ while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
             mv $dest_file ${dest_file}.bak
         fi
         # create new link
-        mkdir -p $(dirname $dest_file)
-        ln -s $CWD/$base_dir/$_file $dest_file
+        TARGET_DIR=$(dirname "$dest_file")
+        mkdir -p "$TARGET_DIR"
+        ln -s "$CWD/$base_dir/$file" "$dest_file"
     done
 
     # push any sub dirs onto the array of things left to do
