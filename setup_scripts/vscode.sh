@@ -22,6 +22,7 @@ rebornix.ruby
 robinbentley.sass-indented
 streetsidesoftware.code-spell-checker
 vscodevim.vim
+timonwong.shellcheck
 EOF
 
 alias to_lower="tr [A-Z] [a-z]"

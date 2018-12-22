@@ -29,12 +29,12 @@ type vimx >/dev/null 2>&1 && alias vim='vimx'
 alias now='date +%Y-%m-%dT%H:%M:%S'
 
 backup_guake () {
-  dconf dump /apps/guake/ > ${HOME}/dot_files/guake_settings_backup
+  dconf dump /apps/guake/ > "${HOME}/dot_files/guake_settings_backup"
 }
 
 restore_guake () {
     dconf reset -f /apps/guake/
-    dconf load /apps/guake/ < ${HOME}/dot_files/guake_settings_backup
+    dconf load /apps/guake/ < "${HOME}/dot_files/guake_settings_backup"
 }
 
 # =============================================================================
@@ -45,7 +45,7 @@ restore_guake () {
 GIT_PROMPT_THEME=Custom
 GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
 
-source ~/.bash-git-prompt/gitprompt.sh
+source "$HOME/.bash-git-prompt/gitprompt.sh"
 
 # =============================================================================
 

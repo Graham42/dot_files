@@ -11,8 +11,8 @@ else
 fi
 
 if [ -e "/usr/share/applications/guake.desktop" ]; then
-  mkdir -p $HOME/.config/autostart/
-  ln -sf /usr/share/applications/guake.desktop $HOME/.config/autostart/guake.desktop
+  mkdir -p "$HOME/.config/autostart/"
+  ln -sf /usr/share/applications/guake.desktop "$HOME/.config/autostart/guake.desktop"
 else
   echo "guake desktop file not found. Maybe guake isn't installed yet?"
   exit 1

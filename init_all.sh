@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # This script is to speed up setting up a new machine with my personal config
 
+set -eo pipefail
+
 THIS_SCRIPT="init_all.sh"
 
 ################################################################################
@@ -14,10 +16,10 @@ Yellow="\033[0;33m"         # Yellow
 Cyan="\033[0;36m"           # Cyan
 
 function ls_dirs {
-    ls_type d $@
+    ls_type d "$@"
 }
 function ls_files {
-    ls_type f $@
+    ls_type f "$@"
 }
 function ls_type {
     if [ "${2}x" == "x" ]; then
@@ -28,16 +30,16 @@ function ls_type {
     find "$DIR" -mindepth 1 -maxdepth 1 -type "$1" | sed "s#^${DIR}/##g"
 }
 function logok {
-    echo -e "${Green}$@$Color_Off"
+    echo -e "${Green}$*$Color_Off"
 }
 function loginfo {
-    echo -e "${Cyan}$@$Color_Off"
+    echo -e "${Cyan}$*$Color_Off"
 }
 function logwarn {
-    echo -e "${Yellow}$@$Color_Off"
+    echo -e "${Yellow}$*$Color_Off"
 }
 function logfatal {
-    echo -e "${Red}$@$Color_Off"
+    echo -e "${Red}$*$Color_Off"
     exit 1
 }
 
@@ -45,12 +47,12 @@ function logfatal {
 ## Setup
 
 # This script should be the master, should be run, not sourced
-if [ $THIS_SCRIPT != $(basename $0) ]; then
+if [ $THIS_SCRIPT != "$(basename "$0")" ]; then
     logfatal "This script should be run, not sourced"
 fi
 
 # allow this script to be run from anywhere
-cd $(dirname $0)
+cd "$(dirname "$0")"
 
 loginfo "Updating config for user: $USER"
 
@@ -72,14 +74,15 @@ bashrc_body=$( cat $BASH_RC_BODY_FILE )
 if [ -d "$BASH_RC_OS_DIR" ]; then
     for os_file in $( ls_files "$BASH_RC_OS_DIR" ); do
         # header of each file determines if this is the OS it's looking for
-        if eval $( head -n2 "$BASH_RC_OS_DIR/$os_file" | tail -n1  | sed "s/^#\+//g" ) ; then
+        TEST_CMD=$( head -n2 "$BASH_RC_OS_DIR/$os_file" | tail -n1  | sed "s/^#\+//g" )
+        if eval "$TEST_CMD" ; then
             bashrc_body="$bashrc_body\n$( tail -n+3 "$BASH_RC_OS_DIR/$os_file" )"
         fi
     done
 fi
 echo "Updating block in ~/.bashrc"
 # auto update the block in ~/.bashrc
-if $(grep "$BASHRC_HEADER" ~/.bashrc -q); then
+if grep "$BASHRC_HEADER" ~/.bashrc -q; then
     escaped_body=$(echo "$bashrc_body" | sed -e':a' -e'N' -e'$!ba' -e's/\n/\\n/g')
     sed -i'' -e"/^$BASHRC_HEADER$/,/^$BASHRC_FOOTER$/c $BASHRC_HEADER\n$escaped_body\n$BASHRC_FOOTER" ~/.bashrc
 else
@@ -93,7 +96,8 @@ fi
 # directory. Underscores are used for to escape dotfiles so they're not hidden
 # in the $DOT_FILES directory.
 
-USER_HOME=$( echo ~ )
+echo "Updating sym links in home directory..."
+USER_HOME=$HOME
 CWD=$(pwd)
 dirs_to_link=( "home" )
 i=0
@@ -104,11 +108,11 @@ while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
     for file in $( ls_files "$base_dir" ); do
         dest_file=$( echo "$base_dir/$file" | sed "s#^home#${USER_HOME}#g")
         # remove symbolic links & back up existing files so we don't overwrite
-        if [ -L $dest_file ]; then
-            rm $dest_file
-        elif [ -f $dest_file ]; then
+        if [ -L "$dest_file" ]; then
+            rm "$dest_file"
+        elif [ -f "$dest_file" ]; then
             loginfo "Backing up $dest_file to ${dest_file}.bak"
-            mv $dest_file ${dest_file}.bak
+            mv "$dest_file" "${dest_file}.bak"
         fi
         # create new link
         TARGET_DIR=$(dirname "$dest_file")
@@ -117,7 +121,7 @@ while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
     done
 
     # push any sub dirs onto the array of things left to do
-    for _dir in $( ls_dirs $base_dir ); do
+    for _dir in $( ls_dirs "$base_dir" ); do
         dirs_to_link+=( "$base_dir/$_dir" )
     done
 
@@ -132,7 +136,7 @@ if [ -d setup_scripts ]; then
     for initscript in $( ls_files setup_scripts ); do
         echo -e "###\n${initscript} ..."
         initscript_path="setup_scripts/$initscript"
-        ./$initscript_path || logfatal "Failed to run setup script: $initscript"
+        "./$initscript_path" || logfatal "Failed to run setup script: $initscript"
     done
 fi
 
