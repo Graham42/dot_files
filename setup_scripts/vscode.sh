@@ -24,9 +24,9 @@ streetsidesoftware.code-spell-checker
 vscodevim.vim
 EOF
 
-# TODO don't launch if there's nothing to remove
-comm -23 <(code --list-extensions | sort) <(sort "$MY_PLUGINS") | xargs -L1 code --uninstall-extension
+alias to_lower="tr [A-Z] [a-z]"
 
-# TODO only install what's needed
-xargs -L1 code --install-extension <"$MY_PLUGINS"
+comm -23 <(sort -f "$MY_PLUGINS" | to_lower) \
+    <(code --list-extensions | sort -f | to_lower) \
+    | xargs -L1 code --install-extension
 
