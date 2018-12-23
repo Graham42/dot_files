@@ -140,6 +140,8 @@ remove_if_installed \
 sudo apt-get upgrade -y
 # Install nvm
 LATEST_NVM_VERSION=$(curl --silent "https://api.github.com/repos/creationix/nvm/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+# this is super noisy with -x
+set +x
 # Try an load nvm if it's already installed
 # shellcheck source=/dev/null
 source "$HOME/.nvm/nvm.sh" > /dev/null 2>&1 || true
@@ -151,8 +153,6 @@ if [ "$LATEST_NVM_VERSION" != "v$CURRENT_NVM_V" ]; then
     # shellcheck disable=SC1090
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 fi
-# this is super noisy with -x
-set +x
 echo installing nvm lts/*
 nvm install lts/*
 set -x
