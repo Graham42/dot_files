@@ -25,9 +25,7 @@ vscodevim.vim
 timonwong.shellcheck
 EOF
 
-alias to_lower="tr [A-Z] [a-z]"
-
-comm -23 <(sort -f "$MY_PLUGINS" | to_lower) \
-    <(code --list-extensions | sort -f | to_lower) \
+comm -23 <(sort -f "$MY_PLUGINS" | tr "[:upper:]" "[:lower:]") \
+    <(code --list-extensions | sort -f | tr "[:upper:]" "[:lower:]") \
     | xargs -L1 code --install-extension
 
