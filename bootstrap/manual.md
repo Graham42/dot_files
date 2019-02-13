@@ -28,6 +28,10 @@ Open in Firefox: https://extensions.gnome.org/extension/964/do-not-disturb-butto
 Install.
 Open gnome-tweak settings, disable notification count.
 
+# put windows extension
+....
+
+
 # Bash
 
 If on ubuntu, there's a bunch of default cruft in `~/.bashrc` make sure to
