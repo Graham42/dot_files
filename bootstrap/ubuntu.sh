@@ -158,6 +158,8 @@ nvm install lts/*
 set -x
 nvm alias default lts/*
 npm install -g npm
+# tool to automatically merge lockfiles, see .gitconfig
+npm install -g npm-merge-driver
 
 ################################################################################
 # Config
