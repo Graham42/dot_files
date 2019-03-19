@@ -102,7 +102,6 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
   "[markdown]": {
-    "editor.wordWrap": "bounded",
     "editor.quickSuggestions": false
   }
 }
