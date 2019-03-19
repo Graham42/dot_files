@@ -103,5 +103,6 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "[markdown]": {
     "editor.quickSuggestions": false
-  }
+  },
+  "go.formatTool": "gofmt"
 }
