@@ -23,6 +23,7 @@ robinbentley.sass-indented
 streetsidesoftware.code-spell-checker
 vscodevim.vim
 timonwong.shellcheck
+jpoissonnier.vscode-styled-components
 EOF
 
 comm -23 <(sort -f "$MY_PLUGINS" | tr "[:upper:]" "[:lower:]") \
