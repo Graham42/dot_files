@@ -6,15 +6,14 @@ MY_PLUGINS=$(mktemp)
 
 cat >"$MY_PLUGINS" <<EOF
 castwide.solargraph
-christian-kohler.path-intellisense
 dbaeumer.vscode-eslint
-eg2.tslint
 esbenp.prettier-vscode
 fabianlauer.vs-code-xml-format
 fabiospampinato.vscode-todo-plus
-formulahendry.auto-rename-tag
+formulahendry.github-actions
 github.vscode-pull-request-github
 ms-python.python
+ms-vscode.go
 ms-vsliveshare.vsliveshare
 naco-siren.gradle-language
 PeterJausovec.vscode-docker
