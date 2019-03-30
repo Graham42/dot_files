@@ -117,5 +117,7 @@
   "[markdown]": {
     "editor.quickSuggestions": false
   },
-  "go.formatTool": "gofmt"
+  "go.formatTool": "gofmt",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }
