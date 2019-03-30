@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -exo pipefail
+set -eo pipefail
 
 MY_PLUGINS=$(mktemp)
 
@@ -26,7 +26,22 @@ timonwong.shellcheck
 jpoissonnier.vscode-styled-components
 EOF
 
-comm -23 <(sort -f "$MY_PLUGINS" | tr "[:upper:]" "[:lower:]") \
-    <(code --list-extensions | sort -f | tr "[:upper:]" "[:lower:]") \
-    | xargs -L1 code --install-extension
+MISSING_PLUGINS=$(
+comm -23 \
+    <(sort -f "$MY_PLUGINS" | tr "[:upper:]" "[:lower:]") \
+    <(code --list-extensions | sort -f | tr "[:upper:]" "[:lower:]")
+)
 
+if [ -z "$MISSING_PLUGINS" ] ; then
+    echo "All vscode plugins already installed"
+else
+    echo "$MISSING_PLUGINS" | xargs -L1 code --install-extension
+fi
+
+echo ""
+echo "Extra vscode plugins installed:"
+echo "---"
+comm -23 \
+    <(code --list-extensions | sort -f | tr "[:upper:]" "[:lower:]") \
+    <(sort -f "$MY_PLUGINS" | tr "[:upper:]" "[:lower:]")
+echo ""
