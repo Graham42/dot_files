@@ -85,6 +85,9 @@
 [difftool "p4Diff"]
 	cmd = p4merge "$LOCAL" "$REMOTE"
 
+[difftool "vsDiff"]
+	cmd = code --diff --wait "$LOCAL" "$REMOTE"
+
 [log]
 	date = iso8601
 
