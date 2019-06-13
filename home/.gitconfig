@@ -27,6 +27,11 @@
 	excludesfile = ~/.gitignore_global
 
 [alias]
+	# This is about a mindset shift. 'git blame' can used to understand more
+	# context why a change was made and 'blame' has an unnecessary negative
+	# connotation to it.
+	praise = blame
+	gui-praise = gui blame
 	l = log --graph --stat --find-copies --decorate
 	d = diff
 	dc = diff --cached
