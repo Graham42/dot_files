@@ -12,11 +12,11 @@ fabianlauer.vs-code-xml-format
 fabiospampinato.vscode-todo-plus
 formulahendry.github-actions
 github.vscode-pull-request-github
+ms-azuretools.vscode-docker
 ms-python.python
 ms-vscode.go
 ms-vsliveshare.vsliveshare
 naco-siren.gradle-language
-PeterJausovec.vscode-docker
 rebornix.ruby
 robinbentley.sass-indented
 streetsidesoftware.code-spell-checker
