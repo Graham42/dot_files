@@ -1,7 +1,6 @@
 # My Automated Config Setup
 
 I wanted an automated way to quickly setup a shell with my own customizations.
-Setup is at ~3 commands right now.
 
 Setup steps:
 
@@ -9,6 +8,7 @@ Setup steps:
 git clone https://github.com/Graham42/dot_files.git ~/dot_files
 ~/dot_files/init_all.sh
 source ~/.bashrc
+do_update
 ```
 
 # Structure
