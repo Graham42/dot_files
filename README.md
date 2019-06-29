@@ -15,9 +15,6 @@ source ~/.bashrc
 
 - Anything in `home/` is linked to the user's home directory and then the directory structure
   inside is followed
-- All dot files in `home/` are escaped with a leading underscore so it's not as easy to forget
-  about files that are hidden. Symbolic links are created with the leading underscore's removed.
-  Example: `_.vimrc` becomes `.vimrc`
 - Running `init_all.sh` will create and update a marked section in `~/.bashrc`.
   - `bashrc_body.sh` is the main block content.
   - If there are files in the `os_specific_bashrc/` folder, they will be included if the OS check
