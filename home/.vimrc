@@ -137,10 +137,8 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim', { 'on':  'CtrlP' }
 " Airline - Status bar
 Plug 'bling/vim-airline'
-" Colorscheme like Sublime
-Plug 'tomasr/molokai'
-" Colorscheme that works for vimdiff
-Plug 'romainl/apprentice'
+" Color Theme
+Plug 'haishanh/night-owl.vim'
 " Interact with tmux from vim
 Plug 'benmills/vimux'
 " Easy to add quotes/brackets around text
@@ -172,12 +170,17 @@ call plug#end()
 " Color settings
 syntax on
 set t_Co=256
-color delek
-if &diff
-    color apprentice
-endif
 if has('gui_running')
     color molokai
     set lines=60 columns=181
     winpos 560 200
+endif
+
+""""" enable 24bit true color
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
+if $COLOR_SCHEME == "DARK"
+    colorscheme night-owl
 endif
