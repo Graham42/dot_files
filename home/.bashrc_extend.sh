@@ -37,6 +37,42 @@ restore_guake () {
     dconf load /apps/guake/ < "${HOME}/dot_files/guake_settings_backup"
 }
 
+_color_mode() {
+    # should be LIGHT or DARK
+    NEW=$1
+    if [ "$NEW" == "LIGHT" ] ; then
+        OLD="DARK"
+        VS_THEME="Night Owl Light"
+    else
+        OLD="LIGHT"
+        NEW="DARK"
+        VS_THEME="Night Owl"
+    fi
+
+    sed -i 's/const COLOR_SCHEME = "'$OLD'"/const COLOR_SCHEME = "'$NEW'"/' ~/.hyper.js
+    node -e "const targetFile = process.env.HOME + '/.config/Code/User/settings.json';
+const vsCodeSettings = require(targetFile);
+vsCodeSettings['workbench.colorTheme'] = '$VS_THEME';
+
+require('fs').writeFileSync(targetFile, JSON.stringify (vsCodeSettings, null, 2), 'utf8');"
+    npx prettier --write ~/.config/Code/User/settings.json
+    for _pane in $(tmux list-panes -a -F '#{pane_id}'); do
+        # save us from Vim
+        tmux send-keys -t "$_pane" Escape Escape Escape C-z
+        # give time to end up in process
+        sleep 0.3s
+        tmux send-keys -t "$_pane" "export COLOR_SCHEME=$NEW" Enter
+        # go back to what we were doing
+        tmux send-keys -t "$_pane" '%' Enter
+    done
+}
+light_mode () {
+    _color_mode "LIGHT"
+}
+dark_mode () {
+    _color_mode "DARK"
+}
+
 # =============================================================================
 # Bash Prompt (PS1)
 # =============================================================================
