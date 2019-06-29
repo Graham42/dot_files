@@ -6,8 +6,7 @@ Setup steps:
 
 ```sh
 git clone https://github.com/Graham42/dot_files.git ~/dot_files
-~/dot_files/init_all.sh
-source ~/.bashrc
+source ~/dot_files/os_specific_bashrc/ubuntu.sh
 do_update
 ```
 
