@@ -31,7 +31,7 @@ source ~/.bashrc
 
 # How To
 
-# Remap keys
+## Remap keys
 
 Want to remap caps lock to F13 to use for global terminal:
 http://www.fascinatingcaptain.com/blog/remap-keyboard-keys-for-ubuntu/
