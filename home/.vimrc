@@ -104,6 +104,9 @@ set sidescrolloff=4
 " Syntastic - Syntax checking
 let g:syntastic_python_python_exec = '/usr/bin/python3'
 
+" Always show gutter so editor doesn't jump on error detection
+set signcolumn=yes
+
 " NerdTree - Sidebar directory browser
 noremap <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
