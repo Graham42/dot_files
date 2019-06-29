@@ -98,8 +98,6 @@ install_if_needed \
     vim-gtk \
 `# text editor, AKA Visual Studio Code` \
     code \
-`# drop down terminal` \
-    guake \
 `# terminal multiplexer, easy management of multiple terminal panes in single window` \
     tmux \
 `# animated GIF recorder` \
@@ -160,6 +158,15 @@ nvm alias default lts/*
 npm install -g npm
 # tool to automatically merge lockfiles, see .gitconfig
 npm install -g npm-merge-driver
+
+LATEST_HYPER=$(curl --silent "https://api.github.com/repos/zeit/hyper/releases/latest" |
+    grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+if ! command -v hyper || [ "$(hyper version)" != "$LATEST_HYPER" ]; then
+    TEMP_DIR=$(mktemp -d)
+    curl -L -o "$TEMP_DIR/hyper.deb" https://releases.hyper.is/download/deb
+    sudo apt-get install "$TEMP_DIR/hyper.deb"
+fi
+
 
 ################################################################################
 # Config

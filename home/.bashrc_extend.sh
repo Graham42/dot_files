@@ -28,15 +28,6 @@ type vimx >/dev/null 2>&1 && alias vim='vimx'
 # example usage: process_x > degug_`nowf`.log
 alias now='date +%Y-%m-%dT%H:%M:%S'
 
-backup_guake () {
-  dconf dump /apps/guake/ > "${HOME}/dot_files/guake_settings_backup"
-}
-
-restore_guake () {
-    dconf reset -f /apps/guake/
-    dconf load /apps/guake/ < "${HOME}/dot_files/guake_settings_backup"
-}
-
 _color_mode() {
     # should be LIGHT or DARK
     NEW=$1
