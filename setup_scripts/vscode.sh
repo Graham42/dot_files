@@ -14,6 +14,7 @@ fabiospampinato.vscode-todo-plus
 formulahendry.github-actions
 github.vscode-pull-request-github
 jpoissonnier.vscode-styled-components
+mermade.openapi-lint
 ms-azuretools.vscode-docker
 ms-python.python
 ms-vscode.go
