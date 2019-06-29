@@ -12,6 +12,7 @@ fabianlauer.vs-code-xml-format
 fabiospampinato.vscode-todo-plus
 formulahendry.github-actions
 github.vscode-pull-request-github
+jpoissonnier.vscode-styled-components
 ms-azuretools.vscode-docker
 ms-python.python
 ms-vscode.go
@@ -20,9 +21,8 @@ naco-siren.gradle-language
 rebornix.ruby
 robinbentley.sass-indented
 streetsidesoftware.code-spell-checker
-vscodevim.vim
 timonwong.shellcheck
-jpoissonnier.vscode-styled-components
+vscodevim.vim
 EOF
 
 MISSING_PLUGINS=$(
