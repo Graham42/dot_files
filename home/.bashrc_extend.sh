@@ -28,6 +28,11 @@ type vimx >/dev/null 2>&1 && alias vim='vimx'
 # example usage: process_x > degug_`nowf`.log
 alias now='date +%Y-%m-%dT%H:%M:%S'
 
+
+# This line needs to stay exactly like this except if changed by the bash
+# light_mode/dark_mode functions.
+export COLOR_SCHEME=DARK
+
 _color_mode() {
     # should be LIGHT or DARK
     NEW=$1
@@ -40,13 +45,21 @@ _color_mode() {
         VS_THEME="Night Owl"
     fi
 
+    # Hyper config
     sed -i 's/const COLOR_SCHEME = "'$OLD'"/const COLOR_SCHEME = "'$NEW'"/' ~/.hyper.js
+
+    # bashrc
+    sed -i 's/export COLOR_SCHEME='$OLD'/export COLOR_SCHEME='$NEW'/' ~/.hyper.js
+
+    # VS Code Settings
     node -e "const targetFile = process.env.HOME + '/.config/Code/User/settings.json';
 const vsCodeSettings = require(targetFile);
 vsCodeSettings['workbench.colorTheme'] = '$VS_THEME';
 
 require('fs').writeFileSync(targetFile, JSON.stringify (vsCodeSettings, null, 2), 'utf8');"
     npx prettier --write ~/.config/Code/User/settings.json
+
+    # Current tmux sessions
     for _pane in $(tmux list-panes -a -F '#{pane_id}'); do
         # save us from Vim
         tmux send-keys -t "$_pane" Escape Escape Escape C-z

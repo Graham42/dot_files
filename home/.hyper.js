@@ -117,9 +117,7 @@ module.exports = {
     shellArgs: ['--login'],
 
     // for environment variables
-    env: {
-      COLOR_SCHEME: COLOR_SCHEME,
-    },
+    env: {},
 
     // set to `false` for no bell
     bell: 'SOUND',
