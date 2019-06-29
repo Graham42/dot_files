@@ -20,6 +20,7 @@ ms-vsliveshare.vsliveshare
 naco-siren.gradle-language
 rebornix.ruby
 robinbentley.sass-indented
+sdras.night-owl
 streetsidesoftware.code-spell-checker
 timonwong.shellcheck
 vscodevim.vim
