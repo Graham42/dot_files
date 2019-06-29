@@ -137,7 +137,7 @@ remove_if_installed \
 
 sudo apt-get upgrade -y
 # Install nvm
-LATEST_NVM_VERSION=$(curl --silent "https://api.github.com/repos/creationix/nvm/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+LATEST_NVM_VERSION=$(curl -L --silent "https://api.github.com/repos/creationix/nvm/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
 # this is super noisy with -x
 set +x
 # Try an load nvm if it's already installed
@@ -145,7 +145,7 @@ set +x
 source "$HOME/.nvm/nvm.sh" > /dev/null 2>&1 || true
 CURRENT_NVM_V=$(nvm --version || echo NOPE)
 if [ "$LATEST_NVM_VERSION" != "v$CURRENT_NVM_V" ]; then
-    curl -f -o- "https://raw.githubusercontent.com/creationix/nvm/$LATEST_NVM_VERSION/install.sh" | bash
+    curl -L -f -o- "https://raw.githubusercontent.com/creationix/nvm/$LATEST_NVM_VERSION/install.sh" | bash
 
     export NVM_DIR="$HOME/.nvm"
     # shellcheck disable=SC1090
@@ -159,7 +159,7 @@ npm install -g npm
 # tool to automatically merge lockfiles, see .gitconfig
 npm install -g npm-merge-driver
 
-LATEST_HYPER=$(curl --silent "https://api.github.com/repos/zeit/hyper/releases/latest" |
+LATEST_HYPER=$(curl -L --silent "https://api.github.com/repos/zeit/hyper/releases/latest" |
     grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 if ! command -v hyper || [ "$(hyper version)" != "$LATEST_HYPER" ]; then
     TEMP_DIR=$(mktemp -d)
