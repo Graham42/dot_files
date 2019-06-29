@@ -13,6 +13,7 @@ fabianlauer.vs-code-xml-format
 fabiospampinato.vscode-todo-plus
 formulahendry.github-actions
 github.vscode-pull-request-github
+infarkt.css-to-jss
 jpoissonnier.vscode-styled-components
 mermade.openapi-lint
 ms-azuretools.vscode-docker
