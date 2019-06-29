@@ -7,6 +7,7 @@ MY_PLUGINS=$(mktemp)
 cat >"$MY_PLUGINS" <<EOF
 castwide.solargraph
 dbaeumer.vscode-eslint
+eamodio.gitlens
 esbenp.prettier-vscode
 fabianlauer.vs-code-xml-format
 fabiospampinato.vscode-todo-plus
