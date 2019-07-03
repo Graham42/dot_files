@@ -13,12 +13,13 @@ WIDTH=2560
 HEIGHT=1440
 
 downloadRandomImage() {
-    # pick a random image from the ones available for this resolution
-    IMAGE_ID=$(curl -Ls -w "%{url_effective}" -o /dev/null "https://picsum.photos/$WIDTH/$HEIGHT/?random" | grep -o "[0-9]\+$")
-    # Download the chosen image
-    curl -JL -o "$WALLPAPER_FOLDER/image-$IMAGE_ID.jpeg" "https://picsum.photos/g/$WIDTH/$HEIGHT?image=$IMAGE_ID"
+    # Download a random image for this resolution
+    FILENAME=$(cd "$WALLPAPER_FOLDER" &&
+        curl --remote-header-name --location --remote-name \
+            --silent --write-out "%{filename_effective}" \
+            "https://picsum.photos/$WIDTH/$HEIGHT?grayscale")
     # Return the path of the downloaded file
-    echo "$WALLPAPER_FOLDER/image-$IMAGE_ID.jpeg"
+    echo "$WALLPAPER_FOLDER/$FILENAME"
 }
 
 DESKTOP_IMAGE=$(downloadRandomImage)
