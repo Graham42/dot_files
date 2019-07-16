@@ -6,7 +6,7 @@ set -o pipefail
 # need to update index for locate command
 sudo updatedb
 # set chrome at default browser
-CHROME_DESKTOP=$(locate -r google.*chrome.*\.desktop | head -n1 | xargs basename)
+CHROME_DESKTOP=$(locate -r 'google-chrome\.desktop$' | head -n1 | xargs basename)
 xdg-settings set default-web-browser "$CHROME_DESKTOP"
 
 # To find how to set more settings run `dconf watch /` and then change the
