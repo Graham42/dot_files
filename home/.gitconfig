@@ -72,6 +72,9 @@
 [pull]
 	rebase = preserve
 
+[branch]
+	sort = committerdate
+
 [diff]
 	tool = p4Diff
 
