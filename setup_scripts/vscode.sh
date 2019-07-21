@@ -24,6 +24,7 @@ ms-vsliveshare.vsliveshare
 naco-siren.gradle-language
 rebornix.ruby
 sdras.night-owl
+silvenon.mdx
 streetsidesoftware.code-spell-checker
 timonwong.shellcheck
 vscodevim.vim
