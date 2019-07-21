@@ -46,10 +46,10 @@ _color_mode() {
     fi
 
     # Hyper config
-    sed -i 's/const COLOR_SCHEME = "'$OLD'"/const COLOR_SCHEME = "'$NEW'"/' ~/.hyper.js
+    sed --follow-symlinks -i 's/const COLOR_SCHEME = "'$OLD'"/const COLOR_SCHEME = "'$NEW'"/' ~/.hyper.js
 
     # bashrc
-    sed -i 's/export COLOR_SCHEME='$OLD'/export COLOR_SCHEME='$NEW'/' ~/.hyper.js
+    sed --follow-symlinks -i 's/export COLOR_SCHEME='$OLD'/export COLOR_SCHEME='$NEW'/' ~/.bashrc_extend.sh
 
     # VS Code Settings
     node -e "const targetFile = process.env.HOME + '/.config/Code/User/settings.json';
