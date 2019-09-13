@@ -50,9 +50,9 @@ apt_source_exists git-core* || sudo add-apt-repository ppa:git-core/ppa
 # Peek is an animated GIF recorder
 apt_source_exists peek-* || sudo add-apt-repository ppa:peek-developers/stable
 # Chrome
-apt_source_exists google || ( \
+apt_source_exists google-chrome || ( \
     wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
-    sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list' \
+    sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list' \
 )
 # Visual Studio Code
 apt_source_exists vscode || ( \
