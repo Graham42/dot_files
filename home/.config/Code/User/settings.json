@@ -141,5 +141,6 @@
   "workbench.colorTheme": "Night Owl",
   "workbench.editor.labelFormat": "medium",
   "workbench.editor.tabSizing": "shrink",
-  "workbench.startupEditor": "newUntitledFile"
+  "workbench.startupEditor": "newUntitledFile",
+  "diffEditor.renderSideBySide": true
 }
