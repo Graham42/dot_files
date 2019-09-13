@@ -70,8 +70,8 @@ apt_source_exists docker || ( \
     sudo sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list' \
 )
 apt_source_exists spotify || (
-    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90 && \
-    echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+    curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add - && \
+    echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 )
 apt_source_exists lubomir-brindza-ubuntu-nautilus-typeahead-bionic || (
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F2171AE78ECBC8C6F059FD98301F60F1D6A30942 && \
