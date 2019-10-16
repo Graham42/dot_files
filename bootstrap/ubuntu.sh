@@ -112,8 +112,8 @@ install_if_needed \
 `# make, gcc, etc` \
     build-essential \
     python \
-`# simple image editor` \
-    pinta \
+`# image editor` \
+    gimp \
 `# music player` \
     spotify-client\
 `# media player` \
