@@ -157,6 +157,9 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "liveshare.featureSet": "stable",
   "search.location": "panel",
+  "terraform.languageServer": {
+    "enabled": true,
+  },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vim.handleKeys": {
     "<C-d>": true,
