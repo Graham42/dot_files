@@ -138,6 +138,7 @@
     "extensions": [".js", ".jsx"]
   },
   "explorer.confirmDragAndDrop": false,
+  "diffEditor.renderSideBySide": true,
   "files.trimTrailingWhitespace": true,
   "githubPullRequests.showInSCM": true,
   "githubPullRequests.defaultMergeMethod": "rebase",
@@ -167,5 +168,4 @@
   "workbench.editor.labelFormat": "medium",
   "workbench.editor.tabSizing": "shrink",
   "workbench.startupEditor": "newUntitledFile",
-  "diffEditor.renderSideBySide": true
 }
