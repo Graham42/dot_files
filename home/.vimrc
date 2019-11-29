@@ -84,6 +84,7 @@ autocmd filetype markdown,text setlocal tw=80
 au BufRead,BufNewFile Dockerfile.* setfiletype dockerfile
 au BufRead,BufNewFile *.jshintrc setfiletype javascript
 au BufRead,BufNewFile *.{frag,vert} setfiletype cpp
+au BufRead,BufNewFile Jenkinsfile setfiletype groovy
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Line Wrapping / Scrolling
