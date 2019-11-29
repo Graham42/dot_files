@@ -151,6 +151,8 @@
   "gitlens.views.repositories.location": "scm",
   "gitlens.views.search.location": "scm",
   "go.formatTool": "gofmt",
+  "go.lintTool": "staticcheck",
+  "go.testFlags": ["-v"],
   "go.useLanguageServer": true,
   "html.format.wrapLineLength": 80,
   "javascript.updateImportsOnFileMove.enabled": "always",
