@@ -155,6 +155,7 @@
   "go.useLanguageServer": true,
   "html.format.wrapLineLength": 80,
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "liveshare.allowGuestDebugControl": true,
   "liveshare.featureSet": "stable",
   "search.location": "panel",
   "terraform.languageServer": {
