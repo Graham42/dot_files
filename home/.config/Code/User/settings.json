@@ -158,8 +158,18 @@
   "liveshare.allowGuestDebugControl": true,
   "liveshare.featureSet": "stable",
   "search.location": "panel",
+  "terraform.indexing": {
+    "enabled": false,
+    "liveIndexing": false,
+    "delay": 500,
+    "exclude": [
+      ".terraform/**/*",
+      "**/.terraform/**/*"
+    ]
+  },
   "terraform.languageServer": {
     "enabled": true,
+    "args": []
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vim.handleKeys": {
