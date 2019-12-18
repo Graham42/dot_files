@@ -5,13 +5,11 @@ set -eo pipefail
 MY_PLUGINS=$(mktemp)
 
 cat >"$MY_PLUGINS" <<EOF
-castwide.solargraph
 dbaeumer.vscode-eslint
 eamodio.gitlens
 esbenp.prettier-vscode
 fabianlauer.vs-code-xml-format
 fabiospampinato.vscode-markdown-todo
-fabiospampinato.vscode-todo-plus
 formulahendry.github-actions
 github.vscode-pull-request-github
 infarkt.css-to-jss
