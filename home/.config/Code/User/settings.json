@@ -192,6 +192,8 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "liveshare.allowGuestDebugControl": true,
   "liveshare.featureSet": "stable",
+  "liveshare.sharedTerminalHeight": 100,
+  "liveshare.sharedTerminalWidth": 160,
   "search.location": "panel",
   "terraform.indexing": {
     "enabled": false,
