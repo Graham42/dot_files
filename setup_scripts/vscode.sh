@@ -12,10 +12,12 @@ fabianlauer.vs-code-xml-format
 fabiospampinato.vscode-markdown-todo
 formulahendry.github-actions
 github.vscode-pull-request-github
+imperez.smarty
 infarkt.css-to-jss
 jpoissonnier.vscode-styled-components
 mermade.openapi-lint
 ms-azuretools.vscode-docker
+ms-kubernetes-tools.vscode-kubernetes-tools
 ms-python.python
 ms-vscode.go
 ms-vsliveshare.vsliveshare
