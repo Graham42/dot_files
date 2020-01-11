@@ -4,106 +4,8 @@ set nocompatible
 set encoding=utf-8
 set termencoding=utf-8
 
-
-" Store swap and undo files in the .vim/tmp directory
-set dir=~/.vim/tmp/
-set undofile
-set undodir=~/.vim/undo/
-
-" Use X clipboard if available
-if has('xterm_clipboard') && v:version >= 703
-    set clipboard=unnamedplus
-endif
-
-" Indentation
-set smartindent
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
-" spaces instead of tabs
-set expandtab
-set autoindent
-
-" Searching
-set incsearch
-set ignorecase
-set smartcase
-set hlsearch
-
-" Search for selected text ('*' in visual mode) instead of just single word
-vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-
-" Highlight only the bracket we're at, underline the matching one
-highlight clear MatchParen
-highlight MatchParen gui=underline cterm=underline
-
-" Highlight trailing whitespace in red
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-
-" allow files to use modelines
-set modeline
-set modelines=5
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Macros / Custom commands
-
-" Force saving files that require root permission
-command! Sudow w !sudo tee >/dev/null '%'
-
-" Insert line below
-let @o='mmo0d$`m'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Keybindings
-
-" Clear search highlighting
-nnoremap <C-L> :nohlsearch<CR><C-L>
-" Shortcut to replace highlighted text, starting at the cursor to the end of
-" the file, then from the start of the file to the cursors original place
-vnoremap <C-r> "hy:,$s/<C-r>h//gc\|1,''-&&<left><left><left><left><left><left>
-  \<left><left><left><left><left>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Filetype customizations
-
-autocmd filetype html,htmldjango,php setlocal tw=120
-autocmd filetype html,htmldjango,php,javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd filetype yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd filetype nginx setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd filetype make setlocal noexpandtab
-autocmd filetype gitconfig setlocal noexpandtab
-autocmd filetype gitcommit setlocal tw=72
-autocmd filetype markdown,text setlocal tw=80
-
-" associate filetypes
-au BufRead,BufNewFile Dockerfile.* setfiletype dockerfile
-au BufRead,BufNewFile *.jshintrc setfiletype javascript
-au BufRead,BufNewFile *.{frag,vert} setfiletype cpp
-au BufRead,BufNewFile Jenkinsfile setfiletype groovy
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Line Wrapping / Scrolling
-
-set nowrap
-" Make scrolling horizontally not so jumpy
-set sidescroll=2
-" Space keep around the cursor, gives context when scrolling up/down
-set scrolloff=10
-" Terminal width on 1920x1080 split side-by-side is 104 characters. So a side
-" offset of 4 allows cursor to go to 100 without scrolling. Most things
-" /should/ fit in 100 character width
-set sidescrolloff=4
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Plugin Config
-
-" Syntastic - Syntax checking
-let g:syntastic_python_python_exec = '/usr/bin/python3'
 
 " Always show gutter so editor doesn't jump on error detection
 set signcolumn=yes
@@ -128,13 +30,29 @@ let g:airline_right_sep=' '
 " Always show the status line
 set laststatus=2
 
+" Ale settings
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\}
+
+autocmd FileType javascript let g:ale_linters = {
+\  'javascript': glob('.eslintrc*', '.;') != '' ? [ 'eslint' ] : [ ],
+\}
+autocmd FileType javascript let g:ale_fixers = {
+\  'javascript': glob('.eslintrc*', '.;') != '' ? [ 'eslint', 'prettier' ] : [ 'prettier' ],
+\}
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Plugins
+" See searchable index of plugins at https://vimawesome.com/
 
 call plug#begin()
 
-" Syntastic - Syntax checking
-Plug 'scrooloose/syntastic'
+" Async syntax checker - https://github.com/dense-analysis/ale
+Plug 'dense-analysis/ale'
+" All languages!
+Plug 'sheerun/vim-polyglot'
 " NerdTree - Sidebar directory browser
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Ctrl-P - Fuzzy filename search
@@ -143,34 +61,97 @@ Plug 'kien/ctrlp.vim', { 'on':  'CtrlP' }
 Plug 'bling/vim-airline'
 " Color Theme
 Plug 'haishanh/night-owl.vim'
-" Interact with tmux from vim
-Plug 'benmills/vimux'
 " Easy to add quotes/brackets around text
 Plug 'tpope/vim-surround'
-" nginx highlighting and more
-Plug 'chr4/nginx.vim'
-
-"""""""""""""""""""""""
-"" Autocomplete Plugin
-"
-" Note that this requires compiling so need some things installed
-" see http://vimawesome.com/plugin/youcompleteme#installation
-"
-"function! BuildYCM(info)
-"  " info is a dictionary with 3 fields
-"  " - name:   name of the plugin
-"  " - status: 'installed', 'updated', or 'unchanged'
-"  " - force:  set on PlugInstall! or PlugUpdate!
-"  if a:info.status == 'installed' || a:info.force
-"    !./install.py --tern-completer
-"  endif
-"endfunction
-"
-"Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 call plug#end()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Store swap and undo files in the .vim/tmp directory
+set dir=~/.vim/tmp/
+set undodir=~/.vim/undo/
+" Persist undo between sessions
+set undofile
 
+" Use X clipboard if available
+if has('xterm_clipboard') && v:version >= 703
+    set clipboard=unnamedplus
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Searching
+" Show search matches as you type.
+set incsearch
+" Ignore case when searching.
+set ignorecase
+" Ignore case if search pattern is all lowercase, case-sensitive otherwise.
+set smartcase
+" Highlight search terms.
+set hlsearch
+
+" Search for selected text ('*' in visual mode) instead of just single word
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+" Clear search highlighting
+nnoremap <C-L> :nohlsearch<CR><C-L>
+" Shortcut to replace highlighted text, starting at the cursor to the end of
+" the file, then from the start of the file to the cursors original place
+vnoremap <C-r> "hy:,$s/<C-r>h//gc\|1,''-&&<left><left><left><left><left><left>
+  \<left><left><left><left><left>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Always show line numbers
+set number
+
+" Highlight only the bracket we're at, underline the matching one
+highlight clear MatchParen
+highlight MatchParen gui=underline cterm=underline
+
+" allow files to use modelines
+set modeline
+set modelines=5
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indentation
+" Tab width
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+" spaces instead of tabs
+set expandtab
+set autoindent
+set smartindent
+" Copy the previous indentation when autoindenting.
+set copyindent
+
+"" Filetype customizations
+autocmd filetype make setlocal noexpandtab
+autocmd filetype gitconfig setlocal noexpandtab
+
+au BufRead,BufNewFile Jenkinsfile setfiletype groovy
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Line Wrapping / Scrolling
+
+set nowrap
+" Make scrolling horizontally not so jumpy
+set sidescroll=2
+" Space keep around the cursor, gives context when scrolling up/down
+set scrolloff=10
+" Terminal width on 1920x1080 split side-by-side is 104 characters. So a side
+" offset of 4 allows cursor to go to 100 without scrolling. Most things
+" /should/ fit in 100 character width
+set sidescrolloff=4
+
+autocmd filetype gitcommit setlocal tw=72
+autocmd filetype markdown,text setlocal tw=80
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color settings
 syntax on
 set t_Co=256
