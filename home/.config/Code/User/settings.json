@@ -219,4 +219,5 @@
   "workbench.editor.labelFormat": "medium",
   "workbench.editor.tabSizing": "shrink",
   "workbench.startupEditor": "newUntitledFile",
+  "html.mirrorCursorOnMatchingTag": false,
 }
