@@ -162,6 +162,7 @@
   "liveshare.featureSet": "stable",
   "liveshare.sharedTerminalHeight": 100,
   "liveshare.sharedTerminalWidth": 160,
+  "shellcheck.disableVersionCheck": true,
   "terraform.indexing": {
     "enabled": false,
     "liveIndexing": false,
@@ -181,6 +182,9 @@
     "<C-u>": true
   },
   "vim.useSystemClipboard": true,
+  "vs-kubernetes": {
+    "checkForMinikubeUpgrade": false
+  },
   "window.zoomLevel": 0,
   "workbench.colorTheme": "Night Owl",
   "workbench.editor.labelFormat": "medium",
