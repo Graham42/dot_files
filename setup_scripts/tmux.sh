@@ -2,7 +2,7 @@
 set -xe
 
 TMUX_PLUGIN_HOME=~/.tmux/plugins/tpm
-git clone https://github.com/Graham42/tpm.git ${TMUX_PLUGIN_HOME} 2>/dev/null || \
+git clone https://github.com/tmux-plugins/tpm.git ${TMUX_PLUGIN_HOME} 2>/dev/null || \
     (cd ${TMUX_PLUGIN_HOME} && git pull)
 
 [[ ! -z "$TMUX" ]] && tmux source-file ~/.tmux.conf
