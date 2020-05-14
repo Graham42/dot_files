@@ -156,12 +156,12 @@
   "go.testFlags": ["-v"],
   "go.useLanguageServer": true,
   "html.format.wrapLineLength": 80,
+  "html.mirrorCursorOnMatchingTag": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "liveshare.allowGuestDebugControl": true,
   "liveshare.featureSet": "stable",
   "liveshare.sharedTerminalHeight": 100,
   "liveshare.sharedTerminalWidth": 160,
-  "search.location": "panel",
   "terraform.indexing": {
     "enabled": false,
     "liveIndexing": false,
@@ -186,5 +186,5 @@
   "workbench.editor.labelFormat": "medium",
   "workbench.editor.tabSizing": "shrink",
   "workbench.startupEditor": "newUntitledFile",
-  "html.mirrorCursorOnMatchingTag": false,
+  "terminal.integrated.rendererType": "experimentalWebgl"
 }
