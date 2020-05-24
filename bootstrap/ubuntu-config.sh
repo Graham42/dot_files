@@ -25,20 +25,6 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 # Alway launch a new window instead of switching to the open one
 gsettings set org.gnome.shell enabled-extensions "['launch-new-instance@gnome-shell-extensions.gcampax.github.com']"
 
-# Fix color on boot screen
-sudo sed --follow-symlinks -i -E 's!^Window.SetBackgroundTopColor.*$!Window.SetBackgroundTopColor (0, 0, 0);!g' \
-    /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.script
-sudo sed --follow-symlinks -i -E 's!^Window.SetBackgroundBottomColor.*$!Window.SetBackgroundBottomColor (0, 0, 0);!g' \
-    /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.script
-sudo update-initramfs -u
-
-# Fix color on lock screen
-sudo perl -i -p0 -e 's/(#lockDialogGroup[^}]*\bbackground:\s*)\S+(.*?;)/\1#2c2c2c\2/smg' /usr/share/gnome-shell/theme/ubuntu.css
-
-# Fix color of grub boot background
-sudo sed --follow-symlinks -i -E 's!(^if background_color).*(; then$)!\1 0,0,0\2!g' /usr/share/plymouth/themes/default.grub
-sudo update-grub
-
 # config to run docker without root
 sudo gpasswd -a graham docker
 
