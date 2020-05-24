@@ -119,10 +119,6 @@ install_if_needed \
     spotify-client\
 `# media player` \
     vlc \
-`# needed for android / react native dev` \
-    openjdk-8-jdk \
-    adb \
-    imagemagick \
 `# tweak gnome settings` \
     gnome-tweak-tool \
     gnome-shell-extensions \
