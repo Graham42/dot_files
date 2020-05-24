@@ -129,9 +129,6 @@ install_if_needed \
 `# GUI for browsing dconf/gnome settings` \
     dconf-editor
 
-remove_if_installed \
-    gnome-shell-extension-ubuntu-dock
-
 sudo apt-get upgrade -y
 # Install nvm
 LATEST_NVM_VERSION=$(curl -L --silent "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')

@@ -25,6 +25,14 @@ gsettings set org.gnome.shell enabled-extensions "['launch-new-instance@gnome-sh
 # config to run docker without root
 sudo gpasswd -a graham docker
 
+# Permanently hide the Ubuntu dock extension
+# Dock always visible
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+# Dock shown on mouse over
+gsettings set org.gnome.shell.extensions.dash-to-dock autohide false
+# Dock dodges windows
+gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
+
 # disable Nautilus (file explorer) fancy but useless search. This almost makes
 # it feel like typeahead exists.
 gsettings set org.gnome.nautilus.preferences fts-enabled false
