@@ -164,20 +164,7 @@ LATEST_HYPER=$(curl -L --silent "https://api.github.com/repos/zeit/hyper/release
 if ! command -v hyper || [ "$(hyper version)" != "$LATEST_HYPER" ]; then
     TEMP_DIR=$(mktemp -d)
     curl -L -o "$TEMP_DIR/hyper.deb" https://releases.hyper.is/download/deb
-    sudo apt-get install "$TEMP_DIR/hyper.deb"
+    sudo apt-get install -y "$TEMP_DIR/hyper.deb"
 fi
 
 
-################################################################################
-# Config
-################################################################################
-
-#if [ -e ~/dot_files ]; then
-#    (cd ~/dot_files && git pull)
-#else
-#    (cd && git clone https://github.com/Graham42/dot_files.git)
-#fi
-#
-#(cd ~/dot_files && \
-#    ./init_all.sh
-#)
