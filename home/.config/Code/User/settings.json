@@ -159,6 +159,7 @@
   "liveshare.sharedTerminalHeight": 100,
   "liveshare.sharedTerminalWidth": 160,
   "shellcheck.disableVersionCheck": true,
+  "terminal.integrated.rendererType": "experimentalWebgl",
   "terraform.indexing": {
     "enabled": false,
     "liveIndexing": false,
@@ -182,6 +183,5 @@
   "workbench.colorTheme": "Night Owl",
   "workbench.editor.labelFormat": "medium",
   "workbench.editor.tabSizing": "shrink",
-  "workbench.startupEditor": "newUntitledFile",
-  "terminal.integrated.rendererType": "experimentalWebgl"
+  "workbench.startupEditor": "newUntitledFile"
 }
