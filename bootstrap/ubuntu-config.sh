@@ -10,6 +10,8 @@ set -o pipefail
 
 # Hide desktop icons
 gsettings set org.gnome.desktop.background show-desktop-icons false
+gsettings set org.gnome.shell.extensions.desktop-icons show-home false
+gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
 
 # Customize top bar appearance
 gsettings set org.gnome.desktop.interface show-battery-percentage true
