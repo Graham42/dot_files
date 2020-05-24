@@ -148,6 +148,8 @@ module.exports = {
     summon: {
       hideDock: true,
       hideOnBlur: true,
+      // WARNING, if you don't have an F13 available this may freeze your
+      // system. See the README for how to remap CapsLock to F13
       hotkey: 'F13'
     },
   },

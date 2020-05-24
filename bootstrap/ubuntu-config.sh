@@ -6,8 +6,10 @@ set -o pipefail
 # need to update index for locate command
 sudo updatedb
 
+################################################################################
 # To find how to set more settings run `dconf watch /` and then change the
 # setting in the GUI.
+################################################################################
 
 # make Alt + Tab switch windows instead of applications
 # Source: https://people.gnome.org/~federico/blog/alt-tab.html

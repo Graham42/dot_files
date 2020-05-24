@@ -45,9 +45,10 @@ install_if_needed \
 
 # Other PPAs
 
-# Want the latest features available in git such as conditional includes
+# I want the latest features available in git, not just what's available from
+# the Ubuntu LTS repository
 apt_source_exists git-core* || sudo add-apt-repository ppa:git-core/ppa
-# Peek is an animated GIF recorder
+# Peek is an easy-to-use screen recorder that can ouput animated GIFs
 apt_source_exists peek-* || sudo add-apt-repository ppa:peek-developers/stable
 # Chrome
 apt_source_exists google-chrome || ( \
