@@ -11,19 +11,13 @@ sudo updatedb
 # setting in the GUI.
 ################################################################################
 
-# make Alt + Tab switch windows instead of applications
-# Source: https://people.gnome.org/~federico/blog/alt-tab.html
-gsettings set org.gnome.desktop.wm.keybindings switch-applications "[]"
-gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "[]"
-gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab', '<Super>Tab']"
-gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward  "['<Alt><Shift>Tab', '<Super><Shift>Tab']"
-
 # Hide desktop icons
 gsettings set org.gnome.desktop.background show-desktop-icons false
 
 # Customize top bar appearance
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.interface clock-show-date true
+gsettings set org.gnome.desktop.interface clock-show-weekday true
 
 # Use blue light filter
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
@@ -50,6 +44,6 @@ sudo gpasswd -a graham docker
 
 # disable Nautilus (file explorer) fancy but useless search. This almost makes
 # it feel like typeahead exists.
-gsettings set org.gnome.nautilus.preferences fts-default false
+gsettings set org.gnome.nautilus.preferences fts-enabled false
 gsettings set org.gnome.nautilus.preferences recursive-search 'never'
 
