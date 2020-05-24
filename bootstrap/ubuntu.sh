@@ -126,6 +126,8 @@ install_if_needed \
     tree \
 `# json manipulation tool` \
     jq \
+`# Quickly find files anywhere on the system` \
+    mlocate \
 `# GUI for browsing dconf/gnome settings` \
     dconf-editor
 
