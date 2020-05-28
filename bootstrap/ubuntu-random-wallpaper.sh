@@ -17,7 +17,7 @@ downloadRandomImage() {
     FILENAME=$(cd "$WALLPAPER_FOLDER" &&
         curl --remote-header-name --location --remote-name \
             --silent --write-out "%{filename_effective}" \
-            "https://picsum.photos/$WIDTH/$HEIGHT?grayscale")
+            "https://picsum.photos/$WIDTH/$HEIGHT?")
     # Return the path of the downloaded file
     echo "$WALLPAPER_FOLDER/$FILENAME"
 }
