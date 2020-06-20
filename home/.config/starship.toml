@@ -1,0 +1,39 @@
+[directory]
+truncate_to_repo=false
+
+[git_branch]
+style="bold blue"
+
+[git_status]
+style="bold white"
+show_sync_count=true
+diverged.style="bright-red"
+prefix=""
+suffix=""
+
+conflicted_count.enabled=true
+conflicted_count.style="bright-red"
+conflicted.style="bright-red"
+
+untracked_count.enabled=true
+untracked_count.style="bright-blue"
+untracked.style="bright-blue"
+
+stashed_count.enabled=true
+stashed_count.style="cyan"
+stashed.style="cyan"
+
+modified_count.enabled=true
+modified_count.style="bright-red"
+modified.style="bright-red"
+
+staged_count.enabled=true
+staged_count.style="green"
+staged.style="green"
+# A renamed file has been added to the staging area.
+renamed.style="bright-red"
+# A file's deletion has been added to the staging area.
+deleted.style="bright-red"
+
+[nodejs]
+disabled=true
