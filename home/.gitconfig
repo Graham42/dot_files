@@ -33,6 +33,7 @@
 	praise = blame
 	gui-praise = gui blame
 	l = log --graph --stat --find-copies --decorate
+	bl = "!f(){ git merge-base origin/HEAD HEAD | xargs -I{} git l {}..HEAD $@; }; f"
 	d = diff
 	dc = diff --cached
 	dw = diff --word-diff
