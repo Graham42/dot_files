@@ -8,33 +8,21 @@ style="bold blue"
 style="bold white"
 ahead = "⇡${count}"
 behind = "⇣${count}"
-
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-diverged.style="bright-red"
 
-conflicted = "=${count}"
-conflicted.style="bright-red"
+conflicted = "[=${count}](bright-red)"
 
-untracked_count.enabled=true
-untracked_count.style="bright-blue"
-untracked = "?${count}"
-untracked.style="bright-blue"
+untracked = "[?${count}](bright-blue)"
 
-stashed_count.enabled=true
-stashed_count.style="cyan"
-stashed.style="cyan"
+stashed = "[\\$${count}](cyan)"
 
-modified_count.enabled=true
-modified_count.style="bright-red"
-modified.style="bright-red"
+modified = "[!${count}](bright-red)"
 
-staged_count.enabled=true
-staged_count.style="green"
-staged.style="green"
-# A renamed file has been added to the staging area.
-renamed.style="bright-red"
-# A file's deletion has been added to the staging area.
-deleted.style="bright-red"
+staged = "[+${count}](green)"
+
+renamed = "[»${count}](bright-red)"
+
+deleted = "[✘${count}](bright-red)"
 
 [nodejs]
 disabled=true
