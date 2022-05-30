@@ -8,15 +8,6 @@
 - Download and install PIA VPN
 - Create desktop shortcut in ~/.config/autostart folder
 
-# Increase inotify watches
-
-See:
-https://github.com/guard/listen/blob/master/README.md#increasing-the-amount-of-inotify-watchers
-
-```sh
-echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-```
-
 # Do not disturb extension
 
 ```sh
