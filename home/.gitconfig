@@ -90,12 +90,12 @@
 	keepBackup = false
 
 [mergetool "p4Merge"]
-	cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+	cmd = p4merge -le unix "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
 	trustExitCode = true
 	keepBackup = false
 
 [difftool "p4Diff"]
-	cmd = p4merge "$LOCAL" "$REMOTE"
+	cmd = p4merge -le unix "$LOCAL" "$REMOTE"
 
 [difftool "vsDiff"]
 	cmd = code --diff --wait "$LOCAL" "$REMOTE"
