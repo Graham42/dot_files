@@ -90,7 +90,11 @@ eval "$(starship init bash)"
 # environment vars needed for virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/dev
-source virtualenvwrapper.sh > /dev/null 2>&1
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+# Lazy load for faster shell startup
+if [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]; then
+    source /usr/local/bin/virtualenvwrapper_lazy.sh
+fi
 
 # =============================================================================
 # WSL parts

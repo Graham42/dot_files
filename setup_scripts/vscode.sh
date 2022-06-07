@@ -9,6 +9,7 @@ eamodio.gitlens
 esbenp.prettier-vscode
 golang.go
 ms-azuretools.vscode-docker
+ms-python.python
 ms-vsliveshare.vsliveshare
 sdras.night-owl
 silvenon.mdx

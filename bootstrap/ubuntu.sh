@@ -45,15 +45,19 @@ sudo apt-get install -y \
     xclip \
 `# shell script linting tool` \
     shellcheck \
-`# make, gcc, etc, TODO use python3` \
+`# make, gcc, etc` \
     build-essential \
-    python \
+`# for python dev` \
+    python3 \
+    python3-pip \
 `# tool for visualizing folder structures` \
     tree \
 `# json manipulation tool` \
     jq \
 `# Quickly find files anywhere on the system` \
     mlocate
+
+pip install virtualenvwrapper
 
 sudo apt-get upgrade -y
 
