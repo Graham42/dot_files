@@ -60,7 +60,6 @@ loginfo "Updating config for user: $USER"
 ## Create/update a block in ~/.bashrc with our modifications
 
 BASH_RC_BODY_FILE="bashrc_body.sh"
-BASH_RC_OS_DIR="os_specific_bashrc"
 
 # WARNING: if header/footer are changed, will mess up auto-update
 BASHRC_HEADER="####################_BEGIN_DOT_FILES_AUTOBLOCK_######################"
@@ -70,16 +69,6 @@ if [ ! -e $BASH_RC_BODY_FILE ]; then
     logfatal "Missing file '$BASH_RC_BODY_FILE'"
 fi
 bashrc_body=$( cat $BASH_RC_BODY_FILE )
-# os specific additions
-if [ -d "$BASH_RC_OS_DIR" ]; then
-    for os_file in $( ls_files "$BASH_RC_OS_DIR" ); do
-        # header of each file determines if this is the OS it's looking for
-        TEST_CMD=$( head -n2 "$BASH_RC_OS_DIR/$os_file" | tail -n1  | sed "s/^#\+//g" )
-        if eval "$TEST_CMD" ; then
-            bashrc_body="$bashrc_body\n$( tail -n+3 "$BASH_RC_OS_DIR/$os_file" )"
-        fi
-    done
-fi
 echo "Updating block in ~/.bashrc"
 # auto update the block in ~/.bashrc
 if grep "$BASHRC_HEADER" ~/.bashrc -q; then
