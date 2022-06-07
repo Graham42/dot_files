@@ -1,20 +1,19 @@
-# My Automated Config Setup
+# Automated Config Setup
 
-I wanted an automated way to quickly setup a shell with my own customizations.
+This repo sets up a machine for software dev with my preferences.
 
 Setup steps:
 
 ```sh
 git clone https://github.com/Graham42/dot_files.git ~/dot_files
-source ~/dot_files/os_specific_bashrc/ubuntu.sh
-do_update
+cd ~/dot_files && ./init_all.sh
 ```
 
 # Structure
 
 - Anything in `home/` is linked to the user's home directory and then the
   directory structure inside is followed
-- Running `init_all.sh` will create and update a marked section in `~/.bashrc`.
+- Running `init_all.sh` will create or update a marked section in `~/.bashrc`.
 
   - `bashrc_body.sh` is the main block content.
   - If there are files in the `os_specific_bashrc/` folder, they will be
@@ -31,26 +30,6 @@ do_update
 
 - Any scripts in `setup_scripts` will be run, but they must be executable or the
   setup will fail.
-
-# How To
-
-## Remap keys
-
-Want to remap caps lock to F13 to use for global terminal:
-http://www.fascinatingcaptain.com/blog/remap-keyboard-keys-for-ubuntu/
-
-```sh
-sudo -e /usr/share/X11/xkb/symbols/pc
-```
-
-Update the key definition for caps lock
-
-```diff
-- key <CAPS> { [ Caps_Lock ] };
-+ key <CAPS> { [ F13       ] };
-```
-
-Then clear any cached stuff in `/var/lib/xkb/` and reboot
 
 # License
 
