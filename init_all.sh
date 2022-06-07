@@ -100,7 +100,7 @@ while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
         if [ -L "$dest_file" ]; then
             rm "$dest_file"
         elif [ -f "$dest_file" ]; then
-            loginfo "Backing up $dest_file to ${dest_file}.bak"
+            logwarn "Backing up $dest_file to ${dest_file}.bak"
             mv "$dest_file" "${dest_file}.bak"
         fi
         # create new link
