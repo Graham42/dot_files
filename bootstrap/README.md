@@ -9,6 +9,17 @@ Note: prerequisite: install a [Nerd Font](https://www.nerdfonts.com/)
 Install
 [p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge)
 
+### Windows
+
+```powershell
+winget install Perforce.P4Merge
+```
+
+### Ubuntu
+
+See if the commented block in the [ubuntu-desktop.sh](./ubuntu-desktop.sh)
+script will work
+
 ---
 
 ## Windows
