@@ -42,6 +42,16 @@ winget install marha.VcXsrv
 winget install PrivateInternetAccess.PrivateInternetAccess
 ```
 
+#### Docker
+
+Before installing Docker desktop, make sure you have saved all your work, as
+you'll need to log out and back in for Docker to work.
+
+```powershell
+# Make sure to pick the WSL backend
+winget install Docker.DockerDesktop --interactive
+```
+
 ### [PowerToys](https://github.com/microsoft/PowerToys) config
 
 - Remap CapsLock to F13
