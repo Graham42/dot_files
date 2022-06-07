@@ -9,7 +9,7 @@ const COLOR_SCHEME = "DARK"
 module.exports = {
   config: {
 
-    opacity: 0.5,
+    opacity: 1,
 
     // choose either `'stable'` for receiving highly polished,
     // or `'canary'` for less polished but more frequent updates
