@@ -61,7 +61,10 @@ pip install virtualenvwrapper
 
 sudo apt-get upgrade -y
 
+# this is super noisy with -x
+set +x
 ./bootstrap/nvm.sh
+set -x
 
 # bash prompt
 curl -sS https://starship.rs/install.sh | sh
