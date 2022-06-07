@@ -17,5 +17,5 @@ else \
 fi
 git commit -em "$id
 
-[$id]($JIRA_URL/browse/$id)" "${@:${args}}"
+" "${@:${args}}"
 
