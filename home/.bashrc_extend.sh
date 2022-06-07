@@ -77,15 +77,11 @@ dark_mode () {
     _color_mode "DARK"
 }
 
-# =============================================================================
-# Bash Prompt (PS1)
-# =============================================================================
 
-# Using https://github.com/magicmonty/bash-git-prompt
-GIT_PROMPT_THEME=Custom
-GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
+# =============================================================================
+## Prompt
 
-source "$HOME/.bash-git-prompt/gitprompt.sh"
+eval "$(starship init bash)"
 
 # =============================================================================
 
