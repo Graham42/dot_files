@@ -2,6 +2,9 @@
 	name = Graham McGregor
 	email = graham@gmcgregor.ca
 
+[init]
+	defaultBranch = main
+
 [color]
 	interactive = true
 
