@@ -74,7 +74,7 @@
 	missingCommitsCheck = error
 
 [pull]
-	rebase = preserve
+	rebase = merges
 
 [branch]
 	sort = committerdate
