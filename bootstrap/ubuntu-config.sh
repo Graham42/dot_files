@@ -24,9 +24,6 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 # Alway launch a new window instead of switching to the open one
 gsettings set org.gnome.shell enabled-extensions "['launch-new-instance@gnome-shell-extensions.gcampax.github.com']"
 
-# config to run docker without root
-sudo gpasswd -a graham docker
-
 # Permanently hide the Ubuntu dock extension
 # Dock always visible
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
