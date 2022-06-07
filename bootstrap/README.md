@@ -4,6 +4,11 @@
 
 Note: prerequisite: install a [Nerd Font](https://www.nerdfonts.com/)
 
+## Git Merge tool
+
+Install
+[p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge)
+
 ---
 
 ## Windows
