@@ -92,3 +92,11 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/dev
 source virtualenvwrapper.sh > /dev/null 2>&1
 
+# =============================================================================
+# WSL parts
+if grep -i -q microsoft /proc/version; then
+    # Needed for Cypress testing, also for Vim system clipboard access
+    export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2; exit;}'):0.0
+    sudo --non-interactive /etc/init.d/dbus start &> /dev/null \
+       || echo "Failed to start dbus. Follow instructions to Grant passwordless access for dbus at https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#grant-passwordless-access-for-dbus"
+fi
