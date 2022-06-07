@@ -3,6 +3,8 @@
 export EDITOR=vim
 export SUDO_EDITOR=vim
 
+# don't put duplicate lines or lines starting with space in the history.
+export HISTCONTROL=ignoreboth
 # save more history
 export HISTSIZE=-1
 export HISTFILESIZE=-1
