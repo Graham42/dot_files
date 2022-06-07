@@ -37,3 +37,11 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-typ
 ```
 
 go into gnome tweak > power > disable sleep on lid close
+
+# Prompt
+
+Note: prerequisite: install a [Nerd Font](https://www.nerdfonts.com/)
+
+```sh
+curl -sS https://starship.rs/install.sh | sh
+```
