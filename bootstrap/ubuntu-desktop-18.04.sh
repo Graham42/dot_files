@@ -1,12 +1,22 @@
 #!/usr/bin/env bash
 
-set -ex
-set -o pipefail
+# If we're not running 18.04, these settings are probably all different
+if ! grep 18.04 /etc/lsb-release; then
+  echo "This doesn't look like 18.04"
+  exit 1
+fi
 
 ################################################################################
 # To find how to set more settings run `dconf watch /` and then change the
 # setting in the GUI.
 ################################################################################
+
+# make Alt + Tab switch windows instead of applications
+# Source: https://people.gnome.org/~federico/blog/alt-tab.html
+gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Super>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "['<Super><Shift>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward  "['<Alt><Shift>Tab']"
 
 # Hide desktop icons
 gsettings set org.gnome.desktop.background show-desktop-icons false
@@ -36,4 +46,3 @@ gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
 # it feel like typeahead exists.
 gsettings set org.gnome.nautilus.preferences fts-enabled false
 gsettings set org.gnome.nautilus.preferences recursive-search 'never'
-
