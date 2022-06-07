@@ -40,3 +40,8 @@ Note: prerequisite: install a [Nerd Font](https://www.nerdfonts.com/)
 ```sh
 curl -sS https://starship.rs/install.sh | sh
 ```
+
+# Docker
+
+- Configure docker to run without root
+- Install Docker to be compatible with WSL if applicable _TODO how?_
