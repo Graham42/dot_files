@@ -117,6 +117,9 @@ while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
     ((i=i+1))
 done
 
+# TODO look for dead links in home directory pointing here
+# find ~ -xtype l
+
 ################################################################################
 ## Run any other setup scripts
 
