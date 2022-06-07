@@ -142,4 +142,5 @@ if ! command -v hyper || [ "$(hyper version)" != "$LATEST_HYPER" ]; then
     sudo apt-get install -y "$TEMP_DIR/hyper.deb"
 fi
 
-
+# bash prompt
+curl -sS https://starship.rs/install.sh | sh
