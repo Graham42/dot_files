@@ -152,8 +152,6 @@ nvm install lts/*
 set -x
 nvm alias default lts/*
 npm install -g npm
-# tool to automatically merge lockfiles, see .gitconfig
-npm install -g npm-merge-driver
 
 LATEST_HYPER=$(curl -L --silent "https://api.github.com/repos/zeit/hyper/releases/latest" |
     grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
