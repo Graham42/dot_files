@@ -19,5 +19,4 @@ if [ "$LATEST_NVM_VERSION" != "v$CURRENT_NVM_V" ]; then
 fi
 echo installing nvm lts/*
 nvm install lts/*
-set -x
 nvm alias default lts/*
