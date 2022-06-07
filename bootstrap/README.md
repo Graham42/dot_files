@@ -152,7 +152,20 @@ wslpath -a $wt_settings
 ```powershell
 # Spotify replacement
 winget install TIDALMusicAS.TIDAL
+winget install Zoom.Zoom
+winget install SlackTechnologies.Slack
 ```
+
+#### Zoom
+
+- Under Audio:
+  - "Automatically join audio by computer when joining a meeting"
+  - "Always mute microphone when joining meeting"
+  - Uncheck "Press and hold SPACE key to temporarily unmute yourself"
+- Under Video:
+  - "Always show video preview dialog when joining a video meeting"
+- Under General:
+  - "Stop my video and audio when my device is locked"
 
 ---
 
