@@ -44,6 +44,7 @@
 	co = checkout
 	b = branch
 	ri = rebase --interactive --autostash
+	pu = "!f(){ git push -u origin $(git branch --show-current):$(git branch --show-current); }; f"
 	# pretty print short log
 	sl = log --pretty=format:'\
 %C(red)%h %Creset\
