@@ -38,7 +38,7 @@ sudo apt-get install -y \
 `# version control system` \
     git \
 `# text editor, gtk version includes +clipboard support for copying to system clipboard` \
-    vim-gtk \
+    vim-gtk3 \
 `# terminal multiplexer, easy management of multiple terminal panes in single window` \
     tmux \
 `# utility for grabbing to clipboard` \
@@ -53,9 +53,7 @@ sudo apt-get install -y \
 `# tool for visualizing folder structures` \
     tree \
 `# json manipulation tool` \
-    jq \
-`# Quickly find files anywhere on the system` \
-    mlocate
+    jq
 
 pip install virtualenvwrapper
 
