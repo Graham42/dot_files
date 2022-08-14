@@ -44,8 +44,7 @@ winget install Google.Chrome
 # also need scope to be machine so that we're not trying to install as admin
 winget install Microsoft.VisualStudioCode --interactive --scope machine
 winget install Microsoft.WindowsTerminal
-# version 0.58.0 is broken: https://github.com/microsoft/PowerToys/issues/18015
-winget install Microsoft.PowerToys --version 0.57.2
+winget install Microsoft.PowerToys
 # X Server, required for windows 10 (11 unconfirmed) to make vim work with system clipboard
 # See https://superuser.com/a/1345241
 winget install marha.VcXsrv
