@@ -97,7 +97,7 @@ if [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]; then
 fi
 
 # =============================================================================
-# WSL parts
+# WSL parts - only works if an X server is running, otherwise vim will hang
 if grep -i -q microsoft /proc/version; then
     # Needed for Cypress testing, also for Vim system clipboard access
     export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2; exit;}'):0.0
