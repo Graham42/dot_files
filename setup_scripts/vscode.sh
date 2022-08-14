@@ -12,7 +12,6 @@ ms-azuretools.vscode-docker
 ms-python.python
 ms-vsliveshare.vsliveshare
 sdras.night-owl
-silvenon.mdx
 streetsidesoftware.code-spell-checker
 timonwong.shellcheck
 vscodevim.vim
@@ -45,7 +44,7 @@ if grep -i -q microsoft /proc/version; then
     cat >"$MY_PLUGINS" <<EOF
 ms-vscode-remote.remote-wsl
 sdras.night-owl
-silvenon.mdx
+unifiedjs.vscode-mdx
 vscodevim.vim
 EOF
 
