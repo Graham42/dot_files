@@ -61,6 +61,8 @@ Plug 'kien/ctrlp.vim', { 'on':  'CtrlP' }
 Plug 'bling/vim-airline'
 " Color Theme
 Plug 'haishanh/night-owl.vim'
+" Light variation if you want
+Plug 'macguirerintoul/night_owl_light.vim'
 " Easy to add quotes/brackets around text
 Plug 'tpope/vim-surround'
 
@@ -76,6 +78,8 @@ set undofile
 " Use X clipboard if available
 if has('xterm_clipboard') && v:version >= 703
     set clipboard=unnamedplus
+elseif has('clipboard')
+    set clipboard=unnamed
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -166,6 +170,5 @@ endif
 if (has("termguicolors"))
  set termguicolors
 endif
-if $COLOR_SCHEME == "DARK"
-    colorscheme night-owl
-endif
+
+colorscheme night-owl
