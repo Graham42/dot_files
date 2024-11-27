@@ -43,7 +43,7 @@
 	s = status -s
 	co = checkout
 	b = branch
-	ri = rebase --interactive --autostash
+	ri = rebase --interactive --autostash  --update-refs
 	pu = "!f(){ git push -u origin $(git branch --show-current):$(git branch --show-current); }; f"
 	# pretty print short log
 	sl = log --pretty=format:'\
@@ -82,6 +82,7 @@
 
 [diff]
 	tool = p4Diff
+	colorMoved = dimmed-zebra
 
 [merge]
 	tool = p4Merge
