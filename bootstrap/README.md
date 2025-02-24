@@ -115,6 +115,20 @@ Download UbuntuSans Nerd Font from https://www.nerdfonts.com/font-downloads
 - default start maximized, on login, with Ubuntu
 - Remove action/command Paste with shortcut <kbd>Ctrl+V</kbd> from settings. Otherwise this will interfere with vim visual mode.
 
+- Snippet for light/dark theme matching system
+    ```json
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "bellStyle": "none",
+            "colorScheme": {
+                "dark": "Night Owl",
+                "light": "Light Owl"
+            }
+        },
+    ```
+
 - _TODO save config json as code in this repo_
 
 ### TODO these steps: misc
