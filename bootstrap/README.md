@@ -2,23 +2,13 @@
 
 ## Prompt
 
+https://starship.rs/
+
 Note: prerequisite: install a [Nerd Font](https://www.nerdfonts.com/)
 
 ## Git Merge tool
 
-Install
-[p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge)
-
-### Windows
-
-```powershell
-winget install Perforce.P4Merge
-```
-
-### Ubuntu
-
-See if the commented block in the [ubuntu-desktop.sh](./ubuntu-desktop.sh)
-script will work
+VSCode now has a 3 way merge, so use that
 
 ---
 
@@ -38,19 +28,19 @@ These are installed using the
 [windows package manager](https://docs.microsoft.com/en-us/learn/modules/explore-windows-package-manager-tool/)
 
 ```powershell
-winget install BraveSoftware.BraveBrowser
 winget install Google.Chrome
 # we need interactive mode to select options to add VSCode to the PATH to launch from WSL
 # also need scope to be machine so that we're not trying to install as admin
 winget install Microsoft.VisualStudioCode --interactive --scope machine
 winget install Microsoft.WindowsTerminal
 winget install Microsoft.PowerToys
-# X Server, required for windows 10 (11 unconfirmed) to make vim work with system clipboard
-# See https://superuser.com/a/1345241
-winget install marha.VcXsrv
 # VPN
 winget install PrivateInternetAccess.PrivateInternetAccess
+# Command prompt
+winget install --id Starship.Starship
 ```
+
+- [Obsidian](https://obsidian.md/download)
 
 #### Docker
 
@@ -86,23 +76,17 @@ winget install Docker.DockerDesktop --interactive
 
 In a WSL terminal window
 
-1.  Install deps
+1.  Follow [Generate an ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux#generating-a-new-ssh-key)
 
     ```sh
-    sudo apt install xdg-utils -y
+    ssh-keygen -t ed25519 -C "graham.mcgregor04+github@gmail.com"
+    # ...
     ```
 
-1.  Generate a key
+1.  Add it to github (https://github.com/settings/ssh/new)
 
     ```sh
-    ssh-keygen -t rsa -b 4096
-    ```
-
-1.  Add it to github
-
-    ```sh
-    cat ~/.ssh/id_rsa.pub
-    xdg-open https://github.com/settings/ssh/new
+    cat ~/.ssh/id_ed25519.pub
     ```
 
 1.  Verify access
@@ -118,22 +102,18 @@ _TODO fix dotfiles_
 
 ### Fonts
 
-Download UbuntuMono Nerd Font from https://www.nerdfonts.com/font-downloads
+Download UbuntuSans Nerd Font from https://www.nerdfonts.com/font-downloads
 
 ### Windows terminal config
 
 - Theme for Ubuntu:
   https://github.com/edurojasr/Windows-Terminal-Theme-Night-Owl
 - no bell
-- launch with F13 _TODO how_
+- launch with F13
+    - Remap key with [PowerToys Keyboard Manager utility for Windows](https://learn.microsoft.com/en-us/windows/powertoys/keyboard-manager)
+    - Set `globalSummon` config: https://learn.microsoft.com/en-us/windows/terminal/customize-settings/actions#global-summon
 - default start maximized, on login, with Ubuntu
-
-To get path to settings.json in WSL
-
-```sh
-wt_settings=$(powershell.exe '(Get-ChildItem "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal*\LocalState" -Filter settings.json -Recurse).FullName')
-wslpath -a $wt_settings
-```
+- Remove action/command Paste with shortcut <kbd>Ctrl+V</kbd> from settings. Otherwise this will interfere with vim visual mode.
 
 - _TODO save config json as code in this repo_
 
@@ -141,6 +121,7 @@ wslpath -a $wt_settings
 
 - setup windows vscode settings as code linked to dot files
 - make sure clipboard works back and forth, including vim, tmux
+  - may just need `sudo apt-get install vim-gtk3`
   - follow steps at
     https://superuser.com/questions/1291425/windows-subsystem-linux-make-vim-use-the-clipboard/1345241#1345241
     Make sure to disable access control in the VcXsrv config
@@ -149,8 +130,6 @@ wslpath -a $wt_settings
 ### Non-dev programs
 
 ```powershell
-# Spotify replacement
-winget install TIDALMusicAS.TIDAL
 winget install Zoom.Zoom
 winget install SlackTechnologies.Slack
 ```
