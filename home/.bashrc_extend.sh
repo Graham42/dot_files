@@ -95,12 +95,3 @@ export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 if [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]; then
     source /usr/local/bin/virtualenvwrapper_lazy.sh
 fi
-
-# =============================================================================
-# WSL parts - only works if an X server is running, otherwise vim will hang
-if grep -i -q microsoft /proc/version; then
-    # Needed for Cypress testing, also for Vim system clipboard access
-    export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2; exit;}'):0.0
-    sudo --non-interactive /etc/init.d/dbus start &> /dev/null \
-       || echo "Failed to start dbus. Follow instructions to Grant passwordless access for dbus at https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#grant-passwordless-access-for-dbus"
-fi
