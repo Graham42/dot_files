@@ -18,8 +18,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.quickSuggestions": false
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -30,14 +29,8 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.enableFiletypes": [
-    "groovy"
-  ],
-  "cSpell.language": "en-GB",
+  "cSpell.language": "en-CA,en-US",
   "cSpell.userWords": [
-    "Dismissible",
-    "Jira",
-    "Jiras",
     "admin",
     "analytics",
     "backend",
@@ -56,14 +49,17 @@
     "deregistration",
     "deserialize",
     "dialog",
+    "Dismissible",
     "endregion",
     "essentialism",
     "fallback",
     "fqdn",
     "frontmatter",
+    "Graham",
     "hmmm",
     "idempotency",
     "inbox",
+    "Jira",
     "junit",
     "keyframes",
     "kubernetes",
@@ -119,83 +115,45 @@
     "unmount",
     "unrecognized",
     "unsanitized",
-    "unserialized",
     "unsetting",
     "uuid",
     "versioning",
-    "vulns",
     "webapp",
     "webhook",
     "webhooks",
-    "whitelisting",
     "workflow",
     "workflows"
   ],
   "diffEditor.renderSideBySide": true,
-  "editor.minimap.maxColumn": 80,
-  "editor.minimap.scale": 2,
-  "editor.renderIndentGuides": true,
   "editor.renderWhitespace": "boundary",
-  "editor.rulers": [
-    80,
-    100,
-    120,
-    200
-  ],
+  "editor.rulers": [80, 100, 120, 200],
   "editor.suggestSelection": "first",
   "editor.tabSize": 2,
   "explorer.confirmDragAndDrop": false,
   "files.trimTrailingWhitespace": true,
-  "githubPullRequests.defaultMergeMethod": "rebase",
-  "githubPullRequests.showInSCM": true,
   "gitlens.codeLens.enabled": false,
   "gitlens.statusBar.enabled": false,
-  "gitlens.views.compare.location": "scm",
-  "gitlens.views.fileHistory.location": "scm",
-  "gitlens.views.lineHistory.location": "scm",
-  "gitlens.views.repositories.location": "scm",
-  "gitlens.views.search.location": "scm",
   "go.formatTool": "gofmt",
   "go.lintTool": "staticcheck",
-  "go.testFlags": [
-    "-v"
-  ],
+  "go.testFlags": ["-v"],
   "go.useLanguageServer": true,
-  "html.format.wrapLineLength": 80,
+  "html.format.wrapLineLength": 120,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "liveshare.allowGuestDebugControl": true,
   "liveshare.featureSet": "stable",
   "liveshare.sharedTerminalHeight": 100,
   "liveshare.sharedTerminalWidth": 160,
-  "shellcheck.disableVersionCheck": true,
-  "terminal.integrated.rendererType": "experimentalWebgl",
-  "terraform.indexing": {
-    "delay": 500,
-    "enabled": false,
-    "exclude": [
-      ".terraform/**/*",
-      "**/.terraform/**/*"
-    ],
-    "liveIndexing": false
-  },
-  "terraform.languageServer": {
-    "args": [],
-    "enabled": true
-  },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vim.handleKeys": {
     "<C-d>": true,
     "<C-u>": true
   },
   "vim.useSystemClipboard": true,
-  "vs-kubernetes": {
-    "checkForMinikubeUpgrade": false
-  },
-  "window.systemColorTheme": "auto",
+  "window.autoDetectColorScheme": true,
   "window.zoomLevel": 0,
   "workbench.editor.labelFormat": "medium",
   "workbench.editor.tabSizing": "shrink",
   "workbench.preferredDarkColorTheme": "Night Owl",
   "workbench.preferredLightColorTheme": "Night Owl Light",
-  "workbench.startupEditor": "newUntitledFile"
+  "workbench.tree.renderIndentGuides": "always"
 }
