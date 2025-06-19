@@ -180,7 +180,9 @@
     "checkForMinikubeUpgrade": false
   },
   "window.zoomLevel": 0,
-  "workbench.colorTheme": "Night Owl",
+  "workbench.preferredDarkColorTheme": "Night Owl",
+  "workbench.preferredLightColorTheme": "Night Owl Light",
+  "window.systemColorTheme": "auto",
   "workbench.editor.labelFormat": "medium",
   "workbench.editor.tabSizing": "shrink",
   "workbench.startupEditor": "newUntitledFile"
