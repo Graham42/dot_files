@@ -105,12 +105,4 @@ sudo apt-get install -y \
 
 sudo apt-get upgrade -y
 
-LATEST_HYPER=$(curl -L --silent "https://api.github.com/repos/zeit/hyper/releases/latest" |
-    grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-if ! command -v hyper || [ "$(hyper version)" != "$LATEST_HYPER" ]; then
-    TEMP_DIR=$(mktemp -d)
-    curl -L -o "$TEMP_DIR/hyper.deb" https://releases.hyper.is/download/deb
-    sudo apt-get install -y "$TEMP_DIR/hyper.deb"
-fi
-
 ./bootstrap/ubuntu-desktop-18.04.sh
