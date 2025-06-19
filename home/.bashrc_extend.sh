@@ -28,7 +28,7 @@ type vimx >/dev/null 2>&1 && alias vim='vimx'
 
 # datetimestamp of now. ISO format except no timezone. Good for log file names
 # example usage: process_x > degug_`nowf`.log
-alias now='date +%Y-%m-%dT%H:%M:%S'
+alias now='date +%Y-%m-%dT%H:%M:%S%z'
 
 # =============================================================================
 ## Prompt
