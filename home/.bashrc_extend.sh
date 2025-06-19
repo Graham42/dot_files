@@ -47,9 +47,6 @@ _color_mode() {
         VS_THEME="Night Owl"
     fi
 
-    # Hyper config
-    sed --follow-symlinks -i 's/const COLOR_SCHEME = "'$OLD'"/const COLOR_SCHEME = "'$NEW'"/' ~/.hyper.js
-
     # bashrc
     sed --follow-symlinks -i 's/export COLOR_SCHEME='$OLD'/export COLOR_SCHEME='$NEW'/' ~/.bashrc_extend.sh
 
