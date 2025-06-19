@@ -56,8 +56,6 @@
 	oops = commit --amend --no-edit
 	# create a Formating commit that only adds trailing whitespace changes
 	whitespace-eol-commit = !bash ~/.git-alias-scripts/whitespace-eol-commit.sh
-	# Requires the environment variable JIRA_URL to be set
-	jira-commit = !bash ~/.git-alias-scripts/jira-commit.sh
 	standup = log --all --since=yesterday --author='Graham McGregor'
 	# Given a branch, outputs number of commits ahead / behind
 	separation = !bash ~/.git-alias-scripts/separation.sh
