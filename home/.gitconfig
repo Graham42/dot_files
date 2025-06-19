@@ -30,21 +30,13 @@
 	excludesfile = ~/.gitignore_global
 
 [alias]
-	# This is about a mindset shift. 'git blame' can used to understand more
-	# context why a change was made and 'blame' has an unnecessary negative
-	# connotation to it.
-	praise = blame
-	gui-praise = gui blame
 	l = log --graph --stat --find-copies --decorate
 	bl = "!f(){ git merge-base origin/HEAD HEAD | xargs -I{} git l {}..HEAD $@; }; f"
 	d = diff
-	dc = diff --cached
-	dw = diff --word-diff
 	s = status -s
 	co = checkout
 	b = branch
 	ri = rebase --interactive --autostash  --update-refs
-	pu = "!f(){ git push -u origin $(git branch --show-current):$(git branch --show-current); }; f"
 	# pretty print short log
 	sl = log --pretty=format:'\
 %C(red)%h %Creset\
@@ -79,29 +71,13 @@
 	sort = committerdate
 
 [diff]
-	tool = p4Diff
 	colorMoved = dimmed-zebra
 
 [merge]
-	tool = p4Merge
 	conflictstyle = diff3
 
 [mergetool]
 	keepBackup = false
 
-[mergetool "p4Merge"]
-	cmd = ~/.p4merge.sh "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-	trustExitCode = true
-	keepBackup = false
-
-[difftool "p4Diff"]
-	cmd = p4merge -le unix "$LOCAL" "$REMOTE"
-
-[difftool "vsDiff"]
-	cmd = code --diff --wait "$LOCAL" "$REMOTE"
-
 [log]
 	date = iso8601
-
-# -*- mode: gitconfig -*-
-# vim: set ft=gitconfig:
