@@ -76,7 +76,8 @@ winget install Docker.DockerDesktop --interactive
 
 In a WSL terminal window
 
-1.  Follow [Generate an ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux#generating-a-new-ssh-key)
+1.  Follow
+    [Generate an ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux#generating-a-new-ssh-key)
 
     ```sh
     ssh-keygen -t ed25519 -C "graham.mcgregor04+github@gmail.com"
@@ -110,24 +111,28 @@ Download UbuntuSans Nerd Font from https://www.nerdfonts.com/font-downloads
   https://github.com/edurojasr/Windows-Terminal-Theme-Night-Owl
 - no bell
 - launch with F13
-    - Remap key with [PowerToys Keyboard Manager utility for Windows](https://learn.microsoft.com/en-us/windows/powertoys/keyboard-manager)
-    - Set `globalSummon` config: https://learn.microsoft.com/en-us/windows/terminal/customize-settings/actions#global-summon
+  - Remap key with
+    [PowerToys Keyboard Manager utility for Windows](https://learn.microsoft.com/en-us/windows/powertoys/keyboard-manager)
+  - Set `globalSummon` config:
+    https://learn.microsoft.com/en-us/windows/terminal/customize-settings/actions#global-summon
 - default start maximized, on login, with Ubuntu
-- Remove action/command Paste with shortcut <kbd>Ctrl+V</kbd> from settings. Otherwise this will interfere with vim visual mode.
+- Remove action/command Paste with shortcut <kbd>Ctrl+V</kbd> from settings.
+  Otherwise this will interfere with vim visual mode.
 
 - Snippet for light/dark theme matching system
-    ```json
-    "profiles": 
-    {
-        "defaults": 
-        {
-            "bellStyle": "none",
-            "colorScheme": {
-                "dark": "Night Owl",
-                "light": "Light Owl"
-            }
-        },
-    ```
+
+  ```json
+  "profiles":
+  {
+      "defaults":
+      {
+          "bellStyle": "none",
+          "colorScheme": {
+              "dark": "Night Owl",
+              "light": "Light Owl"
+          }
+      },
+  ```
 
 - _TODO save config json as code in this repo_
 
