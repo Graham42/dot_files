@@ -41,6 +41,7 @@ winget install --id Starship.Starship
 ```
 
 - [Obsidian](https://obsidian.md/download)
+- [Wispr FLow](https://wisprflow.ai/) - for dictation
 
 #### Docker
 
