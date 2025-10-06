@@ -3,6 +3,12 @@
 set -e -o pipefail
 set -x
 
+# If we're not running 18.04, these settings are probably all different
+if ! grep 18.04 /etc/lsb-release; then
+  echo "This doesn't look like 18.04"
+  exit 1
+fi
+
 ################################################################################
 # Packages
 ################################################################################
