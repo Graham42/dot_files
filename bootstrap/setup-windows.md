@@ -1,0 +1,154 @@
+# Windows Computer Setup
+
+For inspiration see https://docs.microsoft.com/en-us/windows/dev-environment/
+
+### Update windows
+
+1. Configure "get updates for other microsoft software"
+1. Windows updates, restart, repeat until no updates
+1. Uninstall any Windows bloatware
+
+### Install programs
+
+These are installed using the
+[windows package manager](https://docs.microsoft.com/en-us/learn/modules/explore-windows-package-manager-tool/)
+
+```powershell
+winget install Google.Chrome
+# we need interactive mode to select options to add VSCode to the PATH to launch from WSL
+# also need scope to be machine so that we're not trying to install as admin
+winget install Microsoft.VisualStudioCode --interactive --scope machine
+winget install Microsoft.WindowsTerminal
+winget install Microsoft.PowerToys
+# VPN
+winget install PrivateInternetAccess.PrivateInternetAccess
+# Command prompt
+winget install --id Starship.Starship
+```
+
+- [Obsidian](https://obsidian.md/download)
+- [Wispr FLow](https://wisprflow.ai/) - for dictation
+
+#### Docker
+
+Before installing Docker desktop, make sure you have saved all your work, as
+you'll need to log out and back in for Docker to work.
+
+```powershell
+# Make sure to pick the WSL backend
+winget install Docker.DockerDesktop --interactive
+```
+
+### [PowerToys](https://github.com/microsoft/PowerToys) config
+
+- Remap CapsLock to F13
+
+### WSL setup
+
+1.  Open Admin PowerShell and run
+
+    ```powershell
+    wsl --install
+    ```
+
+1.  A restart will likely be required
+1.  Run `wsl` and follow the prompts to create a user
+1.  Update all existing programs
+
+    ```sh
+    sudo apt update && sudo apt upgrade -y && sudo apt autoremove
+    ```
+
+### GitHub ssh key setup
+
+In a WSL terminal window
+
+1.  Follow
+    [Generate an ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux#generating-a-new-ssh-key)
+
+    ```sh
+    ssh-keygen -t ed25519 -C "graham.mcgregor04+github@gmail.com"
+    # ...
+    ```
+
+1.  Add it to github (https://github.com/settings/ssh/new)
+
+    ```sh
+    cat ~/.ssh/id_ed25519.pub
+    ```
+
+1.  Verify access
+    ```sh
+    ssh -T git@github.com
+    ```
+
+### Automated setup
+
+Clone [dot_files repo](https://github.com/Graham42/dot_files) and run setup
+
+_TODO fix dotfiles_
+
+### Fonts
+
+Download UbuntuSans Nerd Font from https://www.nerdfonts.com/font-downloads
+
+### Windows terminal config
+
+- Theme for Ubuntu:
+  https://github.com/edurojasr/Windows-Terminal-Theme-Night-Owl
+- no bell
+- launch with F13
+  - Remap key with
+    [PowerToys Keyboard Manager utility for Windows](https://learn.microsoft.com/en-us/windows/powertoys/keyboard-manager)
+  - Set `globalSummon` config:
+    https://learn.microsoft.com/en-us/windows/terminal/customize-settings/actions#global-summon
+- default start maximized, on login, with Ubuntu
+- Remove action/command Paste with shortcut <kbd>Ctrl+V</kbd> from settings.
+  Otherwise this will interfere with vim visual mode.
+
+- Snippet for light/dark theme matching system
+
+  ```json
+  "profiles":
+  {
+      "defaults":
+      {
+          "bellStyle": "none",
+          "colorScheme": {
+              "dark": "Night Owl",
+              "light": "Light Owl"
+          }
+      },
+  ```
+
+- _TODO save config json as code in this repo_
+
+### TODO these steps: misc
+
+- setup windows vscode settings as code linked to dot files
+- make sure clipboard works back and forth, including vim, tmux
+  - may just need `sudo apt-get install vim-gtk3`
+  - follow steps at
+    https://superuser.com/questions/1291425/windows-subsystem-linux-make-vim-use-the-clipboard/1345241#1345241
+    Make sure to disable access control in the VcXsrv config
+  - https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
+
+### Non-dev programs
+
+```powershell
+winget install Zoom.Zoom
+winget install SlackTechnologies.Slack
+```
+
+#### Zoom
+
+- Under Audio:
+  - "Automatically join audio by computer when joining a meeting"
+  - "Always mute microphone when joining meeting"
+  - Uncheck "Press and hold SPACE key to temporarily unmute yourself"
+- Under Video:
+  - "Always show video preview dialog when joining a video meeting"
+- Under General:
+  - "Stop my video and audio when my device is locked"
+
+---
