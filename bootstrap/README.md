@@ -2,15 +2,9 @@
 
 ## Prompt
 
-https://starship.rs/
+Install Starship from https://starship.rs/
 
 Note: prerequisite: install a [Nerd Font](https://www.nerdfonts.com/)
-
-## Git Merge tool
-
-VSCode now has a 3 way merge, so use that
-
----
 
 ## Windows
 
@@ -174,44 +168,21 @@ winget install SlackTechnologies.Slack
 - Download and install [PIA VPN](https://www.privateinternetaccess.com/)
 - Create desktop shortcut in ~/.config/autostart folder
 
-### Gnome shell extensions
-
-```sh
-gnome-shell --version
-sudo apt-get install chrome-gnome-shell
-```
-
-- [Do not disturb extension](https://extensions.gnome.org/extension/964/do-not-disturb-button/)
-  - After install, open gnome-tweak settings, disable notification count
-- [Put windows extension](https://extensions.gnome.org/extension/39/put-windows/)
-
-### Bash
-
-If on ubuntu, there's a bunch of default cruft in `~/.bashrc` make sure to
-comment out `HISTSIZE` and `HISTFILESIZE` so it doesn't mess with settings.
-
-### Docker
-
-- Consider
-  [running the Docker daemon as a non-root user (Rootless mode)](https://docs.docker.com/engine/security/rootless/)
-- At least allow the user to run docker without root. See
-  [Post-installation steps for Linux](https://docs.docker.com/engine/install/linux-postinstall/)
-- Install Docker to be compatible with WSL if applicable _TODO how?_
-
 ### Remap keys
 
-Want to remap caps lock to F13 to use for global terminal:
-http://www.fascinatingcaptain.com/blog/remap-keyboard-keys-for-ubuntu/
+To remap Caps Lock to F13 to use for global terminal (source
+http://www.fascinatingcaptain.com/blog/remap-keyboard-keys-for-ubuntu/)
 
 ```sh
-sudo -e /usr/share/X11/xkb/symbols/pc
+EDITOR=vim sudo -e /usr/share/X11/xkb/symbols/pc
 ```
 
-Update the key definition for caps lock
+Update the key definition for caps lock:
 
 ```diff
 - key <CAPS> { [ Caps_Lock ] };
 + key <CAPS> { [ F13       ] };
 ```
 
-Then clear any cached stuff in `/var/lib/xkb/` and reboot
+- Reboot the computer
+- If settings don't persist clear any cached files in `/var/lib/xkb/` and reboot
