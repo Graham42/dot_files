@@ -6,7 +6,7 @@ Mainly focused on a computer used for development.
 
 ```sh
 sudo apt update && sudo apt upgrade -y
-sudo apt install git vim-gtk3 jq tmux tree xclip curl
+sudo apt install git vim-gtk3 jq tmux tree xclip curl ripgrep
 sudo apt autoremove
 ```
 
