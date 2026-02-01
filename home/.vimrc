@@ -65,6 +65,8 @@ Plug 'haishanh/night-owl.vim'
 Plug 'macguirerintoul/night_owl_light.vim'
 " Easy to add quotes/brackets around text
 Plug 'tpope/vim-surround'
+" Syntax highlighting for astro files. https://docs.astro.build/
+Plug 'wuelnerdotexe/vim-astro'
 
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
