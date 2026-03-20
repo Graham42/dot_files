@@ -1,6 +1,6 @@
 [user]
 	name = Graham McGregor
-	email = graham@gmcgregor.ca
+	email = 2476733+Graham42@users.noreply.github.com
 
 [init]
 	defaultBranch = main
@@ -26,8 +26,11 @@
 	color = true
 
 [core]
+	whitespace = trailing-space,space-before-tab
 	editor = vim
 	excludesfile = ~/.gitignore_global
+	# don't clear the screen and only page if needed
+	pager = less -X -F
 
 [alias]
 	l = log --graph --stat --find-copies --decorate
@@ -54,11 +57,11 @@
 	# credit to http://stackoverflow.com/a/4991675 for oldest-ancestor
 	oldest-ancestor = !bash -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-origin/integration}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
 	pretty-log-branch = log HEAD ^origin/integration --graph --stat --find-copies --date-order
-	paragraph-diff = diff --word-diff-regex=[^[:space:]]
 
 [push]
-	default = upstream
+	default = simple
 	atomic = true
+	autoSetupRemote = true
 
 [rebase]
 	autoSquash = true
@@ -72,9 +75,11 @@
 
 [diff]
 	colorMoved = dimmed-zebra
+	mnemonicprefix = true
 
 [merge]
 	conflictstyle = diff3
+	stat = true
 
 [mergetool]
 	keepBackup = false
