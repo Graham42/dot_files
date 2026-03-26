@@ -73,6 +73,8 @@ echo "Updating block in ~/.bashrc"
 # auto update the block in ~/.bashrc
 if grep "$BASHRC_HEADER" ~/.bashrc -q; then
     escaped_body=$(echo "$bashrc_body" | sed -e':a' -e'N' -e'$!ba' -e's/\n/\\n/g')
+    echo 'fix with perl'
+    exit 1
     sed -i'' -e"/^$BASHRC_HEADER$/,/^$BASHRC_FOOTER$/c $BASHRC_HEADER\n$escaped_body\n$BASHRC_FOOTER" ~/.bashrc
 else
     echo -e "\n$BASHRC_HEADER\n$bashrc_body\n$BASHRC_FOOTER\n" >> ~/.bashrc
@@ -133,4 +135,3 @@ if [ -d setup_scripts ]; then
 fi
 
 logok "Config updated! Run 'source ~/.bashrc' to update your current terminal."
-
