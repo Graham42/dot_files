@@ -1,10 +1,14 @@
+# Default identity — can be overridden per-repo in local .git/config
 [user]
 	name = Graham McGregor
+	# GitHub noreply address keeps personal email off public commits
 	email = 2476733+Graham42@users.noreply.github.com
 
+# Use "main" instead of "master" when running `git init`
 [init]
 	defaultBranch = main
 
+# Enable color in interactive prompts (e.g. `git add -p`)
 [color]
 	interactive = true
 
@@ -22,25 +26,32 @@
 [color "grep"]
 	match = cyan
 
+# Pass color escape codes through the pager (without this, colors are stripped)
 [pager]
 	color = true
 
 [core]
+	# Highlight trailing spaces and spaces-before-tabs as errors
 	whitespace = trailing-space,space-before-tab
 	editor = vim
+	# Global ignore patterns applied to every repo
 	excludesfile = ~/.gitignore_global
-	# don't clear the screen and only page if needed
+	# -X: don't clear the screen on exit; -F: exit immediately if output fits on screen
 	pager = less -X -F
 
 [alias]
+	# Graph log with file stats and copy/rename detection
 	l = log --graph --stat --find-copies --decorate
+	# Branch log: commits on current branch since diverging from origin/HEAD
 	bl = "!f(){ git merge-base origin/HEAD HEAD | xargs -I{} git l {}..HEAD $@; }; f"
 	d = diff
 	s = status -s
 	co = checkout
 	b = branch
+	# Interactive rebase: stash uncommitted changes automatically, and update any
+	# branches that point to commits being rebased (--update-refs)
 	ri = rebase --interactive --autostash  --update-refs
-	# pretty print short log
+	# Compact one-line graph log: hash, subject (truncated), author, relative date
 	sl = log --pretty=format:'\
 %C(red)%h %Creset\
 %<(62,trunc)%C(normal)%s %Creset\
@@ -48,41 +59,58 @@
 %C(green)%an %Creset\
 %C(bold blue)%cr)%Creset\
 ' --color --graph
+	# Amend the last commit without editing the message
 	oops = commit --amend --no-edit
 	# create a Formating commit that only adds trailing whitespace changes
 	whitespace-eol-commit = !bash ~/.git-alias-scripts/whitespace-eol-commit.sh
+	# Commits authored since yesterday — useful for standups
 	standup = log --all --since=yesterday --author='Graham McGregor'
 	# Given a branch, outputs number of commits ahead / behind
 	separation = !bash ~/.git-alias-scripts/separation.sh
+	# Find the oldest common ancestor between two branches (defaults: origin/integration, HEAD)
 	# credit to http://stackoverflow.com/a/4991675 for oldest-ancestor
 	oldest-ancestor = !bash -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-origin/integration}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
 	pretty-log-branch = log HEAD ^origin/integration --graph --stat --find-copies --date-order
 
 [push]
+	# Push current branch to its tracked upstream only (not all matching branches)
 	default = simple
+	# All-or-nothing: if any ref fails to push, push nothing
 	atomic = true
+	# Automatically set upstream tracking branch on first push of a new branch
 	autoSetupRemote = true
 
 [rebase]
+	# Automatically reorder fixup!/squash! commits to sit below their targets
 	autoSquash = true
+	# Error (rather than silently drop) if commits go missing during interactive rebase
 	missingCommitsCheck = error
 
 [pull]
+	# Rebase on pull, but preserve merge commits in the rebased history
 	rebase = merges
 
 [branch]
+	# Show branches sorted by most recently committed, not alphabetically
 	sort = committerdate
 
 [diff]
+	# Highlight moved code blocks in a distinct dimmed color so moves don't look
+	# like unrelated deletions+additions
 	colorMoved = dimmed-zebra
+	# Use meaningful prefixes: i/ (index), w/ (worktree), c/ (commit) instead of a/b
 	mnemonicprefix = true
 
 [merge]
+	# Show base, ours, and theirs in conflict markers (easier to reason about conflicts)
 	conflictstyle = diff3
+	# Show a diffstat after every merge
 	stat = true
 
 [mergetool]
+	# Don't leave behind .orig backup files after resolving conflicts
 	keepBackup = false
 
 [log]
+	# Display dates as ISO 8601 (YYYY-MM-DD HH:MM:SS +TZ)
 	date = iso8601
