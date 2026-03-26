@@ -46,6 +46,12 @@ autocmd FileType javascript let g:ale_fixers = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Plugins
 " See searchable index of plugins at https://vimawesome.com/
+" Uses vim-plug: https://github.com/junegunn/vim-plug
+" To install vim-plug itself:
+"   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" To install plugins, add a Plug line below then run :PlugInstall in vim
+" Other commands: :PlugUpdate, :PlugClean (remove unlisted plugins)
 
 call plug#begin()
 
@@ -67,6 +73,8 @@ Plug 'macguirerintoul/night_owl_light.vim'
 Plug 'tpope/vim-surround'
 " Syntax highlighting for astro files. https://docs.astro.build/
 Plug 'wuelnerdotexe/vim-astro'
+" shows a git diff in the sign column
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -155,7 +163,7 @@ set scrolloff=10
 set sidescrolloff=4
 
 autocmd filetype gitcommit setlocal tw=72
-autocmd filetype markdown,text setlocal tw=80
+autocmd filetype markdown,text setlocal tw=100 wrap linebreak
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color settings
