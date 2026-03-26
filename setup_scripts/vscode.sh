@@ -15,6 +15,7 @@ sdras.night-owl
 streetsidesoftware.code-spell-checker
 timonwong.shellcheck
 vscodevim.vim
+alfredbirk.go-to-next-change
 EOF
 
 MISSING_PLUGINS=$(
