@@ -1,3 +1,5 @@
+command_timeout=60
+
 [directory]
 truncate_to_repo=false
 # 0 means don't truncate; show full path
@@ -27,4 +29,11 @@ renamed = "[»${count}](bright-red)"
 deleted = "[✘${count}](bright-red)"
 
 [nodejs]
+disabled=true
+
+[ruby]
+# can be SLOW in large repos
+disabled=true
+
+[aws]
 disabled=true
