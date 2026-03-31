@@ -57,28 +57,33 @@ cd "$(dirname "$0")"
 loginfo "Updating config for user: $USER"
 
 ################################################################################
-## Create/update a block in ~/.bashrc with our modifications
-
-BASH_RC_BODY_FILE="bashrc_body.sh"
+## Create/update a managed block in shell rc files
 
 # WARNING: if header/footer are changed, will mess up auto-update
 BASHRC_HEADER="####################_BEGIN_DOT_FILES_AUTOBLOCK_######################"
 BASHRC_FOOTER="#####################_END_DOT_FILES_AUTOBLOCK_#######################"
 
-if [ ! -e $BASH_RC_BODY_FILE ]; then
-    logfatal "Missing file '$BASH_RC_BODY_FILE'"
-fi
-bashrc_body=$( cat $BASH_RC_BODY_FILE )
-echo "Updating block in ~/.bashrc"
-# auto update the block in ~/.bashrc
-if grep "$BASHRC_HEADER" ~/.bashrc -q; then
-    escaped_body=$(echo "$bashrc_body" | sed -e':a' -e'N' -e'$!ba' -e's/\n/\\n/g')
-    echo 'fix with perl'
-    exit 1
-    sed -i'' -e"/^$BASHRC_HEADER$/,/^$BASHRC_FOOTER$/c $BASHRC_HEADER\n$escaped_body\n$BASHRC_FOOTER" ~/.bashrc
-else
-    echo -e "\n$BASHRC_HEADER\n$bashrc_body\n$BASHRC_FOOTER\n" >> ~/.bashrc
-fi
+function update_rc_block {
+    local rc_file="$1"
+    local body_file="$2"
+    if [ ! -e "$body_file" ]; then
+        logfatal "Missing file '$body_file'"
+    fi
+    local body
+    body=$(cat "$body_file")
+    touch "$rc_file"
+    echo "Updating block in $rc_file"
+    if grep -q "$BASHRC_HEADER" "$rc_file"; then
+        BODY="$body" HEADER="$BASHRC_HEADER" FOOTER="$BASHRC_FOOTER" \
+            perl -i -0777 -pe 's/\Q$ENV{HEADER}\E.*?\Q$ENV{FOOTER}\E/$ENV{HEADER}\n$ENV{BODY}\n$ENV{FOOTER}/s' \
+            "$rc_file"
+    else
+        echo -e "\n$BASHRC_HEADER\n$body\n$BASHRC_FOOTER\n" >> "$rc_file"
+    fi
+}
+
+update_rc_block ~/.bashrc bashrc_body.sh
+update_rc_block ~/.zshrc zshrc_body.sh
 
 ################################################################################
 ## Create symbolic links to home directory
