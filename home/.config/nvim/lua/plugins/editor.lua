@@ -29,7 +29,17 @@ return {
     },
     config = function()
       require('zen-mode').setup({
-        window = { width = 110 },
+        window = {
+          width = 110,
+          options = {
+            number = false,
+            relativenumber = false,
+            signcolumn = 'no',    -- hide gutter (git signs, diagnostics)
+            cursorline = false,
+            spell = false,
+            conceallevel = 2,     -- render markdown syntax (bold, links, etc.)
+          },
+        },
       })
     end,
   },

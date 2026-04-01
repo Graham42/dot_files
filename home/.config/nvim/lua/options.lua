@@ -34,9 +34,11 @@ opt.sidescrolloff = 4
 opt.modeline = true
 opt.modelines = 5
 
--- Swap / undo
-opt.dir = vim.fn.expand('~/.vim/tmp/')
-opt.undodir = vim.fn.expand('~/.vim/undo/')
+-- Swap / undo — use Neovim-specific dirs to avoid incompatibility with Vim's
+-- undo file format (E824: Incompatible undo file)
+local data = vim.fn.stdpath('data')
+opt.dir     = data .. '/swap'
+opt.undodir = data .. '/undo'
 opt.undofile = true
 
 -- Clipboard

@@ -10,8 +10,9 @@ if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.lua" ]; then
     exit 1
 fi
 
-mkdir -p ~/.vim/tmp
-mkdir -p ~/.vim/undo
+NVIM_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/nvim"
+mkdir -p "$NVIM_DATA/swap"
+mkdir -p "$NVIM_DATA/undo"
 
 # lazy.nvim is installed via git clone per its official install instructions:
 # https://lazy.folke.io/installation
