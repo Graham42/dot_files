@@ -55,9 +55,8 @@ if vim.env.SSH_CONNECTION ~= nil then
       ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
     },
   }
-else
-  opt.clipboard = 'unnamedplus'
 end
+opt.clipboard = 'unnamedplus'
 
 -- Filetype autocommands
 local autocmd = vim.api.nvim_create_autocmd
