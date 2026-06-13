@@ -2,7 +2,7 @@
 
 if ! command -v nvim &>/dev/null; then
     echo "Neovim is not installed. Install it from your package manager (e.g. 'brew install neovim') or see: https://neovim.io/doc/install/"
-    exit 1
+    exit 0
 fi
 
 if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.lua" ]; then
