@@ -48,11 +48,25 @@ type vimx >/dev/null 2>&1 && alias vim='vimx'
 alias now='date +%Y-%m-%dT%H:%M:%S%z'
 
 # =============================================================================
-# Prompt
+# Interactive-only tools (skip in agent/non-interactive shells)
 # =============================================================================
 
-if [ -n "$ZSH_VERSION" ]; then
-    eval "$(starship init zsh)"
-elif [ -n "$BASH_VERSION" ]; then
-    eval "$(starship init bash)"
-fi
+case "$-" in
+    *i*)
+        # Prompt
+        if [ -n "$ZSH_VERSION" ]; then
+            eval "$(starship init zsh)"
+        elif [ -n "$BASH_VERSION" ]; then
+            eval "$(starship init bash)"
+        fi
+
+        # cd (zoxide)
+        if command -v zoxide >/dev/null 2>&1; then
+            if [ -n "$ZSH_VERSION" ]; then
+                eval "$(zoxide init zsh)"
+            elif [ -n "$BASH_VERSION" ]; then
+                eval "$(zoxide init bash)"
+            fi
+        fi
+        ;;
+esac
