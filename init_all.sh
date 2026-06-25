@@ -72,7 +72,7 @@ function update_rc_block {
     local body
     body=$(cat "$body_file")
     touch "$rc_file"
-    echo "Updating block in $rc_file"
+    loginfo "  Updating managed block in $rc_file"
     if grep -q "$BASHRC_HEADER" "$rc_file"; then
         BODY="$body" HEADER="$BASHRC_HEADER" FOOTER="$BASHRC_FOOTER" \
             perl -i -0777 -pe 's/\Q$ENV{HEADER}\E.*?\Q$ENV{FOOTER}\E/$ENV{HEADER}\n$ENV{BODY}\n$ENV{FOOTER}/s' \
@@ -82,6 +82,7 @@ function update_rc_block {
     fi
 }
 
+loginfo "Updating shell rc files..."
 update_rc_block ~/.bashrc bashrc_body.sh
 update_rc_block ~/.zshrc zshrc_body.sh
 
@@ -92,7 +93,7 @@ update_rc_block ~/.zshrc zshrc_body.sh
 # directory. Underscores are used for to escape dotfiles so they're not hidden
 # in the $DOT_FILES directory.
 
-echo "Updating sym links in home directory..."
+loginfo "Updating symlinks in $HOME..."
 USER_HOME=$HOME
 CWD=$(pwd)
 dirs_to_link=( "home" )
@@ -118,6 +119,7 @@ while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
         TARGET_DIR=$(dirname "$dest_file")
         mkdir -p "$TARGET_DIR"
         ln -s "$CWD/$base_dir/$file" "$dest_file"
+        loginfo "  Linked $dest_file -> $CWD/$base_dir/$file"
     done
 
     # push any sub dirs onto the array of things left to do
@@ -135,11 +137,11 @@ done
 ## Run any other setup scripts
 
 if [ -d setup_scripts ]; then
-    echo "Running extra setup scripts"
+    loginfo "Running setup scripts..."
     for initscript in $( ls_files setup_scripts ); do
-        echo -e "###\n${initscript} ..."
+        loginfo "  Running setup_scripts/$initscript"
         initscript_path="setup_scripts/$initscript"
-        "./$initscript_path" || logfatal "Failed to run setup script: $initscript"
+        "./$initscript_path" || logfatal "Failed: setup_scripts/$initscript"
     done
 fi
 
