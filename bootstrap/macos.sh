@@ -27,6 +27,7 @@ packages=(
   curl
   ripgrep   # rg
   fd        # fd (no alias needed on macOS, unlike fdfind on Ubuntu)
+  coreutils # gls, gdate, etc.
   shellcheck
 )
 

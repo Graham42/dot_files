@@ -28,7 +28,11 @@ fi
 # Aliases
 # =============================================================================
 
-alias ls='ls --color=auto -hv --group-directories-first'
+if [ "$(uname)" = "Darwin" ]; then
+    alias ls='gls --color=auto -hv --group-directories-first'
+else
+    alias ls='ls --color=auto -hv --group-directories-first'
+fi
 alias la='ls -A'
 alias l.='la -I"*"'
 alias ll='ls -l --time-style=long-iso'
