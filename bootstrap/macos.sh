@@ -48,6 +48,7 @@ source "$HOME/.cargo/env"
 
 log "Installing rust-based CLI tools..."
 cargo install sd         # sed replacement
+cargo install git-delta  # better git diffs (delta)
 cargo install hyperfine  # benchmarking tool
 cargo install zoxide     # smarter cd
 log "Rust tools installed"

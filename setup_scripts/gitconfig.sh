@@ -1,45 +1,38 @@
 #!/usr/bin/env bash
 # Ensures ~/.gitconfig exists and includes ~/.gitconfig_base at the top.
 # ~/.gitconfig_base is symlinked from this dotfiles repo by init_all.sh.
+# delta installation is handled by bootstrap/macos.sh and bootstrap/ubuntu.sh.
 
-set -eo pipefail
+set -euo pipefail
 
-if ! command -v delta &>/dev/null; then
-    if command -v cargo &>/dev/null; then
-        echo "Installing git-delta via cargo..."
-        cargo install git-delta
-    else
-        case "$(uname)" in
-            Darwin|Linux)
-                read -r -p "cargo not found. Install Rust via rustup to get cargo? [y/N] " reply
-                if [[ "$reply" =~ ^[Yy]$ ]]; then
-                    curl https://sh.rustup.rs -sSf | sh
-                    cargo install git-delta
-                fi
-                ;;
-            *)
-                echo "delta is not installed. Install it with 'cargo install git-delta' (requires Rust/cargo)"
-                ;;
-        esac
-    fi
-fi
-
-INCLUDE_SECTION="[include]
+MANAGED_HEADER="####################_BEGIN_DOT_FILES_GITCONFIG_######################"
+MANAGED_FOOTER="#####################_END_DOT_FILES_GITCONFIG_#######################"
+BLOCK_BODY="[include]
 	path = ~/.gitconfig_base"
+BLOCK="$(printf '%s\n%s\n%s\n\n' "$MANAGED_HEADER" "$BLOCK_BODY" "$MANAGED_FOOTER")"
 
 GITCONFIG="$HOME/.gitconfig"
 
 if [ ! -f "$GITCONFIG" ]; then
     echo "Creating $GITCONFIG with include for ~/.gitconfig_base"
-    printf '%s\n\n' "$INCLUDE_SECTION" > "$GITCONFIG"
+    printf '%s' "$BLOCK" > "$GITCONFIG"
     echo "Add your machine-specific settings (e.g. [user]) to $GITCONFIG"
+elif grep -q '_BEGIN_DOT_FILES_GITCONFIG_' "$GITCONFIG"; then
+    echo "Updating managed block in $GITCONFIG"
+    # -0777 slurps the whole file; \Q...\E quotes the markers literally; /s makes . match newlines
+    HEADER="$MANAGED_HEADER" FOOTER="$MANAGED_FOOTER" BODY="$BLOCK_BODY" \
+        perl -i -0777 -pe 's/\Q$ENV{HEADER}\E.*?\Q$ENV{FOOTER}\E/$ENV{HEADER}\n$ENV{BODY}\n$ENV{FOOTER}/s' \
+        "$GITCONFIG"
+elif grep -q 'path = ~/.gitconfig_base' "$GITCONFIG"; then
+    echo "Upgrading $GITCONFIG to managed block (was unmanaged include)"
+    # [ \t\n]+ tolerates any whitespace (spaces, tabs, blank lines) between [include] and path =
+    HEADER="$MANAGED_HEADER" FOOTER="$MANAGED_FOOTER" BODY="$BLOCK_BODY" \
+        perl -i -0777 -pe 's/\[include\][ \t\n]+path = ~\/\.gitconfig_base/$ENV{HEADER}\n$ENV{BODY}\n$ENV{FOOTER}/s' \
+        "$GITCONFIG"
 else
-    if grep -q 'path = ~/.gitconfig_base' "$GITCONFIG"; then
-        echo "$GITCONFIG already includes ~/.gitconfig_base, nothing to do"
-    else
-        echo "Prepending ~/.gitconfig_base include to $GITCONFIG"
-        tmp=$(mktemp)
-        printf '%s\n\n' "$INCLUDE_SECTION" | cat - "$GITCONFIG" > "$tmp"
-        mv "$tmp" "$GITCONFIG"
-    fi
+    echo "Prepending managed block to $GITCONFIG"
+    tmp=$(mktemp)
+    trap 'rm -f "$tmp"' EXIT
+    { printf '%s' "$BLOCK"; cat "$GITCONFIG"; } > "$tmp"
+    cp "$tmp" "$GITCONFIG"
 fi
