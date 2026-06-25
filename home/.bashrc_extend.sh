@@ -56,15 +56,3 @@ if [ -n "$ZSH_VERSION" ]; then
 elif [ -n "$BASH_VERSION" ]; then
     eval "$(starship init bash)"
 fi
-
-# =============================================================================
-# Virtualenvwrapper
-# =============================================================================
-
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/dev
-export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-# Lazy load for faster shell startup
-if [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]; then
-    source /usr/local/bin/virtualenvwrapper_lazy.sh
-fi
