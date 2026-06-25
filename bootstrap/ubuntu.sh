@@ -8,13 +8,15 @@ function log {
 
 log "Initial update and upgrade of system..."
 sudo apt update && sudo apt upgrade -y
-sudo apt autoremove
+sudo apt autoremove -y
 log "System updated"
 
 log "Installing packages..."
 packages=(
   # version control system
   git
+  # c compiler + linker, required for compiling rust crates via cargo
+  build-essential
   # text editor, gtk version includes +clipboard support for copying to system clipboard
   vim-gtk3
   # json manipulation tool
@@ -29,8 +31,6 @@ packages=(
   curl
   # rust-based grep replacement (rg)
   ripgrep
-  # rust-based find replacement (fdfind)
-  fd-find
   # shell script linting tool
   shellcheck
 )
@@ -49,6 +49,7 @@ source "$HOME/.cargo/env"
 
 log "Installing rust-based CLI tools..."
 cargo install sd         # sed replacement
+cargo install fd-find    # find replacement (fd)
 cargo install hyperfine  # benchmarking tool
 cargo install zoxide     # smarter cd
 log "Rust tools installed"
