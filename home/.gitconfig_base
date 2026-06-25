@@ -118,6 +118,9 @@
 [delta]
 	syntax-theme = GitHub Dark
 	line-numbers = true  # set to false or comment out to hide
+	line-numbers-left-format = ""
+	line-numbers-right-format = "{np:^4}│ "
+	keep-plus-minus-markers = true
 	# n/N jumps between files in the pager
 	navigate = true
 	# Note: git config treats # as a comment character, so hex color values
