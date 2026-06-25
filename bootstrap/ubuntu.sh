@@ -27,8 +27,10 @@ packages=(
   xclip
   # tool for downloading files
   curl
-  # tool for searching code
+  # rust-based grep replacement (rg)
   ripgrep
+  # rust-based find replacement (fdfind)
+  fd-find
   # shell script linting tool
   shellcheck
 )
@@ -40,3 +42,13 @@ log "Packages installed"
 log "Installing starship prompt..."
 curl -sS https://starship.rs/install.sh | sh
 log "Starship prompt installed"
+
+# cargo for rust tools
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+source "$HOME/.cargo/env"
+
+log "Installing rust-based CLI tools..."
+cargo install sd         # sed replacement
+cargo install hyperfine  # benchmarking tool
+cargo install zoxide     # smarter cd
+log "Rust tools installed"
