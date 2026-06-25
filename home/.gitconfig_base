@@ -36,8 +36,7 @@
 	editor = vim
 	# Global ignore patterns applied to every repo
 	excludesfile = ~/.gitignore_global
-	# -X: don't clear the screen on exit; -F: exit immediately if output fits on screen
-	pager = less -X -F
+	pager = delta
 
 [alias]
 	# Graph log with file stats and copy/rename detection
@@ -110,6 +109,32 @@
 [mergetool]
 	# Don't leave behind .orig backup files after resolving conflicts
 	keepBackup = false
+
+[interactive]
+	# --color-only preserves the diff structure that `git add -p` needs to parse;
+	# without it, delta's reformatting breaks interactive hunk selection
+	diffFilter = delta --color-only
+
+[delta]
+	syntax-theme = GitHub Dark
+	line-numbers = true  # set to false or comment out to hide
+	# n/N jumps between files in the pager
+	navigate = true
+	# Note: git config treats # as a comment character, so hex color values
+	# must always be quoted (e.g. line-numbers-minus-style = "#c47070")
+	line-numbers-minus-style = "#c47070"
+	line-numbers-plus-style = "#4a9960"
+	line-numbers-zero-style = "#6e7681"
+	file-style = bold
+	# Suppress the box/underline decoration around file and hunk headers
+	file-decoration-style = none
+	file-modified-label = "M"
+	file-added-label = "A"
+	file-removed-label = "D"
+	file-renamed-label = "R"
+	# Muted color keeps hunk headers visible but unobtrusive
+	hunk-header-style = "#6e7681"
+	hunk-header-decoration-style = none
 
 [log]
 	# Display dates as ISO 8601 (YYYY-MM-DD HH:MM:SS +TZ)

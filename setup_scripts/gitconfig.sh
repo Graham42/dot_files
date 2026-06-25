@@ -4,6 +4,26 @@
 
 set -eo pipefail
 
+if ! command -v delta &>/dev/null; then
+    if command -v cargo &>/dev/null; then
+        echo "Installing git-delta via cargo..."
+        cargo install git-delta
+    else
+        case "$(uname)" in
+            Darwin|Linux)
+                read -r -p "cargo not found. Install Rust via rustup to get cargo? [y/N] " reply
+                if [[ "$reply" =~ ^[Yy]$ ]]; then
+                    curl https://sh.rustup.rs -sSf | sh
+                    cargo install git-delta
+                fi
+                ;;
+            *)
+                echo "delta is not installed. Install it with 'cargo install git-delta' (requires Rust/cargo)"
+                ;;
+        esac
+    fi
+fi
+
 INCLUDE_SECTION="[include]
 	path = ~/.gitconfig_base"
 
