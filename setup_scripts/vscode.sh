@@ -39,7 +39,7 @@ echo ""
 # If we're in WSL we need to repeat the process, but with a subset of
 # extensions. These can be found by opening VSCode after installing from the
 # linux side and looking for plugins that have the option to "Install Locally"
-if grep -i -q microsoft /proc/version; then
+if [ -f /proc/version ] && grep -i -q microsoft /proc/version; then
     echo "WSL detected, checking for more plugins..."
 
     cat >"$MY_PLUGINS" <<EOF

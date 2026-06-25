@@ -105,6 +105,10 @@ while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
         dest_file=$( echo "$base_dir/$file" | sed "s#^home#${USER_HOME}#g")
         # remove symbolic links & back up existing files so we don't overwrite
         if [ -L "$dest_file" ]; then
+            link_target=$(readlink "$dest_file")
+            if [[ "$link_target" != "$CWD"* ]]; then
+                logfatal "Symlink $dest_file points to $link_target (not in $CWD) — refusing to overwrite"
+            fi
             rm "$dest_file"
         elif [ -f "$dest_file" ]; then
             logwarn "Backing up $dest_file to ${dest_file}.bak"
