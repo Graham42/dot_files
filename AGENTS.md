@@ -6,3 +6,8 @@ This repo sets up a machine for software dev with my preferences.
 - Running `init_all.sh` will create/update a marked section in `~/.bashrc` with the contents of `bashrc_body.sh`.
 - Any scripts in `setup_scripts/` will be run as part of `init_all.sh`
 - Scripts in `bootstrap/` are for initial machine setup. See the [bootstrap README](./bootstrap/README.md) for additional manual instructions
+
+# Conventions
+
+- scripts need to work across macos and linux
+- changes to scripts need to be backwards compatible to previous config so we have a clean upgrade back when they're run on other machines
