@@ -23,13 +23,13 @@ elif grep -q '_BEGIN_DOT_FILES_GITCONFIG_' "$GITCONFIG"; then
     echo "Updating managed block in $GITCONFIG"
     # -0777 slurps the whole file; \Q...\E quotes the markers literally; /s makes . match newlines
     HEADER="$MANAGED_HEADER" FOOTER="$MANAGED_FOOTER" BODY="$BLOCK_BODY" \
-        perl -i -0777 -pe 's/\Q$ENV{HEADER}\E.*?\Q$ENV{FOOTER}\E/$ENV{HEADER}\n$ENV{BODY}\n$ENV{FOOTER}/s' \
+        perl -i -0777 -pe 's/\Q$ENV{HEADER}\E.*?\Q$ENV{FOOTER}\E/$ENV{HEADER}\n$ENV{BODY}\n$ENV{FOOTER}\n/s' \
         "$GITCONFIG"
 elif grep -q 'path = ~/.gitconfig_base' "$GITCONFIG"; then
     echo "Upgrading $GITCONFIG to managed block (was unmanaged include)"
     # [ \t\n]+ tolerates any whitespace (spaces, tabs, blank lines) between [include] and path =
     HEADER="$MANAGED_HEADER" FOOTER="$MANAGED_FOOTER" BODY="$BLOCK_BODY" \
-        perl -i -0777 -pe 's/\[include\][ \t\n]+path = ~\/\.gitconfig_base/$ENV{HEADER}\n$ENV{BODY}\n$ENV{FOOTER}/s' \
+        perl -i -0777 -pe 's/\[include\][ \t\n]+path = ~\/\.gitconfig_base/$ENV{HEADER}\n$ENV{BODY}\n$ENV{FOOTER}\n/s' \
         "$GITCONFIG"
 else
     echo "Prepending managed block to $GITCONFIG"
