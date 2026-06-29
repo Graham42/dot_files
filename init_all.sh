@@ -96,6 +96,17 @@ update_rc_block ~/.zshrc zshrc_body.sh
 loginfo "Updating symlinks in $HOME..."
 USER_HOME=$HOME
 CWD=$(pwd)
+
+SKIP_FILE=".dotfiles_skip"
+skip_list=()
+if [ -f "$SKIP_FILE" ]; then
+    while IFS= read -r line || [ -n "$line" ]; do
+        [[ "$line" =~ ^#|^$ ]] && continue
+        skip_list+=("$line")
+    done < "$SKIP_FILE"
+    loginfo "  Loaded ${#skip_list[@]} skip(s) from $SKIP_FILE"
+fi
+
 dirs_to_link=( "home" )
 i=0
 # loop because bash recursion is ... not great
@@ -104,6 +115,18 @@ while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
 
     while IFS= read -r file; do
         dest_file=$( echo "$base_dir/$file" | sed "s#^home#${USER_HOME}#g")
+        # check skip list (entries are relative to $HOME, e.g. .config/Code/User/settings.json)
+        home_rel="${dest_file#${USER_HOME}/}"
+        skip=0
+        for skip_entry in "${skip_list[@]}"; do
+            if [ "$home_rel" = "$skip_entry" ]; then
+                skip=1; break
+            fi
+        done
+        if [ "$skip" -eq 1 ]; then
+            logwarn "  Skipping $dest_file (in .dotfiles_skip)"
+            continue
+        fi
         # remove symbolic links & back up existing files so we don't overwrite
         if [ -L "$dest_file" ]; then
             link_target=$(readlink "$dest_file")

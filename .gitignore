@@ -1,3 +1,4 @@
 # Byte-compiled python, left behind by running the scripts in bootstrap/
 __pycache__/
 *.py[cod]
+.dotfiles_skip

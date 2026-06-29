@@ -1,3 +1,20 @@
+# Editor artifacts
 *.sublime-project
 *.sublime-workspace
+
+# macOS
 .DS_Store
+
+# AI tools
+.specstory
+
+# Go/ARM: binary patterns produced by Go tooling on ARM machines (exact cause unclear);
+# kept as-is since git ignores appear to work despite binary content
+T
+x
+
+4-ƒ@m@-¡´
+\*\/ÏG@8@8
+
+# Claude Code
+**/.claude/settings.local.json
