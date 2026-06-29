@@ -31,6 +31,8 @@ packages=(
   curl
   # rust-based grep replacement (rg)
   ripgrep
+  # syntax-highlighted file viewer; used by delta for git diff highlighting
+  bat
   # shell script linting tool
   shellcheck
 )

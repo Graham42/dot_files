@@ -27,6 +27,7 @@ packages=(
   curl
   ripgrep   # rg
   fd        # fd (no alias needed on macOS, unlike fdfind on Ubuntu)
+  bat       # syntax-highlighted file viewer; used by delta for git diff highlighting
   coreutils # gls, gdate, etc.
   shellcheck
 )
