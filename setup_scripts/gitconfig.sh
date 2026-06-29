@@ -2,6 +2,8 @@
 # Ensures ~/.gitconfig exists and includes ~/.gitconfig_base at the top.
 # ~/.gitconfig_base is symlinked from this dotfiles repo by init_all.sh.
 # delta installation is handled by bootstrap/macos.sh and bootstrap/ubuntu.sh.
+# bat is used by delta for syntax highlighting; its theme cache must be rebuilt
+# when themes are added or changed (stored in home/.config/bat/themes/).
 
 set -euo pipefail
 
@@ -35,4 +37,11 @@ else
     trap 'rm -f "$tmp"' EXIT
     { printf '%s' "$BLOCK"; cat "$GITCONFIG"; } > "$tmp"
     cp "$tmp" "$GITCONFIG"
+fi
+
+if command -v bat &>/dev/null; then
+    echo "Rebuilding bat theme cache..."
+    bat cache --build
+else
+    echo "bat is not installed — skipping theme cache build (install bat to enable delta syntax highlighting)"
 fi
