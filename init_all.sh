@@ -5,6 +5,11 @@ set -eo pipefail
 
 THIS_SCRIPT="init_all.sh"
 
+DRY_RUN=0
+for arg in "$@"; do
+    [ "$arg" = "--dry-run" ] && DRY_RUN=1
+done
+
 ################################################################################
 ## Util functions for this script
 
@@ -71,8 +76,12 @@ function update_rc_block {
     fi
     local body
     body=$(cat "$body_file")
-    touch "$rc_file"
     loginfo "  Updating managed block in $rc_file"
+    if [ "$DRY_RUN" -eq 1 ]; then
+        logwarn "  [DRY RUN] Would update managed block in $rc_file"
+        return
+    fi
+    touch "$rc_file"
     if grep -q "$BASHRC_HEADER" "$rc_file"; then
         BODY="$body" HEADER="$BASHRC_HEADER" FOOTER="$BASHRC_FOOTER" \
             perl -i -0777 -pe 's/\Q$ENV{HEADER}\E.*?\Q$ENV{FOOTER}\E/$ENV{HEADER}\n$ENV{BODY}\n$ENV{FOOTER}/s' \
@@ -133,16 +142,24 @@ while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
             if [[ "$link_target" != "$CWD"* ]]; then
                 logfatal "Symlink $dest_file points to $link_target (not in $CWD) — refusing to overwrite"
             fi
-            rm "$dest_file"
+            [ "$DRY_RUN" -eq 0 ] && rm "$dest_file"
         elif [ -f "$dest_file" ]; then
-            logwarn "Backing up $dest_file to ${dest_file}.bak"
-            mv "$dest_file" "${dest_file}.bak"
+            if [ "$DRY_RUN" -eq 1 ]; then
+                logwarn "  [DRY RUN] Would back up $dest_file to ${dest_file}.bak"
+            else
+                logwarn "  Backing up $dest_file to ${dest_file}.bak"
+                mv "$dest_file" "${dest_file}.bak"
+            fi
         fi
         # create new link
         TARGET_DIR=$(dirname "$dest_file")
-        mkdir -p "$TARGET_DIR"
-        ln -s "$CWD/$base_dir/$file" "$dest_file"
-        loginfo "  Linked $dest_file -> $CWD/$base_dir/$file"
+        if [ "$DRY_RUN" -eq 1 ]; then
+            logwarn "  [DRY RUN] Would link $dest_file -> $CWD/$base_dir/$file"
+        else
+            mkdir -p "$TARGET_DIR"
+            ln -s "$CWD/$base_dir/$file" "$dest_file"
+            loginfo "  Linked $dest_file -> $CWD/$base_dir/$file"
+        fi
     # process substitution (not a pipe) so the loop runs in this shell
     done < <( ls_files "$base_dir" )
 
@@ -163,10 +180,18 @@ done
 if [ -d setup_scripts ]; then
     loginfo "Running setup scripts..."
     while IFS= read -r initscript; do
-        loginfo "  Running setup_scripts/$initscript"
         initscript_path="setup_scripts/$initscript"
-        "./$initscript_path" || logfatal "Failed: setup_scripts/$initscript"
+        if [ "$DRY_RUN" -eq 1 ]; then
+            logwarn "  [DRY RUN] Would run setup_scripts/$initscript"
+        else
+            loginfo "  Running setup_scripts/$initscript"
+            "./$initscript_path" || logfatal "Failed: setup_scripts/$initscript"
+        fi
     done < <( ls_files setup_scripts )
 fi
 
-logok "Config updated! Run 'source ~/.bashrc' to update your current terminal."
+if [ "$DRY_RUN" -eq 1 ]; then
+    logwarn "Dry run complete. No changes were made."
+else
+    logok "Config updated! Run 'source ~/.bashrc' to update your current terminal."
+fi
