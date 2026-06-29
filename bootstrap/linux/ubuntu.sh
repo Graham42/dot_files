@@ -33,8 +33,7 @@ packages=(
   curl
   # rust-based grep replacement (rg)
   ripgrep
-  # syntax-highlighted file viewer; used by delta for git diff highlighting
-  bat
+  # bat is installed via cargo below for version compatibility with delta
   # shell script linting tool
   shellcheck
 )
@@ -55,10 +54,12 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y
 source "$HOME/.cargo/env"
 
 log "Installing rust-based CLI tools..."
+cargo install --locked bat        # syntax-highlighted file viewer (bat)
 cargo install --locked sd         # sed replacement
 cargo install --locked fd-find    # find replacement (fd)
 cargo install --locked git-delta  # better git diffs (delta)
 cargo install --locked hyperfine  # benchmarking tool
+cargo install --locked zoxide     # smarter cd
 cargo install --locked starship   # shell prompt
 log "Rust tools installed"
 
