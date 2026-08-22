@@ -13,9 +13,6 @@ sudo apt autoremove
 ## Development Tools
 
 - **VS Code**: Install from https://code.visualstudio.com/
-- **Cursor**: Install from https://cursor.sh/
-  - Configure privacy settings first
-  - Enable Tab completion in markdown files
 - **1Password**: Install from https://1password.com/
   - Set up global keyboard shortcut: https://support.1password.com/keyboard-shortcuts/?linux
   - Note: Ubuntu LTS uses Wayland
@@ -35,7 +32,7 @@ sudo apt autoremove
 
 ## Desktop Customization
 
-- **Gnome Tweaks**: For font customization
+- **Gnome Tweaks**: For font customization. If system is using Gnome.
   ```sh
   sudo apt install gnome-tweaks
   ```
