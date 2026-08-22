@@ -2,6 +2,12 @@
 
 set -eo pipefail
 
+if ! command -v code &>/dev/null; then
+    echo "VSCode's 'code' command is not available, skipping vscode setup."
+    echo "Install VSCode and, on macOS, run 'Shell Command: Install 'code' command in PATH' from the command palette."
+    exit 0
+fi
+
 MY_PLUGINS=$(mktemp)
 
 cat >"$MY_PLUGINS" <<EOF
