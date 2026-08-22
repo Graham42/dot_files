@@ -5,19 +5,8 @@
 #  - Nothing should be configured manually.
 #  - Should be rerunnable to update system.
 
-# Usage:
-#     wget https://github.com/Graham42/dot_files/raw/master/bootstrap/ubuntu.sh
-#     bash ./ubuntu-desktop.sh
-
-set -e
-set -o pipefail
+set -euo pipefail
 set -x
-
-# If we're not running 18.04, these settings are probably all different
-if ! grep 18.04 /etc/lsb-release; then
-  echo "This doesn't look like 18.04"
-  exit 1
-fi
 
 ./bootstrap/ubuntu.sh
 
@@ -75,24 +64,20 @@ apt_source_exists lubomir-brindza-ubuntu-nautilus-typeahead-bionic || (
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F2171AE78ECBC8C6F059FD98301F60F1D6A30942 && \
     echo deb http://ppa.launchpad.net/lubomir-brindza/nautilus-typeahead/ubuntu bionic main | sudo tee /etc/apt/sources.list.d/lubomir-brindza-ubuntu-nautilus-typeahead-bionic.list
 )
-# Perfoce
-#apt_source_exists perforce || ( \
-#    curl -fsSL -o /tmp/perforce.pubkey https://package.perforce.com/perforce.pubkey && \
-#    `# verify the fingerprint` \
-#    cat /tmp/perforce.pubkey | \
-#        gpg --with-colons --import-options import-show --dry-run --import | \
-#        grep -q '^fpr:*E58131C0AEA7B082C6DC4C937123CB760FF18869' && \
-#    sudo apt-key add /tmp/perforce.pubkey && \
-#    sudo sh -c 'echo "deb http://package.perforce.com/apt/ubuntu $(lsb_release -cs) release" > /etc/apt/sources.list.d/perforce.list' \
-#)
 
-# load new ppas
+# load new PPAs
 sudo apt-get update
 
+# Desktop Software:
+# code - text editor, AKA Visual Studio Code
+# peek - animated GIF recorder
+# google-chrome-stable - browser
+# docker-ce - container runtime
+# gimp - image editor
+# spotify-client - music player
+# vlc - media player
 sudo apt-get install -y \
-`# text editor, AKA Visual Studio Code` \
     code \
-`# animated GIF recorder` \
     peek \
     google-chrome-stable \
 `# container runtime` \
@@ -111,4 +96,3 @@ sudo apt-get install -y \
 
 sudo apt-get upgrade -y
 
-./bootstrap/ubuntu-desktop-18.04.sh

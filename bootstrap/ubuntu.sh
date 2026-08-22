@@ -19,6 +19,8 @@ packages=(
   build-essential
   # text editor, gtk version includes +clipboard support for copying to system clipboard
   vim-gtk3
+  # vim fork with more usability improvements
+  neovim
   # json manipulation tool
   jq
   # terminal multiplexer, easy management of multiple terminal panes in single window
@@ -40,19 +42,16 @@ packages=(
 sudo apt-get install -y "${packages[@]}"
 log "Packages installed"
 
-# bash prompt
-log "Installing starship prompt..."
-curl -sS https://starship.rs/install.sh | sh
-log "Starship prompt installed"
-
 # cargo for rust tools
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 source "$HOME/.cargo/env"
 
 log "Installing rust-based CLI tools..."
-cargo install sd         # sed replacement
-cargo install fd-find    # find replacement (fd)
-cargo install git-delta  # better git diffs (delta)
-cargo install hyperfine  # benchmarking tool
-cargo install zoxide     # smarter cd
+cargo install --locked sd         # sed replacement
+cargo install --locked fd-find    # find replacement (fd)
+cargo install --locked git-delta  # better git diffs (delta)
+cargo install --locked hyperfine  # benchmarking tool
+cargo install --locked starship   # shell prompt
 log "Rust tools installed"
+
+log "Run `source ~/.bashrc` or start a new shell to access installed tools."
