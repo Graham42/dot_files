@@ -8,7 +8,7 @@
 set -euo pipefail
 set -x
 
-./bootstrap/ubuntu.sh
+./bootstrap/linux/ubuntu.sh
 
 ################################################################################
 # Packages

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Ensures ~/.gitconfig exists and includes ~/.gitconfig_base at the top.
 # ~/.gitconfig_base is symlinked from this dotfiles repo by init_all.sh.
-# delta installation is handled by bootstrap/macos.sh and bootstrap/ubuntu.sh.
+# delta installation is handled by bootstrap/macos/macos.sh and bootstrap/linux/ubuntu.sh.
 # bat is used by delta for syntax highlighting; its theme cache must be rebuilt
 # when themes are added or changed (stored in home/.config/bat/themes/).
 
