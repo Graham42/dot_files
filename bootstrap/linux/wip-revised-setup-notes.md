@@ -31,3 +31,17 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
 # Laptop battery calibration and limits
 
 see ./laptop-battery.md
+
+# items to add to setup scripts
+
+install neovim
+- use the official ppa to get a more up to date version
+```
+
+```
+
+install gh cli. see https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+
+also see the also readme for candidates.
+
+consider switching software/apt mirrors to be closer for better speed.
