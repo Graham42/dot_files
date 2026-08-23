@@ -20,6 +20,7 @@ sudo apt autoremove
 ## Terminal Setup
 
 - **Guake**: Dropdown terminal
+
   ```sh
   sudo apt install guake
   ```
@@ -33,6 +34,7 @@ sudo apt autoremove
 ## Desktop Customization
 
 - **Gnome Tweaks**: For font customization. If system is using Gnome.
+
   ```sh
   sudo apt install gnome-tweaks
   ```
@@ -42,22 +44,31 @@ sudo apt autoremove
 
 ## Remap keys
 
-To remap Caps Lock to F13 to use for global terminal (source
-http://www.fascinatingcaptain.com/blog/remap-keyboard-keys-for-ubuntu/)
+To remap Caps Lock to F13 (used for the global terminal shortcut), use [`keyd`](https://github.com/rvaiya/keyd). It remaps at the kernel input level, so a single config works under both X11 and Wayland sessions and, unlike editing files under `/usr/share/X11/xkb/`, it isn't reverted when `xkb-data`/`xkeyboard-config` gets updated.
 
 ```sh
-EDITOR=vim sudo -e /usr/share/X11/xkb/symbols/pc
+# Ubuntu 25.04+ / Debian 13+ have keyd available. On older releases, add the PPA first:
+sudo add-apt-repository ppa:keyd-team/ppa
+sudo apt update
+
+sudo apt install keyd
+sudo systemctl enable --now keyd
 ```
 
-Update the key definition for caps lock:
+Create `/etc/keyd/default.conf`:
 
-```diff
-- key <CAPS> { [ Caps_Lock ] };
-+ key <CAPS> { [ F13       ] };
+```ini
+# apply to every keyboard device (use specific vendor:product ids to target one keyboard)
+[ids]
+*
+
+[main]
+capslock = f13
 ```
 
-- Reboot the computer
-- If settings don't persist clear any cached files in `/var/lib/xkb/` and reboot
+Reload with `sudo keyd.rvaiya reload` (or reboot).
+
+_Note_: the `ppa:keyd-team/ppa` package installs the binary as `keyd.rvaiya` rather than `keyd` (to avoid clashing with an unrelated package of that name), though the systemd service is still called `keyd.service`.
 
 ## Automated setup scripts
 
@@ -87,7 +98,6 @@ You'll need to restart the terminal for the font to take effect.
 
 - Download and install [PIA VPN](https://www.privateinternetaccess.com/)
 - Create desktop shortcut in ~/.config/autostart folder
-
 
 ## scrolling speed
 
