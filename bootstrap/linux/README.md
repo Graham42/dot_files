@@ -75,17 +75,11 @@ You can verify the system font with:
 gsettings get org.gnome.desktop.interface monospace-font-name
 ```
 
-- Download UbuntuSans Nerd Font from https://www.nerdfonts.com/font-downloads
-- Install the font
-
 ```sh
-# unzip the font
-unzip ~/Downloads/UbuntuSans.zip -d /tmp/UbuntuSans
-# copy the font to the system fonts directory
-cp /tmp/UbuntuSans/*.ttf /usr/local/share/fonts/
-# clear the font cache
-fc-cache -f -v
+./bootstrap/linux/nerd-font.sh UbuntuMono
 ```
+
+Pass a different font name to install another one - it must match a release asset basename from https://github.com/ryanoasis/nerd-fonts/releases (e.g. `FiraCode`, `Hack`, `JetBrainsMono`), not the display name shown on nerdfonts.com. Defaults to `UbuntuMono` if no argument is given.
 
 You'll need to restart the terminal for the font to take effect.
 
@@ -93,3 +87,8 @@ You'll need to restart the terminal for the font to take effect.
 
 - Download and install [PIA VPN](https://www.privateinternetaccess.com/)
 - Create desktop shortcut in ~/.config/autostart folder
+
+
+## scrolling speed
+
+...
