@@ -55,4 +55,8 @@ cargo install --locked hyperfine  # benchmarking tool
 cargo install --locked starship   # shell prompt
 log "Rust tools installed"
 
+log "Installing Node.js (fnm) and bun..."
+"$(dirname "$0")/node.sh"
+log "Node.js and bun installed"
+
 log "Run 'source ~/.bashrc' or start a new shell to access installed tools."

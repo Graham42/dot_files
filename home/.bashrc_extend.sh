@@ -48,6 +48,24 @@ type vimx >/dev/null 2>&1 && alias vim='vimx'
 alias now='date +%Y-%m-%dT%H:%M:%S%z'
 
 # =============================================================================
+# Node.js (fnm)
+# =============================================================================
+
+# fnm is installed via `cargo install --locked fnm` (see bootstrap/linux/node.sh),
+# so it lands in ~/.cargo/bin - already on PATH via rustup's own shell setup
+if command -v fnm >/dev/null 2>&1; then
+    # --use-on-cd auto-switches node version on `cd` into a dir with a
+    # .nvmrc/.node-version file. Not gated behind the interactive-only check
+    # below since scripts/tools may need node on PATH too, and unlike nvm,
+    # fnm's shell hook is cheap enough not to matter for startup time.
+    if [ -n "$ZSH_VERSION" ]; then
+        eval "$(fnm env --use-on-cd --shell zsh)"
+    elif [ -n "$BASH_VERSION" ]; then
+        eval "$(fnm env --use-on-cd --shell bash)"
+    fi
+fi
+
+# =============================================================================
 # Interactive-only tools (skip in agent/non-interactive shells)
 # =============================================================================
 
