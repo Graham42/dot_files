@@ -64,8 +64,6 @@
 	whitespace-eol-commit = !bash ~/.git-alias-scripts/whitespace-eol-commit.sh
 	# Commits authored since yesterday — useful for standups
 	standup = log --all --since=yesterday --author='Graham McGregor'
-	# Given a branch, outputs number of commits ahead / behind
-	separation = !bash ~/.git-alias-scripts/separation.sh
 	# Find the oldest common ancestor between two branches (defaults: origin/integration, HEAD)
 	# credit to http://stackoverflow.com/a/4991675 for oldest-ancestor
 	oldest-ancestor = !bash -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-origin/integration}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
