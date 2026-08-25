@@ -2,20 +2,15 @@
 
 Mainly focused on a computer used for development.
 
-## Initial Package Installation
+## Quick start
 
 ```sh
-sudo apt update && sudo apt upgrade -y
-sudo apt install git vim-gtk3 jq tmux tree xclip curl ripgrep
-sudo apt autoremove
+./ubuntu.sh
+# If using Ubuntu
+./ubuntu-desktop.sh
+# OR if using Linux Mint
+./mint-desktop.sh
 ```
-
-## Development Tools
-
-- **VS Code**: Install from https://code.visualstudio.com/
-- **1Password**: Install from https://1password.com/
-  - Set up global keyboard shortcut: https://support.1password.com/keyboard-shortcuts/?linux
-  - Note: Ubuntu LTS uses Wayland
 
 ## Terminal Setup
 
