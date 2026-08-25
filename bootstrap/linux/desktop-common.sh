@@ -19,7 +19,8 @@ desktop_common_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$desktop_common_dir/apt-repo-common.sh"
 
 # Desktop software wanted on every machine. Per-distro scripts pass their own
-# extras to desktop_common_install.
+# extras to desktop_common_install. add_1password_repo adds to this list too,
+# but only on amd64.
 DESKTOP_COMMON_PACKAGES=(
     # browser
     google-chrome-stable
@@ -43,6 +44,60 @@ desktop_common_prereqs() {
         curl \
         gnupg \
         software-properties-common
+}
+
+# 1Password. Steps follow https://support.1password.com/install-linux/
+#
+# This takes more setup than the repos below. On top of the apt repo
+# signature, dpkg checks the signature inside the .deb itself. That check
+# needs a debsig policy and key, or the install fails.
+#
+# The desktop app is amd64 only, so this skips other machines. The arm64
+# repo has 1password-cli but no desktop app; install that one by hand:
+#   curl -sSO https://downloads.1password.com/linux/tar/stable/aarch64/1password-latest.tar.gz
+#   sudo tar -xf 1password-latest.tar.gz
+#   sudo mkdir -p /opt/1Password && sudo mv 1password-*/* /opt/1Password
+#   sudo /opt/1Password/after-install.sh
+#
+# Two things still have to be set up by hand after this runs: the global
+# shortcut (https://support.1password.com/keyboard-shortcuts/?linux - note
+# Ubuntu LTS runs Wayland), and, on GNOME, the AppIndicator extension for
+# the tray icon.
+add_1password_repo() {
+    local key_url=https://downloads.1password.com/linux/keys/1password.asc
+    # 1Password documents /usr/share/keyrings, not the /etc/apt/keyrings the
+    # repos below use. Keep their path so a machine set up from their
+    # instructions doesn't end up with two copies of the key.
+    local keyring=/usr/share/keyrings/1password-archive-keyring.gpg
+    # Last 16 hex of their signing key fingerprint
+    # (3FEF9748469ADBE15DA7CA80AC2D62742012EA22). debsig finds the policy and
+    # the key by this id, so it can't be renamed.
+    local debsig_id=AC2D62742012EA22
+
+    if [ "$(dpkg --print-architecture)" != "amd64" ]; then
+        echo "Skipping 1Password: desktop app is amd64 only"
+        return 0
+    fi
+
+    # Added here rather than to the list itself, so the package and the repo
+    # setup stay in sync.
+    DESKTOP_COMMON_PACKAGES+=(1password)
+
+    apt_source_exists 1password || add_apt_key_repo \
+        "$key_url" \
+        "$keyring" \
+        1password \
+        "deb [arch=amd64 signed-by=$keyring] https://downloads.1password.com/linux/debian/amd64 stable main"
+
+    # Runs even when the repo was already added: machines set up before this
+    # existed have the repo but no policy. Repeating it is harmless.
+    sudo install -m 0755 -d "/etc/debsig/policies/$debsig_id"
+    curl -fsSL https://downloads.1password.com/linux/debian/debsig/1password.pol \
+        | sudo tee "/etc/debsig/policies/$debsig_id/1password.pol" >/dev/null
+    sudo install -m 0755 -d "/usr/share/debsig/keyrings/$debsig_id"
+    # The name must be debsig.gpg. 1password.pol asks for it by name.
+    curl -fsSL "$key_url" \
+        | sudo gpg --dearmor --yes -o "/usr/share/debsig/keyrings/$debsig_id/debsig.gpg"
 }
 
 # Third-party apt repos needed by DESKTOP_COMMON_PACKAGES. Call after any
@@ -69,6 +124,9 @@ desktop_common_repos() {
         /etc/apt/keyrings/spotify.gpg \
         spotify \
         "deb [signed-by=/etc/apt/keyrings/spotify.gpg] https://repository.spotify.com stable non-free"
+
+    # 1Password - needs debsig and an arch check, see the function above
+    add_1password_repo
 
     # TODO: screen recorder / animated GIF tool. Peek (previously installed
     # via ppa:peek-developers/stable) is dead upstream - archived by its
