@@ -4,95 +4,32 @@
 #  - Fully configure an ubuntu system.
 #  - Nothing should be configured manually.
 #  - Should be rerunnable to update system.
+#
+# Everything shared with other apt-based desktops lives in
+# desktop-common.sh; what's left here is GNOME/Ubuntu specific.
 
 set -euo pipefail
 set -x
 
-./bootstrap/linux/ubuntu.sh
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+# shellcheck source=./desktop-common.sh
+source "$script_dir/desktop-common.sh"
+
+"$script_dir/ubuntu.sh"
 
 ################################################################################
 # Packages
 ################################################################################
 
-apt_source_exists() {
-    for file in /etc/apt/sources.list.d/$1.list; do
-        if [ -e "$file" ]; then
-            echo "Source already exists: $file"
-            return 0
-        fi
-    done
-    return 1
-}
-# pre-reqs for this script
-sudo apt-get install -y wget
-# packages to allow apt to use a repository over HTTPS
-sudo apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
+desktop_common_prereqs
+desktop_common_repos
 
-# Other PPAs
-
-# Peek is an easy-to-use screen recorder that can ouput animated GIFs
-apt_source_exists peek-* || sudo add-apt-repository ppa:peek-developers/stable
-# Chrome
-apt_source_exists google-chrome || ( \
-    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
-    sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list' \
+# GNOME-only extras - Mint's Cinnamon has no GNOME Shell, so these live here
+# rather than in desktop-common.sh.
+packages=(
+    # tweak gnome settings (was gnome-tweak-tool, package renamed)
+    gnome-tweaks
+    # manage/run gnome shell extensions
+    gnome-shell-extensions
 )
-# Visual Studio Code
-apt_source_exists vscode || ( \
-    wget https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -O /tmp/vscode.deb && \
-    sudo apt-get install -y /tmp/vscode.deb \
-)
-# Docker
-apt_source_exists docker || ( \
-    curl -fsSL -o /tmp/docker.pub https://download.docker.com/linux/ubuntu/gpg && \
-    `# verify the fingerprint` \
-    cat /tmp/docker.pub | \
-        gpg --with-colons --import-options import-show --dry-run --import | \
-        grep -q '^fpr.*0EBFCD88' && \
-    sudo apt-key add /tmp/docker.pub && \
-    sudo sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list' \
-)
-apt_source_exists spotify || (
-    curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add - && \
-    echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-)
-apt_source_exists lubomir-brindza-ubuntu-nautilus-typeahead-bionic || (
-    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F2171AE78ECBC8C6F059FD98301F60F1D6A30942 && \
-    echo deb http://ppa.launchpad.net/lubomir-brindza/nautilus-typeahead/ubuntu bionic main | sudo tee /etc/apt/sources.list.d/lubomir-brindza-ubuntu-nautilus-typeahead-bionic.list
-)
-
-# load new PPAs
-sudo apt-get update
-
-# Desktop Software:
-# code - text editor, AKA Visual Studio Code
-# peek - animated GIF recorder
-# google-chrome-stable - browser
-# docker-ce - container runtime
-# gimp - image editor
-# spotify-client - music player
-# vlc - media player
-sudo apt-get install -y \
-    code \
-    peek \
-    google-chrome-stable \
-`# container runtime` \
-    docker-ce \
-`# image editor` \
-    gimp \
-`# music player` \
-    spotify-client\
-`# media player` \
-    vlc \
-`# tweak gnome settings` \
-    gnome-tweak-tool \
-    gnome-shell-extensions \
-`# GUI for browsing dconf/gnome settings` \
-    dconf-editor
-
-sudo apt-get upgrade -y
-
+desktop_common_install "${packages[@]}"
