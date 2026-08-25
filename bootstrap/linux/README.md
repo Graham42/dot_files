@@ -70,27 +70,25 @@ Reload with `sudo keyd.rvaiya reload` (or reboot).
 
 _Note_: the `ppa:keyd-team/ppa` package installs the binary as `keyd.rvaiya` rather than `keyd` (to avoid clashing with an unrelated package of that name), though the systemd service is still called `keyd.service`.
 
-## Automated setup scripts
-
-Run
-
-```sh
-cd ~/dot_files && ./init_all.sh
-```
-
 ## Nerd Fonts
 
-You can verify the system font with:
+`ubuntu-desktop.sh` and `mint-desktop.sh` each install a Nerd Font at the end of the run - the patched version of that distro's own default monospace font (`UbuntuMono` on Ubuntu, `DejaVuSansMono` on Mint), so no manual step is needed.
+
+To install another one, run the script directly:
+
+```sh
+./bootstrap/linux/nerd-font.sh FiraCode
+```
+
+The name must match a release asset basename from https://github.com/ryanoasis/nerd-fonts/releases (e.g. `FiraCode`, `Hack`, `JetBrainsMono`), not the display name shown on nerdfonts.com. Defaults to `UbuntuMono` if no argument is given.
+
+On GNOME you can verify the current system monospace font with:
 
 ```sh
 gsettings get org.gnome.desktop.interface monospace-font-name
 ```
 
-```sh
-./bootstrap/linux/nerd-font.sh UbuntuMono
-```
-
-Pass a different font name to install another one - it must match a release asset basename from https://github.com/ryanoasis/nerd-fonts/releases (e.g. `FiraCode`, `Hack`, `JetBrainsMono`), not the display name shown on nerdfonts.com. Defaults to `UbuntuMono` if no argument is given.
+Cinnamon has no equivalent gsettings key - check System Settings > Fonts instead.
 
 You'll need to restart the terminal for the font to take effect.
 

@@ -33,3 +33,11 @@ desktop_common_repos
 # no Mint-specific packages to add on top of the common set
 # shellcheck disable=SC2119 # no extra packages, so no args to pass
 desktop_common_install
+
+################################################################################
+# Fonts
+################################################################################
+
+# DejaVuSansMono: the Nerd Font patched version of Cinnamon/Mint-Y's default
+# monospace font (see nerd-font.sh for how to check the current default).
+"$script_dir/nerd-font.sh" DejaVuSansMono

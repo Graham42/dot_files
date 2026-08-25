@@ -33,3 +33,11 @@ packages=(
     gnome-shell-extensions
 )
 desktop_common_install "${packages[@]}"
+
+################################################################################
+# Fonts
+################################################################################
+
+# UbuntuMono: the Nerd Font patched version of GNOME/Yaru's default monospace
+# font on Ubuntu (see nerd-font.sh for how to check the current default).
+"$script_dir/nerd-font.sh" UbuntuMono
