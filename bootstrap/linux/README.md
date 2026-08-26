@@ -14,16 +14,23 @@ Mainly focused on a computer used for development.
 
 ## Terminal Setup
 
-- **Alacritty drop-down terminal**: a Guake-style terminal on a global hotkey. Caps Lock opens it (see [Remap keys](#remap-keys)). `ubuntu-desktop.sh` runs `alacritty-quake.sh`, so there is no manual step. Run it directly to change the hotkey or undo the setup:
+- **Alacritty drop-down terminal**: a Guake-style terminal on a global hotkey. Caps Lock opens it (see [Remap keys](#remap-keys)). `ubuntu-desktop.sh` runs `alacritty-quake.py`, so there is no manual step. Run it directly to change the hotkey or undo the setup:
 
   ```sh
-  ./alacritty-quake.sh --shortcut '<Super>grave'
-  ./alacritty-quake.sh --uninstall
+  ./alacritty-quake.py --shortcut '<Super>grave'
+  ./alacritty-quake.py --uninstall
   ```
 
-  Ubuntu only - a GNOME Shell extension drives it, and Cinnamon has no equivalent. The script's header explains why it's built that way.
+  Ubuntu only - a GNOME Shell extension drives it, and Cinnamon has no equivalent. The script's header explains why it's built that way, and why it is the one python script in this directory. It needs no packages beyond python3 itself.
 
-- **Terminal Color Theme**: Install using [Gogh](https://github.com/Gogh-Co/Gogh)
+- **Terminal color theme**: the same script installs one, so there is no manual step here either. It takes a theme from [Gogh](https://github.com/Gogh-Co/Gogh), converts it to Alacritty's TOML in `~/.config/alacritty/themes/`, and adds an import for it to `~/.config/alacritty/alacritty.toml`. Both the drop-down and ordinary Alacritty windows pick it up. Defaults to Night Owl; to use another:
+
+  ```sh
+  ./alacritty-quake.py --theme 'Tokyo Night'
+  ./alacritty-quake.py --theme ''            # leave the colors alone
+  ```
+
+  The name is the theme's file name in [Gogh's themes directory](https://github.com/Gogh-Co/Gogh/tree/master/themes), minus the `.yml`. Only the import line in `alacritty.toml` is managed - the rest of that file is yours, and switching themes replaces the old import rather than stacking on it.
 
 ## Desktop Customization
 
@@ -79,8 +86,19 @@ You'll need to restart the terminal for the font to take effect.
 
 ## VPN
 
-- Download and install [PIA VPN](https://www.privateinternetaccess.com/)
-- Create desktop shortcut in ~/.config/autostart folder
+`ubuntu-desktop.sh` and `mint-desktop.sh` both install the [PIA](https://www.privateinternetaccess.com/) app, so there is no manual step. Run it directly to install on its own, or to remove the app:
+
+```sh
+./pia-vpn.sh
+./pia-vpn.sh --uninstall
+```
+
+PIA has no apt repo - only a `.run` installer whose filename carries the version - so the script looks up the current release, skips a machine that already has it, and upgrades one that doesn't. Settings survive an upgrade.
+
+Two things are left to do by hand after it runs:
+
+- Log in. Your PIA username looks like `p1234567`.
+- Turn on **Launch on System Startup** in the app's settings if you want it running at login. The client writes `~/.config/autostart/piavpn.desktop` from that setting and rewrites it on launch, so it is not worth scripting.
 
 ## Scrolling speed
 

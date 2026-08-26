@@ -34,6 +34,12 @@ packages=(
 desktop_common_install "${packages[@]}"
 
 ################################################################################
+# VPN
+################################################################################
+
+desktop_common_pia_vpn
+
+################################################################################
 # Keyboard
 ################################################################################
 
@@ -44,8 +50,9 @@ desktop_common_remap_keys
 ################################################################################
 
 # Drop-down Alacritty, opened with the Caps Lock remap above. A GNOME Shell
-# extension owns the hotkey and the show/hide.
-"$script_dir/alacritty-quake.sh"
+# extension owns the hotkey and the show/hide; the same script gives Alacritty
+# its color theme.
+"$script_dir/alacritty-quake.py"
 
 ################################################################################
 # Fonts

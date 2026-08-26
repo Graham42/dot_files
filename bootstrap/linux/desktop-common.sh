@@ -13,6 +13,7 @@
 #   ...add distro-specific apt repos here...
 #   desktop_common_repos
 #   desktop_common_install <extra packages...>
+#   desktop_common_pia_vpn
 #   desktop_common_remap_keys
 
 desktop_common_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -147,6 +148,15 @@ desktop_common_install() {
     sudo apt-get update
     sudo apt-get install -y "${DESKTOP_COMMON_PACKAGES[@]}" "$@"
     sudo apt-get upgrade -y
+}
+
+# Installs the Private Internet Access VPN app. Not an apt package - PIA
+# only ships a .run installer - so it runs after desktop_common_install
+# rather than joining the package list. Safe to run again: it skips a machine
+# that is already on the current release, and upgrades one that isn't. See
+# pia-vpn.sh.
+desktop_common_pia_vpn() {
+    "$desktop_common_dir/pia-vpn.sh"
 }
 
 # Remaps Caps Lock to F14. On Ubuntu that is the key the drop-down terminal

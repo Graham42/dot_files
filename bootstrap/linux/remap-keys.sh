@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Remaps Caps Lock to F14 using keyd, so it can drive the global drop-down
-# terminal shortcut (see alacritty-quake.sh) without burning a real key.
+# terminal shortcut (see alacritty-quake.py) without burning a real key.
 #
 # Usage: ./remap-keys.sh [--from KEY] [--to KEY] [--uninstall]
 #   --from KEY     Key to remap. Default: capslock.
