@@ -13,6 +13,7 @@
 #   ...add distro-specific apt repos here...
 #   desktop_common_repos
 #   desktop_common_install <extra packages...>
+#   desktop_common_remap_keys
 
 desktop_common_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=./apt-repo-common.sh
@@ -146,4 +147,11 @@ desktop_common_install() {
     sudo apt-get update
     sudo apt-get install -y "${DESKTOP_COMMON_PACKAGES[@]}" "$@"
     sudo apt-get upgrade -y
+}
+
+# Remaps Caps Lock to F14. On Ubuntu that is the key the drop-down terminal
+# opens with; on Mint nothing is bound to it yet. Safe to run again, and it
+# leaves a hand-written /etc/keyd/default.conf alone. See remap-keys.sh.
+desktop_common_remap_keys() {
+    "$desktop_common_dir/remap-keys.sh"
 }

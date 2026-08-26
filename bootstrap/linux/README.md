@@ -14,12 +14,14 @@ Mainly focused on a computer used for development.
 
 ## Terminal Setup
 
-- **Guake**: Dropdown terminal
+- **Alacritty drop-down terminal**: a Guake-style terminal on a global hotkey. Caps Lock opens it (see [Remap keys](#remap-keys)). `ubuntu-desktop.sh` runs `alacritty-quake.sh`, so there is no manual step. Run it directly to change the hotkey or undo the setup:
 
   ```sh
-  sudo apt install guake
+  ./alacritty-quake.sh --shortcut '<Super>grave'
+  ./alacritty-quake.sh --uninstall
   ```
-  - Configure global keyboard shortcut in Ubuntu system settings (Wayland requirement)
+
+  Ubuntu only - a GNOME Shell extension drives it, and Cinnamon has no equivalent. The script's header explains why it's built that way.
 
 - **Terminal Color Theme**: Install using [Gogh](https://github.com/Gogh-Co/Gogh)
 
@@ -36,31 +38,22 @@ Mainly focused on a computer used for development.
 
 ## Remap keys
 
-To remap Caps Lock to F13 (used for the global terminal shortcut), use [`keyd`](https://github.com/rvaiya/keyd). It remaps at the kernel input level, so a single config works under both X11 and Wayland sessions and, unlike editing files under `/usr/share/X11/xkb/`, it isn't reverted when `xkb-data`/`xkeyboard-config` gets updated.
+Caps Lock is remapped to F14, the key the drop-down terminal opens with. Both `ubuntu-desktop.sh` and `mint-desktop.sh` run `remap-keys.sh`, so there is no manual step. Mint has no drop-down terminal yet, so there Caps Lock just sends a key nothing is bound to.
+
+To change the mapping, or undo it, run the script directly:
 
 ```sh
-# Ubuntu 25.04+ / Debian 13+ have keyd available. On older releases, add the PPA first:
-sudo add-apt-repository ppa:keyd-team/ppa
-sudo apt update
-
-sudo apt install keyd
-sudo systemctl enable --now keyd
+./remap-keys.sh                             # capslock -> f14
+./remap-keys.sh --from capslock --to esc    # or anything in `keyd.rvaiya list-keys`
+./remap-keys.sh --uninstall
 ```
 
-Create `/etc/keyd/default.conf`:
+Two things to know before binding a shortcut to it:
 
-```ini
-# apply to every keyboard device (use specific vendor:product ids to target one keyboard)
-[ids]
-*
+- The desktop sees F14 as `XF86Launch5`. xkb renames F13 through F18, so a shortcut set to `F14` never fires.
+- If a bad config leaves the keyboard unusable, press backspace, escape and enter together. That is keyd's panic sequence, and it kills the daemon.
 
-[main]
-capslock = f13
-```
-
-Reload with `sudo keyd.rvaiya reload` (or reboot).
-
-_Note_: the `ppa:keyd-team/ppa` package installs the binary as `keyd.rvaiya` rather than `keyd` (to avoid clashing with an unrelated package of that name), though the systemd service is still called `keyd.service`.
+The script's header covers the rest: why [`keyd`](https://github.com/rvaiya/keyd) rather than the desktop's own keyboard settings, why F14 and not F13, and where the package comes from on each distro.
 
 ## Nerd Fonts
 
@@ -69,7 +62,7 @@ _Note_: the `ppa:keyd-team/ppa` package installs the binary as `keyd.rvaiya` rat
 To install another one, run the script directly:
 
 ```sh
-./bootstrap/linux/nerd-font.sh FiraCode
+./nerd-font.sh FiraCode
 ```
 
 The name must match a release asset basename from https://github.com/ryanoasis/nerd-fonts/releases (e.g. `FiraCode`, `Hack`, `JetBrainsMono`), not the display name shown on nerdfonts.com. Defaults to `UbuntuMono` if no argument is given.

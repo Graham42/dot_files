@@ -24,8 +24,7 @@ source "$script_dir/desktop-common.sh"
 desktop_common_prereqs
 desktop_common_repos
 
-# GNOME-only extras - Mint's Cinnamon has no GNOME Shell, so these live here
-# rather than in desktop-common.sh.
+# GNOME-only extras.
 packages=(
     # tweak gnome settings (was gnome-tweak-tool, package renamed)
     gnome-tweaks
@@ -33,6 +32,20 @@ packages=(
     gnome-shell-extensions
 )
 desktop_common_install "${packages[@]}"
+
+################################################################################
+# Keyboard
+################################################################################
+
+desktop_common_remap_keys
+
+################################################################################
+# Terminal
+################################################################################
+
+# Drop-down Alacritty, opened with the Caps Lock remap above. A GNOME Shell
+# extension owns the hotkey and the show/hide.
+"$script_dir/alacritty-quake.sh"
 
 ################################################################################
 # Fonts
