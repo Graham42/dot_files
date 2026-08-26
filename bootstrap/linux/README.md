@@ -92,6 +92,17 @@ You'll need to restart the terminal for the font to take effect.
 - Download and install [PIA VPN](https://www.privateinternetaccess.com/)
 - Create desktop shortcut in ~/.config/autostart folder
 
-## scrolling speed
+## Scrolling speed
 
-...
+Touchpad scroll speed is the one touchpad setting that neither GNOME nor Cinnamon puts in their settings app. Run this instead:
+
+```sh
+./scroll-speed.sh              # defaults to --factor 0.25, lower is slower
+./scroll-speed.sh --uninstall
+```
+
+The script checks what kind of session you are in and picks a method to match, because there is no single answer:
+
+- **Wayland**, which is all Ubuntu 26.04 has. GNOME 50 dropped the X11 session, so there is no `/usr/share/xsessions` at all. The script installs [Wayland Scroll Factor](https://github.com/daniel-g-carrasco/wayland-scroll-factor), runs `wsf set` and `wsf enable`, then asks you to restart.
+- **X11**, which is still Mint 22's default. The script writes a small `xorg.conf.d` file that sets the libinput driver's `ScrollPixelDistance`. Nothing to install, and it takes effect right away.
+
