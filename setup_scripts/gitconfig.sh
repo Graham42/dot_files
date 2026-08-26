@@ -39,9 +39,19 @@ else
     cp "$tmp" "$GITCONFIG"
 fi
 
-if command -v bat &>/dev/null; then
+# Debian/Ubuntu ship bat as "batcat"; ubuntu.sh links it to bat, but machines
+# provisioned before that change only have batcat on PATH.
+BAT=""
+for candidate in bat batcat; do
+    if command -v "$candidate" &>/dev/null; then
+        BAT="$candidate"
+        break
+    fi
+done
+
+if [ -n "$BAT" ]; then
     echo "Rebuilding bat theme cache..."
-    bat cache --build
+    "$BAT" cache --build
 else
     echo "bat is not installed — skipping theme cache build (install bat to enable delta syntax highlighting)"
 fi

@@ -102,7 +102,7 @@ i=0
 while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
     base_dir=${dirs_to_link[$i]}
 
-    for file in $( ls_files "$base_dir" ); do
+    while IFS= read -r file; do
         dest_file=$( echo "$base_dir/$file" | sed "s#^home#${USER_HOME}#g")
         # remove symbolic links & back up existing files so we don't overwrite
         if [ -L "$dest_file" ]; then
@@ -120,12 +120,13 @@ while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
         mkdir -p "$TARGET_DIR"
         ln -s "$CWD/$base_dir/$file" "$dest_file"
         loginfo "  Linked $dest_file -> $CWD/$base_dir/$file"
-    done
+    # process substitution (not a pipe) so the loop runs in this shell
+    done < <( ls_files "$base_dir" )
 
     # push any sub dirs onto the array of things left to do
-    for _dir in $( ls_dirs "$base_dir" ); do
+    while IFS= read -r _dir; do
         dirs_to_link+=( "$base_dir/$_dir" )
-    done
+    done < <( ls_dirs "$base_dir" )
 
     ((i=i+1))
 done
@@ -138,11 +139,11 @@ done
 
 if [ -d setup_scripts ]; then
     loginfo "Running setup scripts..."
-    for initscript in $( ls_files setup_scripts ); do
+    while IFS= read -r initscript; do
         loginfo "  Running setup_scripts/$initscript"
         initscript_path="setup_scripts/$initscript"
         "./$initscript_path" || logfatal "Failed: setup_scripts/$initscript"
-    done
+    done < <( ls_files setup_scripts )
 fi
 
 logok "Config updated! Run 'source ~/.bashrc' to update your current terminal."
