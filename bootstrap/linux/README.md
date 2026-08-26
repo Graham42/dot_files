@@ -23,9 +23,6 @@ Mainly focused on a computer used for development.
 
 - **Terminal Color Theme**: Install using [Gogh](https://github.com/Gogh-Co/Gogh)
 
-- **Starship Prompt**: Install from https://starship.rs/
-  - Prerequisite: install a [Nerd Font](https://www.nerdfonts.com/)
-
 ## Desktop Customization
 
 - **Gnome Tweaks**: For font customization. If system is using Gnome.
