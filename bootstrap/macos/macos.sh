@@ -49,8 +49,8 @@ fi
 source "$HOME/.cargo/env"
 
 log "Installing rust-based CLI tools..."
-cargo install sd         # sed replacement
-cargo install git-delta  # better git diffs (delta)
-cargo install hyperfine  # benchmarking tool
-cargo install zoxide     # smarter cd
+cargo install --locked sd         # sed replacement
+cargo install --locked git-delta  # better git diffs (delta)
+cargo install --locked hyperfine  # benchmarking tool
+cargo install --locked zoxide     # smarter cd
 log "Rust tools installed"
