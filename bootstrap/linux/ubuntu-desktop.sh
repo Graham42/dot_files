@@ -44,6 +44,12 @@ desktop_common_install "${packages[@]}"
 desktop_common_pia_vpn
 
 ################################################################################
+# Apps
+################################################################################
+
+desktop_common_obsidian
+
+################################################################################
 # Keyboard
 ################################################################################
 
@@ -65,3 +71,15 @@ desktop_common_remap_keys
 # UbuntuMono: the Nerd Font patched version of GNOME/Yaru's default monospace
 # font on Ubuntu (see nerd-font.sh for how to check the current default).
 "$script_dir/nerd-font.sh" UbuntuMono
+
+################################################################################
+# GNOME settings
+################################################################################
+
+# ubuntu-desktop-26.04-settings.sh hardcodes gsettings keys/values that only
+# apply to 26.04's GNOME version, and exits 1 on anything else - so it's only
+# safe to run under the same version check it makes internally, not
+# unconditionally like the rest of this script.
+if grep -q 26.04 /etc/lsb-release; then
+    "$script_dir/ubuntu-desktop-26.04-settings.sh"
+fi

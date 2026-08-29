@@ -29,21 +29,31 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 # Shrink the dock icons (default is 48px)
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 36
 
-# Pin Google Chrome to the dock. dash-to-dock reads the same favorite-apps
-# list as GNOME's own dash, so this is the one gsettings key for it.
+# Pin an app to the dock, by .desktop id. dash-to-dock reads the same
+# favorite-apps list as GNOME's own dash, so this is the one gsettings key
+# for it.
 #
 # Merges into the existing list rather than overwriting it, so this stays
 # safe to rerun and doesn't clobber any other apps already pinned.
-chrome_desktop_id='google-chrome.desktop'
-existing_favorites="$(gsettings get org.gnome.shell favorite-apps)"
-if [[ "$existing_favorites" != *"$chrome_desktop_id"* ]]; then
-    if [ "$existing_favorites" = "@as []" ]; then
-        new_favorites="['$chrome_desktop_id']"
-    else
-        new_favorites="${existing_favorites%]}, '$chrome_desktop_id']"
+pin_to_dock() {
+    local desktop_id="$1"
+    local existing_favorites new_favorites
+    existing_favorites="$(gsettings get org.gnome.shell favorite-apps)"
+    if [[ "$existing_favorites" != *"$desktop_id"* ]]; then
+        if [ "$existing_favorites" = "@as []" ]; then
+            new_favorites="['$desktop_id']"
+        else
+            new_favorites="${existing_favorites%]}, '$desktop_id']"
+        fi
+        gsettings set org.gnome.shell favorite-apps "$new_favorites"
     fi
-    gsettings set org.gnome.shell favorite-apps "$new_favorites"
-fi
+}
+
+pin_to_dock google-chrome.desktop
+pin_to_dock spotify.desktop
+# Obsidian's .desktop id is its reverse-DNS app id, not just obsidian.desktop
+# - see the file the .deb installs at /usr/share/applications.
+pin_to_dock md.obsidian.Obsidian.desktop
 
 ################################################################################
 # 1Password
