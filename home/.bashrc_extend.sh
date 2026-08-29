@@ -11,17 +11,38 @@ export SUDO_EDITOR=vim
 if [ -n "$BASH_VERSION" ]; then
     # Don't put duplicate lines or lines starting with space in the history
     export HISTCONTROL=ignoreboth
+    # Don't log bare `ls`/`ll` (still logs `ls -la` etc, since HISTIGNORE
+    # matches the whole line, not just the command name)
+    export HISTIGNORE="ls:ll"
     # Unlimited history
     export HISTSIZE=-1
     export HISTFILESIZE=-1
+    # Timestamp each entry (shown via `history`)
+    export HISTTIMEFORMAT="%F %T "
     # Append to history on exit instead of overwriting
     shopt -s histappend
+    # Write each command to the history file right away instead of only on
+    # shell exit, so concurrent sessions don't lose/clobber each other's
+    # history. Set before starship's init below, which preserves (rather
+    # than overwrites) any PROMPT_COMMAND already set.
+    PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 elif [ -n "$ZSH_VERSION" ]; then
     setopt HIST_IGNORE_DUPS
     setopt HIST_IGNORE_SPACE
     setopt APPEND_HISTORY
-    export HISTSIZE=100000
-    export SAVEHIST=100000
+    # Write each command to the history file right away instead of only on
+    # shell exit, so concurrent sessions don't lose/clobber each other's
+    # history
+    setopt INC_APPEND_HISTORY
+    # Live-sync history across all open sessions (implies INC_APPEND_HISTORY;
+    # kept both for clarity)
+    setopt SHARE_HISTORY
+    # Timestamp each entry (zsh's equivalent of bash's HISTTIMEFORMAT)
+    setopt EXTENDED_HISTORY
+    # zsh's equivalent of HISTIGNORE: one glob pattern, alternatives in (a|b)
+    export HISTORY_IGNORE="(ls|ll)"
+    export HISTSIZE=1000000
+    export SAVEHIST=1000000
 fi
 
 # =============================================================================
