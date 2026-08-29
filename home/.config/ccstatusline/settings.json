@@ -55,7 +55,7 @@
       }
     ]
   ],
-  "flexMode": "full-minus-40",
+  "flexMode": "full",
   "compactThreshold": 60,
   "colorLevel": 2,
   "defaultPaddingSide": "both",
@@ -79,6 +79,5 @@
   "installation": {
     "method": "auto-update",
     "packageManager": "bun"
-  },
-  "exportedBy": "2.2.27"
+  }
 }
