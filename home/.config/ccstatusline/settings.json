@@ -1,14 +1,24 @@
 {
-  "version": 3,
+  "colorLevel": 2,
+  "compactThreshold": 60,
+  "defaultPaddingSide": "both",
+  "flexMode": "full",
+  "gitCacheTtlSeconds": 5,
+  "globalBold": false,
+  "inheritSeparatorColors": false,
+  "installation": {
+    "method": "auto-update",
+    "packageManager": "bun"
+  },
   "lines": [
     [
       {
         "id": "692deab2-e33f-455f-851b-cf5365b8500c",
-        "type": "current-working-dir",
-        "rawValue": true,
         "metadata": {
           "abbreviateHome": "true"
-        }
+        },
+        "rawValue": true,
+        "type": "current-working-dir"
       },
       {
         "id": "27880afc-4f1c-471a-bd03-5ca741596988",
@@ -21,20 +31,20 @@
     ],
     [
       {
-        "id": "1",
-        "type": "model",
         "color": "cyan",
-        "rawValue": true
+        "id": "1",
+        "rawValue": true,
+        "type": "model"
       },
       {
+        "customText": " ",
         "id": "d04add53-c645-4f8a-90be-a68ee63f4c8b",
-        "type": "custom-text",
-        "customText": " "
+        "type": "custom-text"
       },
       {
         "id": "091e348e-ca9d-46b1-afb8-e15405da598e",
-        "type": "thinking-effort",
-        "rawValue": true
+        "rawValue": true,
+        "type": "thinking-effort"
       },
       {
         "id": "2",
@@ -42,10 +52,24 @@
       },
       {
         "id": "87eee3e8-42c6-4d87-9d30-73174550016d",
-        "type": "context-bar",
         "metadata": {
           "display": "slider"
-        }
+        },
+        "type": "context-bar"
+      }
+    ],
+    [
+      {
+        "id": "3a8d1527-8558-4f6a-9f82-82d05e8ff912",
+        "type": "session-usage"
+      },
+      {
+        "id": "bae82977-5ce6-478a-bad3-4a30f3202f3f",
+        "type": "separator"
+      },
+      {
+        "id": "22a33c4d-eb58-4527-a115-7170fafd4ceb",
+        "type": "reset-timer"
       }
     ],
     [
@@ -55,29 +79,15 @@
       }
     ]
   ],
-  "flexMode": "full",
-  "compactThreshold": 60,
-  "colorLevel": 2,
-  "defaultPaddingSide": "both",
-  "inheritSeparatorColors": false,
-  "globalBold": false,
-  "gitCacheTtlSeconds": 5,
   "minimalistMode": false,
   "powerline": {
-    "enabled": false,
-    "separators": [
-      ""
-    ],
-    "separatorInvertBackground": [
-      false
-    ],
-    "startCaps": [],
-    "endCaps": [],
     "autoAlign": false,
-    "continueThemeAcrossLines": false
+    "continueThemeAcrossLines": false,
+    "enabled": false,
+    "endCaps": [],
+    "separatorInvertBackground": [false],
+    "separators": ["\ue0b0"],
+    "startCaps": []
   },
-  "installation": {
-    "method": "auto-update",
-    "packageManager": "bun"
-  }
+  "version": 3
 }

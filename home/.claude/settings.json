@@ -1,16 +1,16 @@
 {
-  "model": "sonnet",
-  "statusLine": {
-    "type": "command",
-    "command": "bunx -y ccstatusline@latest",
-    "padding": 0,
-    "refreshInterval": 10
-  },
-  "tui": "default",
-  "theme": "dark",
   "agentPushNotifEnabled": true,
   "attribution": {
     "sessionUrl": false
   },
-  "showClearContextOnPlanAccept": true
+  "model": "sonnet",
+  "showClearContextOnPlanAccept": true,
+  "statusLine": {
+    "command": "bunx -y ccstatusline@latest",
+    "padding": 0,
+    "refreshInterval": 10,
+    "type": "command"
+  },
+  "theme": "dark",
+  "tui": "default"
 }
