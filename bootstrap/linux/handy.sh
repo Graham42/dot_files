@@ -20,6 +20,10 @@ log() {
     echo -e "\033[34m$*\033[0m"
 }
 
+warn() {
+    echo -e "\033[33m$*\033[0m" >&2
+}
+
 arch="$(dpkg --print-architecture)"
 
 log "Looking up the latest Handy .deb release for $arch..."
@@ -84,3 +88,9 @@ Icon=handy
 Terminal=false
 X-GNOME-Autostart-enabled=true
 EOF
+
+# Handy ships with no transcription model, and there's no CLI flag to fetch
+# one - only the settings UI can download a model. So this last step still
+# has to be done by hand.
+warn "Handy needs a model before it can transcribe anything: open it and download one from Settings > Models."
+warn "Check what's installed any time with: handy --list-models  (add --json to script against it)"
