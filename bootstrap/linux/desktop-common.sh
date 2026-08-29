@@ -17,6 +17,7 @@
 #   desktop_common_obsidian
 #   desktop_common_handy
 #   desktop_common_remap_keys
+#   desktop_common_disable_while_typing
 
 desktop_common_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=./apt-repo-common.sh
@@ -184,4 +185,12 @@ desktop_common_handy() {
 # leaves a hand-written /etc/keyd/default.conf alone. See remap-keys.sh.
 desktop_common_remap_keys() {
     "$desktop_common_dir/remap-keys.sh"
+}
+
+# Makes sure the touchpad ignores itself while typing (and, where available,
+# while the TrackPoint is in use), on GNOME or Cinnamon alike. Safe to run
+# again - it's just a gsettings key, already on by default on both desktops.
+# See disable-while-typing.sh.
+desktop_common_disable_while_typing() {
+    "$desktop_common_dir/disable-while-typing.sh"
 }

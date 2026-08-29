@@ -122,3 +122,17 @@ The script checks what kind of session you are in and picks a method to match, b
 - **Wayland**, which is all Ubuntu 26.04 has. GNOME 50 dropped the X11 session, so there is no `/usr/share/xsessions` at all. The script installs [Wayland Scroll Factor](https://github.com/daniel-g-carrasco/wayland-scroll-factor), runs `wsf set` and `wsf enable`, then asks you to restart.
 - **X11**, which is still Mint 22's default. The script writes a small `xorg.conf.d` file that sets the libinput driver's `ScrollPixelDistance`. Nothing to install, and it takes effect right away.
 
+## Disable touchpad while typing
+
+`ubuntu-desktop.sh` and `mint-desktop.sh` both make sure the touchpad ignores itself while you're on the keyboard, so a resting palm or thumb doesn't move the pointer or click something - there is no manual step. Run it directly to check the current setting or turn it off:
+
+```sh
+./disable-while-typing.sh --status
+./disable-while-typing.sh --off
+./disable-while-typing.sh              # back on
+```
+
+This is libinput's disable-while-typing (DWT), which is on by default - both GNOME and Cinnamon already expose it as a checkbox in their own Settings app. The value here is a rerunnable command instead of hunting through Settings after it gets switched off by accident. The script also sets disable-while-trackpointing where the schema has it, since a resting palm near a ThinkPad's TrackPoint is the same problem.
+
+This is *not* the other thing people call "palm rejection" - a palm landing on the touchpad while actively using it, rather than while typing. That's libinput's own edge/pressure heuristics, tuned per touchpad model via its quirks database. There's no desktop setting for it and no general script can fix it; it needs `libinput measure touchpad-size` and a hardware-specific quirks override instead.
+
