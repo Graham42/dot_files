@@ -54,6 +54,7 @@ pin_to_dock spotify.desktop
 # Obsidian's .desktop id is its reverse-DNS app id, not just obsidian.desktop
 # - see the file the .deb installs at /usr/share/applications.
 pin_to_dock md.obsidian.Obsidian.desktop
+pin_to_dock Handy.desktop
 
 ################################################################################
 # 1Password

@@ -15,6 +15,7 @@
 #   desktop_common_install <extra packages...>
 #   desktop_common_pia_vpn
 #   desktop_common_obsidian
+#   desktop_common_handy
 #   desktop_common_remap_keys
 
 desktop_common_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -167,6 +168,15 @@ desktop_common_pia_vpn() {
 # doesn't. See obsidian.sh.
 desktop_common_obsidian() {
     "$desktop_common_dir/obsidian.sh"
+}
+
+# Installs Handy. Not an apt package - Handy only ships a .deb via GitHub
+# releases, no apt repo - so this runs after desktop_common_install rather
+# than joining the package list. Safe to run again: it skips a machine that
+# already has the current release, and upgrades one that doesn't. See
+# handy.sh.
+desktop_common_handy() {
+    "$desktop_common_dir/handy.sh"
 }
 
 # Remaps Caps Lock to F14. On Ubuntu that is the key the drop-down terminal

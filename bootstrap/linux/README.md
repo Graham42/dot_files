@@ -100,6 +100,14 @@ Two things are left to do by hand after it runs:
 - Log in. Your PIA username looks like `p1234567`.
 - Turn on **Launch on System Startup** in the app's settings if you want it running at login. The client writes `~/.config/autostart/piavpn.desktop` from that setting and rewrites it on launch, so it is not worth scripting.
 
+## Apps
+
+`ubuntu-desktop.sh` and `mint-desktop.sh` both install [Handy](https://handy.computer/), an offline speech-to-text app, so there is no manual step. Unlike PIA above, Handy has no in-app "launch on startup" toggle to own this, so `handy.sh` writes `~/.config/autostart/handy.desktop` itself, starting it minimized to the tray (`handy --start-hidden`) on login. Run it directly to install/update Handy and (re-)enable autostart on its own:
+
+```sh
+./handy.sh
+```
+
 ## Scrolling speed
 
 Touchpad scroll speed is the one touchpad setting that neither GNOME nor Cinnamon puts in their settings app. Run this instead:
