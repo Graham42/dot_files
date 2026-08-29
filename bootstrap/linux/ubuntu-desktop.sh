@@ -9,7 +9,6 @@
 # desktop-common.sh; what's left here is GNOME/Ubuntu specific.
 
 set -euo pipefail
-set -x
 
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 # shellcheck source=./desktop-common.sh
@@ -30,6 +29,11 @@ packages=(
     gnome-tweaks
     # manage/run gnome shell extensions
     gnome-shell-extensions
+    # fingerprint reader support: daemon (fprintd) + PAM module
+    # (libpam-fprintd) for login/sudo. No GUI enrollment wired up yet -
+    # run `fprintd-enroll` by hand.
+    fprintd
+    libpam-fprintd
 )
 desktop_common_install "${packages[@]}"
 
