@@ -66,6 +66,15 @@ if command -v fnm >/dev/null 2>&1; then
 fi
 
 # =============================================================================
+# Agent CLIs (Claude)
+# =============================================================================
+
+# Launch claude with a specific model
+alias claude-sonnet='claude --model claude-sonnet-5'
+alias claude-opus='claude --model claude-opus-5'
+alias claude-fable='claude --model claude-fable-5'
+
+# =============================================================================
 # Interactive-only tools (skip in agent/non-interactive shells)
 # =============================================================================
 
