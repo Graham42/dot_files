@@ -1,0 +1,9 @@
+{
+  "model": "sonnet",
+  "tui": "default",
+  "theme": "dark",
+  "agentPushNotifEnabled": true,
+  "attribution": {
+    "sessionUrl": false
+  }
+}
