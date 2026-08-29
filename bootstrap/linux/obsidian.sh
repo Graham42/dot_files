@@ -62,6 +62,10 @@ fi
 
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
+# mktemp -d makes this 700, readable only by us. apt-get install on a local
+# path drops privileges to the _apt user to read/verify it before install,
+# and _apt can't see into a dir it has no access to - so open it up.
+chmod 755 "$tmpdir"
 
 log "Downloading $deb..."
 curl -fSL --progress-bar -o "$tmpdir/$deb" "$url"
