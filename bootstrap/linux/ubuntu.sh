@@ -6,15 +6,30 @@ function log {
   echo -e "\033[34m$*\033[0m"
 }
 
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+# shellcheck source=./apt-repo-common.sh
+source "$script_dir/apt-repo-common.sh"
+
 log "Initial update and upgrade of system..."
 sudo apt update && sudo apt upgrade -y
 sudo apt autoremove -y
 log "System updated"
 
+log "Adding GitHub CLI apt repo..."
+apt_source_exists github-cli || add_apt_key_repo \
+  https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+  /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+  github-cli \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+sudo apt update
+log "GitHub CLI apt repo added"
+
 log "Installing packages..."
 packages=(
   # version control system
   git
+  # GitHub CLI
+  gh
   # c compiler + linker, required for compiling rust crates via cargo
   build-essential
   # text editor, gtk version includes +clipboard support for copying to system clipboard

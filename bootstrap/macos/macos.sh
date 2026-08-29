@@ -20,6 +20,7 @@ log "Homebrew updated"
 log "Installing packages..."
 packages=(
   git
+  gh # GitHub CLI
   vim
   jq
   tmux
