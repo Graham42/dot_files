@@ -22,15 +22,13 @@ echo 90 | sudo tee /sys/class/power_supply/BAT0/charge_stop_threshold
 echo 75 | sudo tee /sys/class/power_supply/BAT0/charge_start_threshold
 ```
 
-Setting a limit of less than 100% can save battery life.
-Setting a charge start threshold that is 5+% lower than the limit will save on battery cycles.
+Setting a limit of less than 100% can save battery life. Setting a charge start threshold that is 5+% lower than the limit will save on battery cycles.
 
 To recalibrate a new battery
 
 1. Set the charge limits, `charge_start_threshold` to 0 (disabled), and `charge_stop_threshold` to 100
 2. Charge to 100% and leave running for a couple hours
 3. Make sure the power manage
-3. Unplug and run until the laptop fully discharges and powers off
-    NOTE: make sure the power management settings will not put the computer to sleep
-4. Plug in and charge to 100% uninterrupted
-5. Finally, reapply the charge limits
+4. Unplug and run until the laptop fully discharges and powers off NOTE: make sure the power management settings will not put the computer to sleep
+5. Plug in and charge to 100% uninterrupted
+6. Finally, reapply the charge limits

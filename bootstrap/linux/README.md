@@ -134,5 +134,4 @@ The script checks what kind of session you are in and picks a method to match, b
 
 This is libinput's disable-while-typing (DWT), which is on by default - both GNOME and Cinnamon already expose it as a checkbox in their own Settings app. The value here is a rerunnable command instead of hunting through Settings after it gets switched off by accident. The script also sets disable-while-trackpointing where the schema has it, since a resting palm near a ThinkPad's TrackPoint is the same problem.
 
-This is *not* the other thing people call "palm rejection" - a palm landing on the touchpad while actively using it, rather than while typing. That's libinput's own edge/pressure heuristics, tuned per touchpad model via its quirks database. There's no desktop setting for it and no general script can fix it; it needs `libinput measure touchpad-size` and a hardware-specific quirks override instead.
-
+This is _not_ the other thing people call "palm rejection" - a palm landing on the touchpad while actively using it, rather than while typing. That's libinput's own edge/pressure heuristics, tuned per touchpad model via its quirks database. There's no desktop setting for it and no general script can fix it; it needs `libinput measure touchpad-size` and a hardware-specific quirks override instead.

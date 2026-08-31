@@ -10,8 +10,7 @@ For inspiration see https://docs.microsoft.com/en-us/windows/dev-environment/
 
 ### Install programs
 
-These are installed using the
-[windows package manager](https://docs.microsoft.com/en-us/learn/modules/explore-windows-package-manager-tool/)
+These are installed using the [windows package manager](https://docs.microsoft.com/en-us/learn/modules/explore-windows-package-manager-tool/)
 
 ```powershell
 winget install Google.Chrome
@@ -31,8 +30,7 @@ winget install --id Starship.Starship
 
 #### Docker
 
-Before installing Docker desktop, make sure you have saved all your work, as
-you'll need to log out and back in for Docker to work.
+Before installing Docker desktop, make sure you have saved all your work, as you'll need to log out and back in for Docker to work.
 
 ```powershell
 # Make sure to pick the WSL backend
@@ -63,8 +61,7 @@ winget install Docker.DockerDesktop --interactive
 
 In a WSL terminal window
 
-1.  Follow
-    [Generate an ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux#generating-a-new-ssh-key)
+1.  Follow [Generate an ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux#generating-a-new-ssh-key)
 
     ```sh
     ssh-keygen -t ed25519 -C "graham.mcgregor04+github@gmail.com"
@@ -94,17 +91,13 @@ Download UbuntuSans Nerd Font from https://www.nerdfonts.com/font-downloads
 
 ### Windows terminal config
 
-- Theme for Ubuntu:
-  https://github.com/edurojasr/Windows-Terminal-Theme-Night-Owl
+- Theme for Ubuntu: https://github.com/edurojasr/Windows-Terminal-Theme-Night-Owl
 - no bell
 - launch with F13
-  - Remap key with
-    [PowerToys Keyboard Manager utility for Windows](https://learn.microsoft.com/en-us/windows/powertoys/keyboard-manager)
-  - Set `globalSummon` config:
-    https://learn.microsoft.com/en-us/windows/terminal/customize-settings/actions#global-summon
+  - Remap key with [PowerToys Keyboard Manager utility for Windows](https://learn.microsoft.com/en-us/windows/powertoys/keyboard-manager)
+  - Set `globalSummon` config: https://learn.microsoft.com/en-us/windows/terminal/customize-settings/actions#global-summon
 - default start maximized, on login, with Ubuntu
-- Remove action/command Paste with shortcut <kbd>Ctrl+V</kbd> from settings.
-  Otherwise this will interfere with vim visual mode.
+- Remove action/command Paste with shortcut <kbd>Ctrl+V</kbd> from settings. Otherwise this will interfere with vim visual mode.
 
 - Snippet for light/dark theme matching system
 
@@ -128,9 +121,7 @@ Download UbuntuSans Nerd Font from https://www.nerdfonts.com/font-downloads
 - setup windows vscode settings as code linked to dot files
 - make sure clipboard works back and forth, including vim, tmux
   - may just need `sudo apt-get install vim-gtk3`
-  - follow steps at
-    https://superuser.com/questions/1291425/windows-subsystem-linux-make-vim-use-the-clipboard/1345241#1345241
-    Make sure to disable access control in the VcXsrv config
+  - follow steps at https://superuser.com/questions/1291425/windows-subsystem-linux-make-vim-use-the-clipboard/1345241#1345241 Make sure to disable access control in the VcXsrv config
   - https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
 
 ### Non-dev programs

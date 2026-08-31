@@ -35,7 +35,9 @@ see ./laptop-battery.md
 # items to add to setup scripts
 
 install neovim
+
 - use the official ppa to get a more up to date version
+
 ```
 
 ```
