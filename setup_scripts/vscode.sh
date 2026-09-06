@@ -10,8 +10,8 @@ fi
 
 MY_PLUGINS=$(mktemp)
 
+
 cat >"$MY_PLUGINS" <<EOF
-eamodio.gitlens
 esbenp.prettier-vscode
 golang.go
 ms-azuretools.vscode-docker
@@ -21,8 +21,11 @@ sdras.night-owl
 streetsidesoftware.code-spell-checker
 timonwong.shellcheck
 vscodevim.vim
-alfredbirk.go-to-next-change
 EOF
+
+# previous plugins that I'm not using right now
+# eamodio.gitlens
+# alfredbirk.go-to-next-change
 
 MISSING_PLUGINS=$(
 comm -23 \
