@@ -1,0 +1,9 @@
+modelRoles:
+  default: anthropic/claude-sonnet-5-5
+symbolPreset: nerd
+composer:
+  shape: claude
+theme:
+  dark: titanium
+  light: light
+setupVersion: 2
