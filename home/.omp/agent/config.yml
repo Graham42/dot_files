@@ -7,3 +7,37 @@ theme:
   dark: titanium
   light: light
 setupVersion: 2
+# Custom preset only so the `session` segment (first 8 chars of the session ID)
+# can sit in the status line. Reason: tmux-resurrect restores a pane with its
+# captured scrollback, and with the ID visible there I can recover that omp
+# session with `omp -r <id>`. The left segments and segmentOptions copy the
+# `default` preset, which `custom` doesn't inherit, so the layout stays the same.
+statusLine:
+  leftSegments:
+    - pi
+    - vim
+    - model
+    - mode
+    - collab
+    - stream
+    - path
+    - git
+    - pr
+    - context_pct
+    - cost
+  rightSegments:
+    - session_name
+    - session
+  segmentOptions:
+    model:
+      showThinkingLevel: true
+    path:
+      abbreviate: true
+      maxLength: 40
+      stripWorkPrefix: true
+    git:
+      showBranch: true
+      showStaged: true
+      showUnstaged: true
+      showUntracked: true
+  preset: custom
