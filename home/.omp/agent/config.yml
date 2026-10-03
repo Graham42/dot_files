@@ -24,6 +24,7 @@ statusLine:
     - git
     - pr
     - context_pct
+    - status
     - cost
   rightSegments:
     - session_name
@@ -41,5 +42,6 @@ statusLine:
       showUnstaged: true
       showUntracked: true
   preset: custom
+  showHookStatus: false
 completion:
   notify: "off"
