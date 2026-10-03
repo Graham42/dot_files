@@ -4,7 +4,7 @@ symbolPreset: nerd
 composer:
   shape: claude
 theme:
-  dark: titanium
+  dark: night-owl
   light: light
 setupVersion: 2
 # Custom preset only so the `session` segment (first 8 chars of the session ID)
