@@ -45,3 +45,5 @@ statusLine:
   showHookStatus: false
 completion:
   notify: "off"
+compaction:
+  thresholdTokens: 272000
