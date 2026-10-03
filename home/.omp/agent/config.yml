@@ -23,7 +23,6 @@ statusLine:
     - path
     - git
     - pr
-    - context_pct
     - status
     - cost
   rightSegments:
