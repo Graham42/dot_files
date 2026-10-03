@@ -41,3 +41,5 @@ statusLine:
       showUnstaged: true
       showUntracked: true
   preset: custom
+completion:
+  notify: "off"
