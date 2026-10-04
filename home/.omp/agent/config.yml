@@ -1,5 +1,6 @@
 modelRoles:
   default: anthropic/claude-sonnet-5-5
+  advisor: anthropic/claude-opus-5-5:medium
 symbolPreset: nerd
 composer:
   shape: claude
