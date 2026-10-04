@@ -20,7 +20,6 @@ fi
 
 SKILLS=(
     "mattpocock/skills --skill grill-me grilling tdd handoff"
-    "petergyang/no-ai-slop --skill no-ai-slop"
     "kunchenguid/gh-axi --skill gh-axi"
     "kunchenguid/axi --skill axi"
 )
