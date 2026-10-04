@@ -21,13 +21,13 @@ statusLine:
     - mode
     - collab
     - stream
-    - path
-    - git
-    - pr
     - status
     - cost
     - usage
   rightSegments:
+    - path
+    - git
+    - pr
     - session_name
     - session
   segmentOptions:
