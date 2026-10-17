@@ -142,7 +142,12 @@ while [ "$i" -lt "${#dirs_to_link[*]}" ]; do
             if [[ "$link_target" != "$CWD"* ]]; then
                 logfatal "Symlink $dest_file points to $link_target (not in $CWD) — refusing to overwrite"
             fi
-            [ "$DRY_RUN" -eq 0 ] && rm "$dest_file"
+            if [ "$DRY_RUN" -eq 1 ]; then
+                # already linked to the right place: nothing would change
+                [ "$link_target" = "$CWD/$base_dir/$file" ] && continue
+            else
+                rm "$dest_file"
+            fi
         elif [ -f "$dest_file" ]; then
             if [ "$DRY_RUN" -eq 1 ]; then
                 logwarn "  [DRY RUN] Would back up $dest_file to ${dest_file}.bak"
