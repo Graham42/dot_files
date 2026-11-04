@@ -12,7 +12,7 @@ else
 fi
 
 selected=$(
-  tmux list-windows -a -f '#{!=:#{window_active},1}' \
+  tmux list-windows -a \
     -F "$fmt" \
   | sort -rn \
   | sed 's/^[0-9]* //' \
