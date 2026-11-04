@@ -20,6 +20,15 @@ cd ~/dot_files && ./init_all.sh
 
 # tmux
 
-- Press `Ctrl+a`, then `Ctrl+t` to search all windows across all sessions,
-  including each session's active window. Results are ordered by most recent
-  activity. Select a result to switch to that window and session.
+- Press `Ctrl+a`, then `Ctrl+t` to search windows across all sessions, excluding
+  only the current window in the session you opened the picker from. Other
+  sessions' active windows remain included. Results use one global order: most
+  recently accessed first, at the top, even while searching. Background output
+  does not change the order. Select a result to switch to that window and session.
+- Press `Ctrl+a`, then lowercase `l` to return to the most recently visited other
+  window, even in another session. Repeat to toggle back. Linked copies of the
+  current window are skipped. If no other window has a recorded visit, it does
+  nothing.
+- Access tracking starts when the tmux config is loaded and lasts until the tmux
+  server exits. Windows not visited since tracking started appear after visited
+  windows; earlier access history cannot be recovered.
