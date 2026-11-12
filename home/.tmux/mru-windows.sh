@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Most Recently Used (MRU) window switcher: most recently accessed windows first.
+# Window switcher: MRU when browsing; relevance first, then MRU when searching.
 
 # The binding supplies the originating pair so other clients cannot change it.
 current_target=${1:-$(tmux display-message -p '#{session_id}:#{window_id}')}
@@ -29,7 +29,7 @@ windows=$(
 if [ "${2:-}" = "--previous" ]; then
   selected=${windows%%$'\n'*}
 else
-  selected=$(printf '%s\n' "$windows" | fzf-tmux -p -- --no-sort --layout=reverse)
+  selected=$(printf '%s\n' "$windows" | fzf-tmux -p -- --sort --tiebreak=index --layout=reverse)
 fi
 
 [ -z "$selected" ] && exit 0

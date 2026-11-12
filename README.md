@@ -22,9 +22,10 @@ cd ~/dot_files && ./init_all.sh
 
 - Press `Ctrl+a`, then `Ctrl+t` to search windows across all sessions, excluding
   only the current window in the session you opened the picker from. Other
-  sessions' active windows remain included. Results use one global order: most
-  recently accessed first, at the top, even while searching. Background output
-  does not change the order. Select a result to switch to that window and session.
+  sessions' active windows remain included. With an empty search, the most recently
+  accessed windows appear first. While searching, better matches appear first;
+  equally scored matches stay in MRU order. Background output does not change
+  access order. Select a result to switch to that window and session.
 - Press `Ctrl+a`, then lowercase `l` to return to the most recently visited other
   window, even in another session. Repeat to toggle back. Linked copies of the
   current window are skipped. If no other window has a recorded visit, it does
